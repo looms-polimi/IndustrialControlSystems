@@ -14,7 +14,7 @@ partial model Controller "Partial interface for a generic controller"
   parameter Real CSmin = 0 "|Saturation| minimum value of the CS"  annotation(Evaluate=true);
   parameter Real CSmax = 1 "|Saturation| maximum value of the CS"  annotation(Evaluate=true);
   parameter Real CS_start = 0 "|Initialisation| output initial value"  annotation(Evaluate=true);
-  parameter Real eps = 1e-6 "|Attributes| small time constant that represents the time for switching 
+  parameter Real eps = 1e-1 "|Attributes| small time constant that represents the time for switching 
                             between auto and tracking mode"  annotation(Evaluate=true);
   parameter Boolean useTS = false
     "|Attributes| =true, if TS and TR inputs are enabled"
