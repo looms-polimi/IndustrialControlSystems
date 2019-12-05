@@ -12,12 +12,11 @@ held in Munich 3-5 September 2012. The library won the 2nd prize at the Modelica
 
 ## Current release
 
-IndustrialControlSystems v1.0 (2019-12-06)
+IndustrialControlSystems v1.1.0 (2019-12-06)
 
 #### Release notes
 
-* [Version 1.0 (2012-05-15)](../../archive/v1.0.zip):
- * Initial release.
+Version 1.1.0 consolidates the fixes made since the first release 1.0 in 2012 and refers to the Modelica Standard Library 3.2.3
 
 #### Main authors
 
