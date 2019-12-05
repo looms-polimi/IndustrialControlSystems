@@ -12,15 +12,13 @@ held in Munich 3-5 September 2012. The library won the 2nd prize at the Modelica
 
 ## Current release
 
-Download [IndustrialControlSystems v1.0 (2012-05-15)](../../archive/v1.0.zip)
+IndustrialControlSystems v1.0 (2019-12-06)
 
 #### Release notes
 
 * [Version 1.0 (2012-05-15)](../../archive/v1.0.zip):
  * Initial release.
 
-## License
+#### Main authors
 
-Licensed by Marco Bonvini and Alberto Leva under the Modelica License 2
-
-Copyright (C) 2010-2013
+Marco Bonvini and Alberto Leva
