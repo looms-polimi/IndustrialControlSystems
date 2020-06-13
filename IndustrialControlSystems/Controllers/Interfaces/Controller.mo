@@ -4,6 +4,8 @@ partial model Controller "Partial interface for a generic controller"
   Real tr "track reference value";
   Boolean ts "track reference signal";
   Boolean at_req "auto tuning enabling signal";
+  Boolean satHigh "High saturation signal";
+  Boolean satLow "Low saturation signal";
   parameter Real Ts = 0
     "|Discretisation| Sampling time (if <= 0 continuous time)"                     annotation(Evaluate=true);
   parameter IndustrialControlSystems.LinearSystems.Discrete.Types.discrMethod method=
@@ -25,6 +27,13 @@ partial model Controller "Partial interface for a generic controller"
   parameter Boolean useAT = false
     "|Attributes| =true, if AutoTuning input is enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
+  parameter Boolean useGS = false
+   "|Attributes| =true, if GainScheduling inputs are enabled"
+  annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
+  parameter Boolean useSAT = false
+   "|Attributes| =true, if Saturation outputs are enabled"
+  annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
+
   Modelica.Blocks.Interfaces.RealInput TR if useTS "Track Reference signal"
                                                    annotation (Placement(
         transformation(
@@ -62,10 +71,18 @@ partial model Controller "Partial interface for a generic controller"
   Modelica.Blocks.Interfaces.BooleanInput ATreq if useAT "Auto Tuning request"
                                                           annotation (Placement(transformation(extent={{-100,-80},{-60,-40}},
           rotation=0), iconTransformation(extent={{-100,-100},{-60,-60}})));
+  Modelica.Blocks.Interfaces.BooleanOutput satHIGH if useSAT
+    annotation (Placement(transformation(extent={{80,30},{100,50}}),
+        iconTransformation(extent={{80,34},{100,54}})));
+  Modelica.Blocks.Interfaces.BooleanOutput satLOW if useSAT
+    annotation (Placement(transformation(extent={{80,-50},{100,-30}}),
+        iconTransformation(extent={{82,-48},{102,-28}})));
 protected
   Modelica.Blocks.Interfaces.RealInput TR_in;
   Modelica.Blocks.Interfaces.BooleanInput TS_in;
   Modelica.Blocks.Interfaces.BooleanInput ATreq_in;
+  Modelica.Blocks.Interfaces.BooleanOutput satHIGH_in;
+  Modelica.Blocks.Interfaces.BooleanOutput satLOW_in;
   Modelica.Blocks.Interfaces.RealInput BIAS_in;
   Real alfa "discretisation coefficient";
 equation
@@ -86,6 +103,8 @@ equation
   connect(TS_in, TS);
   connect(BIAS_in, BIAS);
   connect(ATreq_in,ATreq);
+  connect(satHIGH_in,satHIGH);
+  connect(satLOW_in,satLOW);
 
   if not useTS then
     TR_in = 0;
@@ -100,13 +119,33 @@ equation
     ATreq_in = false;
   end if;
 
+  if not useSAT then
+    satHIGH_in = false;
+    satLOW_in = false;
+  end if;
+
+
   tr = TR_in;
   ts = TS_in;
   bias = BIAS_in;
   at_req = ATreq_in;
+  satHigh = satHIGH_in;
+  satLow = satLOW_in;
 
-  annotation (Diagram(graphics),
-                         Icon(graphics={
+  if useSAT then
+      if CS>=CSmax and AntiWindup then
+        satHigh=true;
+        satLow=false;
+      elseif CS<=CSmin and AntiWindup then
+        satHigh=false;
+        satLow=true;
+      else
+        satHigh=false;
+        satLow=false;
+      end if;
+    end if;
+
+  annotation (           Icon(graphics={
           Rectangle(
           extent={{-100,100},{100,-100}},
           lineColor={0,0,0},

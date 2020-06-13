@@ -2,10 +2,16 @@ within IndustrialControlSystems.Controllers;
 model I "Integral controller"
   extends Interfaces.Controller;
   parameter Real T = 1 "|Parameters| Integral time" annotation(Evaluate = true);
+  Real T_act "Actual integral time";
   Real Iout "output of the Integral block";
   Real satin "input of the saturation block";
+  Modelica.Blocks.Interfaces.RealInput T_GS if useGS annotation (Placement(transformation(
+        extent={{-20,-20},{20,20}},
+        rotation=90,
+        origin={0,-92})));
+protected
+  Modelica.Blocks.Interfaces.RealInput T_in "Internal protected integral time real input";
 initial equation
-
   if Ts > 0 then
     // Discrete time initialisation
     pre(Iout) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
@@ -13,9 +19,12 @@ initial equation
     // Continuous time initialisation
     Iout = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
   end if;
-
 equation
-
+  connect(T_in,T_GS);
+  if not useGS then
+    T_in = T;
+  end if;
+  T_act = T_in;
   if Ts > 0 then
     // Discrete time controller
     when sample(0,Ts) then
@@ -35,7 +44,7 @@ equation
     CS    = if AntiWindup then max(CSmin,min(CSmax,(if ts then tr else satin))) else satin;
     satin = Iout + bias;
     if not ts then
-      der(Iout)   = 1/T*(SP - PV) + 1/eps*(CS - (satin - bias));
+      der(Iout)   = 1/T_act*(SP - PV) + 1/eps*(CS - (satin - bias));
     else
       eps*der(Iout) = -Iout + tr;
     end if;

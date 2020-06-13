@@ -3,9 +3,28 @@ model PI "Proportional + Integral controller"
   extends Interfaces.Controller;
   parameter Real Kp = 5 "|Parameters| Proportional gain" annotation(Evaluate = true);
   parameter Real Ti = 1 "|Parameters| Integral time" annotation(Evaluate = true);
+  Real Ti_act "Actual integral time";
+  Real Kp_act "Actual proportianal gain";
   Real FBout "output (and state) of the feedback block 1/(1+sTi)";
   Real cs "Pre-biased Control Signal";
   Real satin "input of the saturation block";
+  Modelica.Blocks.Interfaces.RealInput Kp_GS if useGS annotation (Placement(transformation(
+        extent={{-20,-20},{20,20}},
+        rotation=90,
+        origin={0,-92}), iconTransformation(
+        extent={{-20,-20},{20,20}},
+        rotation=90,
+        origin={-20,-80})));
+  Modelica.Blocks.Interfaces.RealInput Ti_GS if useGS annotation (Placement(transformation(
+        extent={{-20,-20},{20,20}},
+        rotation=90,
+        origin={0,-92}), iconTransformation(
+        extent={{-20,-20},{20,20}},
+        rotation=90,
+        origin={42,-80})));
+protected
+  Modelica.Blocks.Interfaces.RealInput Ti_in "Internal protected integral time real input";
+  Modelica.Blocks.Interfaces.RealInput Kp_in "Internal protected Kp gain real input";
 initial equation
 
   if Ts > 0 then
@@ -17,6 +36,15 @@ initial equation
   end if;
 
 equation
+
+  connect(Kp_in,Kp_GS);
+  connect(Ti_in,Ti_GS);
+  if not useGS then
+    Kp_in = Kp;
+    Ti_in = Ti;
+  end if;
+  Kp_act = Kp_in;
+  Ti_act = Ti_in;
 
   if Ts > 0 then
     // Discrete time controller
@@ -35,10 +63,11 @@ equation
     end when;
   else
     // Continuous time controller
-    satin = FBout + Kp*(SP-PV);
-    cs    = if ts then tr else (if AntiWindup then max(CSmin,min(CSmax,satin)) else satin);
-    FBout = cs + (if not ts then -Ti*der(FBout) else -eps*der(FBout));
-    CS    = if AntiWindup then max(CSmin,min(CSmax,cs + (if ts then 0 else bias))) else cs + (if ts then 0 else bias);
+    satin = if ts then tr else FBout + Kp_act*(SP-PV);
+    //cs    = if AntiWindup then max(CSmin,min(CSmax,satin)) + bias else satin + bias;
+    cs    = if AntiWindup then max(CSmin,min(CSmax,satin)) else satin;
+    FBout = cs + (if not ts then -Ti_act*der(FBout) else -eps*der(FBout));
+    CS    = if AntiWindup then max(CSmin,min(CSmax,cs + bias)) else cs + bias;
   end if;
 
   annotation (Icon(graphics={Text(

@@ -2,10 +2,21 @@ within IndustrialControlSystems.Controllers;
 model P "Proportional controller"
   extends Interfaces.Controller;
   parameter Real Kp = 5 "|Parameters| Proportional gain" annotation(Evaluate = true);
+  Real Kp_act "Actual proportianal gain";
   Real Pout "output of the proportional block";
   Real satin "input of the saturation block";
+  Modelica.Blocks.Interfaces.RealInput Kp_GS if useGS annotation (Placement(transformation(
+        extent={{-20,-20},{20,20}},
+        rotation=90,
+        origin={0,-92})));
+protected
+  Modelica.Blocks.Interfaces.RealInput Kp_in "Internal protected Kp gain real input";
 equation
-
+  connect(Kp_in,Kp_GS);
+  if not useGS then
+    Kp_in = Kp;
+  end if;
+  Kp_act = Kp_in;
   if Ts > 0 then
     // Discrete time controller
     when sample(0,Ts) then
@@ -17,9 +28,8 @@ equation
     // Continuous time controller
     CS    = if AntiWindup then max(CSmin,min(CSmax,satin)) else satin;
     satin = if ts then tr else Pout;
-    Pout  = Kp*(SP-PV) + bias;
+    Pout  = Kp_act*(SP-PV) + bias;
   end if;
-
   annotation (Icon(graphics={Text(
           extent={{-30,28},{50,-42}},
           lineColor={0,0,255},
