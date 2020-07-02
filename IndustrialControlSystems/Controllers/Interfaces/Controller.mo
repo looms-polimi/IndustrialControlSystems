@@ -71,9 +71,9 @@ partial model Controller "Partial interface for a generic controller"
   Modelica.Blocks.Interfaces.BooleanInput ATreq if useAT "Auto Tuning request"
                                                           annotation (Placement(transformation(extent={{-100,-80},{-60,-40}},
           rotation=0), iconTransformation(extent={{-100,-100},{-60,-60}})));
-  Modelica.Blocks.Interfaces.BooleanOutput satHIGH if useSAT
-    annotation (Placement(transformation(extent={{80,30},{100,50}}),
-        iconTransformation(extent={{80,34},{100,54}})));
+  Modelica.Blocks.Interfaces.BooleanOutput satHI if useSAT annotation (
+      Placement(transformation(extent={{80,30},{100,50}}), iconTransformation(
+          extent={{80,34},{100,54}})));
   Modelica.Blocks.Interfaces.BooleanOutput satLOW if useSAT
     annotation (Placement(transformation(extent={{80,-50},{100,-30}}),
         iconTransformation(extent={{82,-48},{102,-28}})));
@@ -103,7 +103,7 @@ equation
   connect(TS_in, TS);
   connect(BIAS_in, BIAS);
   connect(ATreq_in,ATreq);
-  connect(satHIGH_in,satHIGH);
+  connect(satHIGH_in, satHI);
   connect(satLOW_in,satLOW);
 
   if not useTS then
