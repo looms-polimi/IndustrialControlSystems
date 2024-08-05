@@ -2,11 +2,13 @@ within IndustrialControlSystems.MathOperations.RealType.Interfaces;
 partial model RealSimpleOperation "Real operation interface"
   parameter Real Ts = 0.1 "sampling time" annotation(Evaluate=true);
   parameter Boolean FixedPoint = false
-    "|Fixed Point| Use fixed point real numbers"  annotation(Evaluate=true);
-  parameter Integer Nbit=16 " Number of bit for representing the real numbers"
-                                                                    annotation(Evaluate=true);
+    "Use fixed point real numbers"
+    annotation(Evaluate=true, Dialog(group = "Fixed Point"));
+  parameter Integer Nbit=16 " Number of bits for representing the real numbers"
+    annotation(Evaluate=true);
   parameter Real scaleFactor = 1
-    "|Fixed Point| Scale factor for Fixed Point numbers";
+    "Scale factor for Fixed Point numbers"
+    annotation(Dialog(group = "Fixed Point"));
   Integer U1fp "floating point converted input";
   Integer U2fp "floating point converted input";
   Integer Yfp "floating point converted output";
@@ -20,11 +22,11 @@ partial model RealSimpleOperation "Real operation interface"
     annotation (Placement(transformation(extent={{80,-10},{100,10}},
           rotation=0), iconTransformation(extent={{80,-10},{100,10}})));
   parameter Integer MAX = integer(2^(Nbit-1))
-    "|Fixed Point| maximum number that can be represented with Fixed Point notation"
-                                                                                                        annotation(Evaluate=true);
+    "maximum number that can be represented with Fixed Point notation"
+    annotation(Evaluate=true, Dialog(group = "Fixed Point"));
   parameter Integer MIN = -integer(2^(Nbit-1)) + 1
-    "|Fixed Point| mainimum number that can be represented with Fixed Point notation"
-                                                                                                        annotation(Evaluate=true);
+    "minimum number that can be represented with Fixed Point notation"
+    annotation(Evaluate=true, Dialog(group = "Fixed Point"));
 equation
 
   annotation (Diagram(graphics),

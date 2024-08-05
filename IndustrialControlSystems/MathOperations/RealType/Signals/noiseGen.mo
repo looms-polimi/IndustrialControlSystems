@@ -1,13 +1,20 @@
 within IndustrialControlSystems.MathOperations.RealType.Signals;
 model noiseGen "Noise generator"
   extends Interfaces.RealNinOperation(final useInputs=false, final FixedPoint=false, final Nbit = 1, final scaleFactor = 1, final MAX = 1, final MIN = 0);
-  parameter Modelica.SIunits.Time Ts = 0.1 "|Noise generator| Sampling time" annotation(Evaluate = true);
-  parameter Real amp = 0.01 "|Noise generator| Amplitude" annotation(Evaluate = true);
-  parameter Real Tf = 1 "|Noise generator| First order filter time constant" annotation(Evaluate = true);
-  parameter Real X_start = 1 "|Noise generator| Initial value" annotation(Evaluate=true);
-  constant Real m = 2^31 - 1 "|Algorithm| coefficient";
-  constant Real a = 7^5 "|Algorithm| coefficient";
-  constant Real c= 10 "|Algorithm| coefficient";
+  parameter Modelica.SIunits.Time Ts = 0.1 "Sampling time"
+    annotation(Evaluate = true, Dialog(group = "Noise generator"));
+  parameter Real amp = 0.01 "Amplitude"
+    annotation(Evaluate = true, Dialog(group = "Noise generator"));
+  parameter Real Tf = 1 "First order filter time constant"
+    annotation(Evaluate = true, Dialog(group = "Noise generator"));
+  parameter Real X_start = 1 "Initial value"
+    annotation(Evaluate = true, Dialog(group = "Noise generator"));
+  constant Real m = 2^31 - 1 "coefficient"
+    annotation(Dialog(group = "Algorithm"));
+  constant Real a = 7^5 "coefficient"
+    annotation(Dialog(group = "Algorithm"));
+  constant Real c= 10 "coefficient"
+    annotation(Dialog(group = "Algorithm"));
 protected
   discrete Real X;
   discrete Real U;

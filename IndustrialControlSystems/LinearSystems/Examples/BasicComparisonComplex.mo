@@ -3,14 +3,20 @@ model BasicComparisonComplex
   "Comparison of the various discretisation methods (Complex Poles)"
   extends Modelica.Icons.Example;
   // Complex poles
-  parameter Real mu_cpx = 2 "|Complex poles| Complex poles process gain";
+  parameter Real mu_cpx = 2 "Complex poles process gain"
+    annotation(Dialog(group = "Complex poles"));
   parameter Real omegan_cpx = 1
-    "|Complex poles| Complex poles natural frequency";
-  parameter Real xi_cpx = 0.4 "|Complex poles| Complex poles damping factor";
-  parameter Real y_start_cpx = 0 "|Complex poles| Complex poles initial value";
-  parameter Real dy_start_cpx = 0 "|Complex poles| Complex poles initial slope";
+    "Complex poles natural frequency"
+    annotation(Dialog(group = "Complex poles"));
+  parameter Real xi_cpx = 0.4 "Complex poles damping factor"
+    annotation(Dialog(group = "Complex poles"));
+  parameter Real y_start_cpx = 0 "Complex poles initial value"
+    annotation(Dialog(group = "Complex poles"));
+  parameter Real dy_start_cpx = 0 "Complex poles initial slope"
+    annotation(Dialog(group = "Complex poles"));
   // Discretisation
-  parameter Real Ts = 0.5 "|Discretisation| Sampling time";
+  parameter Real Ts = 0.5 "Sampling time"
+    annotation(Dialog(group = "Discretisation"));
   // Errors
   Real error_BE = cplxP.y - cplxP_dig_BE.y;
   Real error_FE = cplxP.y - cplxP_dig_FE.y;

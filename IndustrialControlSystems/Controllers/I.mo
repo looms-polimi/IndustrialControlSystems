@@ -1,7 +1,8 @@
 within IndustrialControlSystems.Controllers;
 model I "Integral controller"
   extends Interfaces.Controller;
-  parameter Real T = 1 "|Parameters| Integral time" annotation(Evaluate = true);
+  parameter Real T = 1 "Integral time"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
   Real T_act "Actual integral time";
   Real Iout "output of the Integral block";
   Real satin "input of the saturation block";

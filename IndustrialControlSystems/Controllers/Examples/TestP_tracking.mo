@@ -2,7 +2,8 @@ within IndustrialControlSystems.Controllers.Examples;
 model TestP_tracking "Test of the Proportional controller -- Tracking mode"
   extends Modelica.Icons.Example;
   parameter Real Ts = 0
-    "|Sampling time| if Ts>=0 then discrete time controller, otherwise continuous time";
+    "if Ts>=0 then discrete time controller, otherwise continuous time"
+    annotation(Dialog(group = "Sampling time"));
   Modelica.Blocks.Sources.Step step(startTime=10)
                                     annotation (
       Placement(transformation(extent={{-94,70},{-74,90}}, rotation=0)));

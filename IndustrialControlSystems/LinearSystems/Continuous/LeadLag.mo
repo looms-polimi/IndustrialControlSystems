@@ -1,10 +1,14 @@
 within IndustrialControlSystems.LinearSystems.Continuous;
 model LeadLag "Lead lag process: mu(1+T1*s)/(1+T2*s)"
   extends Interfaces.BaseBlock;
-  parameter Real T1 = 3 "|Block parameters| zero's time constant";
-  parameter Real T2 = 5 "|Block parameters| pole's time constant";
-  parameter Real mu = 1 "|Block parameters| Gain";
-  parameter Real y_start = 0 "|Initial conditions| output initial value";
+  parameter Real T1 = 3 "zero's time constant"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real T2 = 5 "pole's time constant"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real mu = 1 "Gain"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real y_start = 0 "output initial value"
+    annotation(Dialog(group = "Initial conditions"));
   Real dy;
 protected
   parameter Real A = T1/T2;

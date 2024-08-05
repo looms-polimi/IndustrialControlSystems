@@ -2,17 +2,23 @@ within IndustrialControlSystems.Controllers;
 model PID
   "Proportional + Integral + Derivative two degree of freedom controller"
   extends Interfaces.Controller;
-  parameter Real Kp = 5 "|Parameters| Proportional gain" annotation(Evaluate = true);
-  parameter Real Ti = 1 "|Parameters| Integral time" annotation(Evaluate = true);
+  parameter Real Kp = 5 "Proportional gain"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
+  parameter Real Ti = 1 "Integral time"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
   parameter Real Tt = max(1e3*eps,sqrt(Ti*Td))
-    "|Parameters| Reset time for the integrator (it should be larger than Td and smaller than Ti)"
-                                                                                                        annotation(Evaluate = true);
-  parameter Real Td = 1 "|Parameters| Derivative time" annotation(Evaluate = true);
-  parameter Real N =  10 "|Parameters| Derivative filter ratio"  annotation(Evaluate = true);
+    "Reset time for the integrator (it should be larger than Td and smaller than Ti)"
+    annotation(Evaluate = true);
+  parameter Real Td = 1 "Derivative time"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
+  parameter Real N =  10 "Derivative filter ratio"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
   parameter Real b = 1
-    "|Parameters| Set point weighting for the proportional action" annotation(Evaluate=true);
+    "Set point weighting for the proportional action"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
   parameter Real c = 1
-    "|Parameters| Set point weighting for the derivative action" annotation(Evaluate=true);
+    "Set point weighting for the derivative action"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
   Real Paction "proportional action";
   Real Iaction "integral action";
   Real Daction "derivative action";

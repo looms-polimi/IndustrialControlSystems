@@ -1,11 +1,16 @@
 within IndustrialControlSystems.LinearSystems.Discrete;
 model ComplexPoles "Process with complex poles"
   extends Interfaces.DiscreteBaseBlock;
-  parameter Real xi = 0.8 "|Block parameters| Damping coefficient";
-  parameter Real omegan = 0.1 "|Block parameters| Natural frequency";
-  parameter Real mu = 1 "|Block parameters| Gain";
-  parameter Real y_start = 0 "|Initial conditions| Output initial value";
-  parameter Real dy_start = 0 "|Initial conditions| Slope initial value";
+  parameter Real xi = 0.8 "Damping coefficient"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real omegan = 0.1 "Natural frequency"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real mu = 1 "Gain"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real y_start = 0 "Output initial value"
+    annotation(Dialog(group = "Initial conditions"));
+  parameter Real dy_start = 0 "Slope initial value"
+    annotation(Dialog(group = "Initial conditions"));
 protected
   Real u_pre1;
   Real y_pre1;

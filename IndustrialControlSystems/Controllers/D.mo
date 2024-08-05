@@ -1,8 +1,10 @@
 within IndustrialControlSystems.Controllers;
 model D "Real derivative controller"
   extends Interfaces.Controller;
-  parameter Real Td = 1 "|Parameters| Derivative time" annotation(Evaluate = true);
-  parameter Real N =  10 "|Parameters| Limitation of the derivative action"  annotation(Evaluate = true);
+  parameter Real Td = 1 "Derivative time"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
+  parameter Real N =  10 "Limitation of the derivative action"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
   Real Fin "Filtered input";
   Real satin "input of the saturation block";
 initial equation

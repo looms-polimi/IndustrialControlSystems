@@ -1,7 +1,8 @@
 within IndustrialControlSystems.LinearSystems.Discrete;
 model Delay "Unitary time delay"
   extends LinearSystems.Interfaces.DiscreteBaseBlock;
-  parameter Real y_start = 0 "|Initial conditions| Output initial value";
+  parameter Real y_start = 0 "Output initial value"
+    annotation(Dialog(group = "Initial conditions"));
 initial equation
   y = y_start;
 equation

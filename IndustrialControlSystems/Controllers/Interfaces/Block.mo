@@ -3,14 +3,18 @@ partial model Block "Partial interface for a continuous time control block"
 
   Real tr "track reference value";
   Boolean ts "track reference signal";
-  parameter Boolean useTS = false "|Tracking| =true, if TS input is enabled"
+  parameter Boolean useTS = false "=true, if TS input is enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   parameter Real eps = 0.001
-    "|Tracking| Small time constant used in tracking mode"                          annotation(Evaluate = true);
+    "Small time constant used in tracking mode"
+    annotation(Evaluate = true, Dialog(group = "Tracking"));
   parameter Boolean AntiWindup = false
-    "|Saturation| Flag that enables the antiwindup feature" annotation(Evaluate = true);
-  parameter Real Ymin = 0 "|Saturation| Minimum value of Y" annotation(Evaluate = true);
-  parameter Real Ymax = 1 "|Saturation| Maximum value of Y" annotation(Evaluate = true);
+    "Flag that enables the antiwindup feature"
+    annotation(Evaluate = true, Dialog(group = "Saturation"));
+  parameter Real Ymin = 0 "Minimum value of Y"
+    annotation(Evaluate = true, Dialog(group = "Saturation"));
+  parameter Real Ymax = 1 "Maximum value of Y"
+    annotation(Evaluate = true, Dialog(group = "Saturation"));
   Modelica.Blocks.Interfaces.RealInput TR if useTS "Track Reference signal "
                                                    annotation (Placement(
         transformation(

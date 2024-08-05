@@ -5,12 +5,18 @@ model SmoothStepSignal "Smooth step Set Point generator, driven by signals"
         transformation(extent={{-100,40},{-60,80}}), iconTransformation(extent={{-100,40},
             {-60,80}})));
   parameter Real alfa = 0.1
-    "|Smooth step| Portion of time for parabolic junctions";
-  parameter Real yin = 0 "|Smooth step| Output initial value";
-  parameter Real yfin = 1 "|Smooth step| Output final value";
-  parameter Real m = 0.1 "|Smooth step| Slope of the ramp";
-  parameter Real tin = 10 "|Smooth step| Initial time";
-  parameter Real delay = 0 "|Smooth step| Delay";
+    "Portion of time for parabolic junctions"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real yin = 0 "Output initial value"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real yfin = 1 "Output final value"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real m = 0.1 "Slope of the ramp"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real tin = 10 "Initial time"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real delay = 0 "Delay"
+    annotation(Dialog(group = "Smooth step"));
 protected
   discrete Boolean En_d;
   discrete Boolean St(start=false);

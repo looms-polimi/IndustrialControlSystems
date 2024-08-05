@@ -1,8 +1,10 @@
 within IndustrialControlSystems.Logical.Comparisons.Examples;
 model TestComparison
   extends Modelica.Icons.Example;
-  parameter Real Ts = 0.001 "|Sampling| Sampling time";
-  parameter Real eps = 0.01 "|Real numbers| Comparison threshold";
+  parameter Real Ts = 0.001 "Sampling time"
+    annotation(Dialog(group = "Sampling"));
+  parameter Real eps = 0.01 "Comparison threshold"
+    annotation(Dialog(group = "Real numbers"));
   RealType.Equal equal(Ts=Ts, eps=eps)
     annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
   Modelica.Blocks.Sources.Sine sine(amplitude=1, freqHz=1)

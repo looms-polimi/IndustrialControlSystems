@@ -3,11 +3,15 @@ model ComparisonTFunction
   "Comparison of the various discretisation methods (generic Trasfer Function)"
   extends Modelica.Icons.Example;
   // Transfer Function
-  parameter Real a[:] = {-1,1} "|Transfer Function| Numerator coefficients";
-  parameter Real b[:] = {2,4,1} "|Transfer Function| Denumerator coefficients";
-  parameter Real y_start = 0 "|Transfer Function| Initial value";
+  parameter Real a[:] = {-1,1} "Numerator coefficients"
+    annotation(Dialog(group = "Transfer Function"));
+  parameter Real b[:] = {2,4,1} "Denumerator coefficients"
+    annotation(Dialog(group = "Transfer Function"));
+  parameter Real y_start = 0 "Initial value"
+    annotation(Dialog(group = "Transfer Function"));
   // Discretisation
-  parameter Real Ts = 0.1 "|Discretisation| Sampling time";
+  parameter Real Ts = 0.1 "Sampling time"
+    annotation(Dialog(group = "Discretisation"));
   // Errors
   Real error_BE = tf.y - tf_BE.y;
   Real error_FE = tf.y - tf_FE.y;

@@ -2,14 +2,22 @@ within IndustrialControlSystems.Applications.ControlProblems.DecoupledControl;
 model Process "Two inputs Two outputs process
   Y1 = P11*u1 + P12*u2  and  Y2 = P21*u1 + P22*u2
   "
-  parameter Real P11_num[:] = {1} "| P11 | Transfer function num.";
-  parameter Real P11_den[:] = {1,1} "| P11 | Transfer function den.";
-  parameter Real P12_num[:] = {1} "| P12 | Transfer function num.";
-  parameter Real P12_den[:] = {1,1} "| P12 | Transfer function den.";
-  parameter Real P21_num[:] = {1} "| P21 | Transfer function num.";
-  parameter Real P21_den[:] = {1,1} "| P21 | Transfer function den.";
-  parameter Real P22_num[:] = {1} "| P22 | Transfer function num.";
-  parameter Real P22_den[:] = {1,1} "| P22 | Transfer function den.";
+  parameter Real P11_num[:] = {1} "Transfer function num."
+    annotation(Dialog(group = " P11 "));
+  parameter Real P11_den[:] = {1,1} "Transfer function den."
+    annotation(Dialog(group = " P11 "));
+  parameter Real P12_num[:] = {1} "Transfer function num."
+    annotation(Dialog(group = " P12 "));
+  parameter Real P12_den[:] = {1,1} "Transfer function den."
+    annotation(Dialog(group = " P12 "));
+  parameter Real P21_num[:] = {1} "Transfer function num."
+    annotation(Dialog(group = " P21 "));
+  parameter Real P21_den[:] = {1,1} "Transfer function den."
+    annotation(Dialog(group = " P21 "));
+  parameter Real P22_num[:] = {1} "Transfer function num."
+    annotation(Dialog(group = " P22 "));
+  parameter Real P22_den[:] = {1,1} "Transfer function den."
+    annotation(Dialog(group = " P22 "));
   LinearSystems.Continuous.TransferFunction
                                       P11(num=P11_num, den=P11_den)
     annotation (Placement(transformation(extent={{-20,50},{0,70}})));

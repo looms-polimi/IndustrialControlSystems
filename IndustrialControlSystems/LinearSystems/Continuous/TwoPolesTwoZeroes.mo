@@ -2,11 +2,16 @@ within IndustrialControlSystems.LinearSystems.Continuous;
 model TwoPolesTwoZeroes
   "Process with an integrator, 1 pole and 2 zeroes: mu(1+sT1)(1+sT2)/(1+sT3)s"
   extends Interfaces.BaseBlock;
-  parameter Real mu = 1 "|Block parameters| Gain";
-  parameter Real T1 = 4 "|Block parameters| first zero's time constant";
-  parameter Real T2 = 2 "|Block parameters| second zero's time constant";
-  parameter Real T3 = 10 "|Block parameters| pole's time constant";
-  parameter Real y_start = 0 "|Initial conditions| Output initial value";
+  parameter Real mu = 1 "Gain"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real T1 = 4 "first zero's time constant"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real T2 = 2 "second zero's time constant"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real T3 = 10 "pole's time constant"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real y_start = 0 "Output initial value"
+    annotation(Dialog(group = "Initial conditions"));
   Real dy;
   Real z;
   Real h;

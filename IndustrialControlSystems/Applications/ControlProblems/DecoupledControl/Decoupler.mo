@@ -1,9 +1,13 @@
 within IndustrialControlSystems.Applications.ControlProblems.DecoupledControl;
 model Decoupler "Model of the 2x2 decoupler"
-  parameter Real P_21_22_num[:] = {1} "|P_21_22| Transfer function num.";
-  parameter Real P_21_22_den[:] = {1,1} "|P_21_22| Transfer function den.";
-  parameter Real P_12_11_num[:] = {1} "|P_12_11| Transfer function num.";
-  parameter Real P_12_11_den[:] = {1,1} "|P_12_11| Transfer function den.";
+  parameter Real P_21_22_num[:] = {1} "Transfer function num."
+    annotation(Dialog(group = "P_21_22"));
+  parameter Real P_21_22_den[:] = {1,1} "Transfer function den."
+    annotation(Dialog(group = "P_21_22"));
+  parameter Real P_12_11_num[:] = {1} "Transfer function num."
+    annotation(Dialog(group = "P_12_11"));
+  parameter Real P_12_11_den[:] = {1,1} "Transfer function den."
+    annotation(Dialog(group = "P_12_11"));
   Modelica.Blocks.Interfaces.RealInput u1 "input" annotation (Placement(
         transformation(extent={{-100,40},{-60,80}}), iconTransformation(
           extent={{-100,40},{-60,80}})));

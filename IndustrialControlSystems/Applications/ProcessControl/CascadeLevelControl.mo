@@ -2,38 +2,62 @@ within IndustrialControlSystems.Applications.ProcessControl;
 model CascadeLevelControl "Cascade level control with PI controllers"
   extends Modelica.Icons.Example;
   import Modelica.SIunits.*;
-  parameter Length PipeL = 1 "|Process| Pipe length";
-  parameter Length PipeD = 0.0254 "|Process| Pipe diameter";
-  parameter Length Lstart = 1 "|Process| Initial water level";
-  parameter Length H = 2 "|Process| Storage height";
-  parameter Area A = 1.5 "|Process| Cross section storage area";
-  parameter Real Tact = 2 "|Process| Actuator dynamics";
+  parameter Length PipeL = 1 "Pipe length"
+    annotation(Dialog(group = "Process"));
+  parameter Length PipeD = 0.0254 "Pipe diameter"
+    annotation(Dialog(group = "Process"));
+  parameter Length Lstart = 1 "Initial water level"
+    annotation(Dialog(group = "Process"));
+  parameter Length H = 2 "Storage height"
+    annotation(Dialog(group = "Process"));
+  parameter Area A = 1.5 "Cross section storage area"
+    annotation(Dialog(group = "Process"));
+  parameter Real Tact = 2 "Actuator dynamics"
+    annotation(Dialog(group = "Process"));
 
   parameter Real Ts_l = 0
-    "|Controller level| Sampling time for the valve controller";
-  parameter Real Kp_l = -200 "|Controller level| Proportional gain";
-  parameter Real Ti_l = 100 "|Controller level| Integral time";
+    "Sampling time for the valve controller"
+    annotation(Dialog(group = "Controller level"));
+  parameter Real Kp_l = -200 "Proportional gain"
+    annotation(Dialog(group = "Controller level"));
+  parameter Real Ti_l = 100 "Integral time"
+    annotation(Dialog(group = "Controller level"));
   parameter Boolean AntiWindup_l = true
-    "|Controller level| Flag that enables the antiwindup feature";
-  parameter Real CSmin_l = -2 "|Controller level| minimum value of the CS";
-  parameter Real CSmax_l= 2 "|Controller level| maximum value of the CS";
-  parameter Real CS_start_l = 0 "|Controller level| output initial value";
+    "Flag that enables the antiwindup feature"
+    annotation(Dialog(group = "Controller level"));
+  parameter Real CSmin_l = -2 "minimum value of the CS"
+    annotation(Dialog(group = "Controller level"));
+  parameter Real CSmax_l= 2 "maximum value of the CS"
+    annotation(Dialog(group = "Controller level"));
+  parameter Real CS_start_l = 0 "output initial value"
+    annotation(Dialog(group = "Controller level"));
 
   parameter Real Ts_v = 0
-    "|Controller valve| Sampling time for the valve controller";
-  parameter Real Kp_v = 50 "|Controller valve| Proportional gain";
-  parameter Real Ti_v = 2 "|Controller valve| Integral time";
+    "Sampling time for the valve controller"
+    annotation(Dialog(group = "Controller valve"));
+  parameter Real Kp_v = 50 "Proportional gain"
+    annotation(Dialog(group = "Controller valve"));
+  parameter Real Ti_v = 2 "Integral time"
+    annotation(Dialog(group = "Controller valve"));
   parameter Boolean AntiWindup_v = true
-    "|Controller| Flag that enables the antiwindup feature";
-  parameter Real CSmin_v = 0 "|Controller valve| minimum value of the CS";
-  parameter Real CSmax_v = 1 "|Controller valve| maximum value of the CS";
-  parameter Real CS_start_v = 0 "|Controller valve| output initial value";
+    "Flag that enables the antiwindup feature"
+    annotation(Dialog(group = "Controller"));
+  parameter Real CSmin_v = 0 "minimum value of the CS"
+    annotation(Dialog(group = "Controller valve"));
+  parameter Real CSmax_v = 1 "maximum value of the CS"
+    annotation(Dialog(group = "Controller valve"));
+  parameter Real CS_start_v = 0 "output initial value"
+    annotation(Dialog(group = "Controller valve"));
 
   parameter Boolean FixedPoint = false
-    "|Conversion| Use FP operations for level measurement operations";
-  parameter Integer Nbit = 24 "|Conversion| number of bit for FP operations";
-  parameter Real scaleF_div = 500 "|Conversion| division scale factor";
-  parameter Real scaleF_sub = 20 "|Conversion| subtraction scale factor";
+    "Use FP operations for level measurement operations"
+    annotation(Dialog(group = "Conversion"));
+  parameter Integer Nbit = 24 "number of bit for FP operations"
+    annotation(Dialog(group = "Conversion"));
+  parameter Real scaleF_div = 500 "division scale factor"
+    annotation(Dialog(group = "Conversion"));
+  parameter Real scaleF_sub = 20 "subtraction scale factor"
+    annotation(Dialog(group = "Conversion"));
   Controllers.PID          PI_Level(
     Ts=Ts_l,
     CS_start=CS_start_l,

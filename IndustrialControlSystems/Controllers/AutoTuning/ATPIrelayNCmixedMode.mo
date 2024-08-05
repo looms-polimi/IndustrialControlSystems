@@ -4,14 +4,20 @@ model ATPIrelayNCmixedMode
   extends IndustrialControlSystems.Controllers.Interfaces.Controller(final
       useAT=true);
   import Modelica.Constants.*;
-  parameter Real Kp = 5 "|Parameters| Proportional gain (initial value)" annotation(Evaluate = true);
-  parameter Real Ti = 1 "|Parameters| Integral time (initial value)" annotation(Evaluate = true);
-  parameter Real slope = 1 "|Auto Tuning Algorithm| Slope of the signal";
+  parameter Real Kp = 5 "Proportional gain (initial value)"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
+  parameter Real Ti = 1 "Integral time (initial value)"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
+  parameter Real slope = 1 "Slope of the signal"
+    annotation(Dialog(group = "Auto Tuning Algorithm"));
   parameter Real permOxPeriodPerc = 5
-    "|Auto Tuning Algorithm| allowed % difference between period measurements";
-  parameter Real pm = 45 "|Auto Tuning Algorithm| Phase Margin required";
+    "allowed % difference between period measurements"
+    annotation(Dialog(group = "Auto Tuning Algorithm"));
+  parameter Real pm = 45 "Phase Margin required"
+    annotation(Dialog(group = "Auto Tuning Algorithm"));
   parameter Integer nOxMin = 3
-    "|Auto Tuning Algorithm| minimum number of oscillations";
+    "minimum number of oscillations"
+    annotation(Dialog(group = "Auto Tuning Algorithm"));
   Integer iMode;
   Real K;
   Real TI;

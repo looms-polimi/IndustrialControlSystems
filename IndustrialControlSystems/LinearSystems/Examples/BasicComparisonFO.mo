@@ -3,11 +3,15 @@ model BasicComparisonFO
   "Comparison of the various discretisation methods (First Order)"
   extends Modelica.Icons.Example;
   // First order
-  parameter Real mu_FO = 2 "|First Order | First order process gain";
-  parameter Real tau_FO = 3 "|First Order | First order time constant";
-  parameter Real y_start_FO = 0 "|First Order | initial condition";
+  parameter Real mu_FO = 2 "First order process gain"
+    annotation(Dialog(group = "First Order "));
+  parameter Real tau_FO = 3 "First order time constant"
+    annotation(Dialog(group = "First Order "));
+  parameter Real y_start_FO = 0 "initial condition"
+    annotation(Dialog(group = "First Order "));
   // Discretisation
-  parameter Real Ts = 0.5 "|Discretisation| Sampling time";
+  parameter Real Ts = 0.5 "Sampling time"
+    annotation(Dialog(group = "Discretisation"));
   // Errors
   Real error_BE = fO.y - fO_dig_BE.y;
   Real error_FE = fO.y - fO_dig_FE.y;

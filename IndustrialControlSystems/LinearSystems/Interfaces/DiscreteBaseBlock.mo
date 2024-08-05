@@ -1,10 +1,12 @@
 within IndustrialControlSystems.LinearSystems.Interfaces;
 partial model DiscreteBaseBlock "Partial discrete time block interfaces"
   extends BaseBlock;
-  parameter Real Ts= 0.01 "|Discretisation| Sampling time [s]";
+  parameter Real Ts= 0.01 "Sampling time [s]"
+    annotation(Dialog(group = "Discretisation"));
   parameter IndustrialControlSystems.LinearSystems.Discrete.Types.discrMethod method=
       IndustrialControlSystems.LinearSystems.Discrete.Types.discrMethod.BE
-    "|Discretisation| Discretisation method";
+    "Discretisation method"
+    annotation(Dialog(group = "Discretisation"));
 protected
   Real alfa "discretisation coefficient";
 equation

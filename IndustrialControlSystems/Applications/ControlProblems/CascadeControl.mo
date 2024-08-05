@@ -1,8 +1,10 @@
 within IndustrialControlSystems.Applications.ControlProblems;
 model CascadeControl "Cascade control"
   extends Modelica.Icons.Example;
-  parameter Real Ts = 0.5 "|Sampling time| Outer loop sampling time";
-  parameter Real Ts_inner = 0.01 "|Sampling time| Inner loop sampling time";
+  parameter Real Ts = 0.5 "Outer loop sampling time"
+    annotation(Dialog(group = "Sampling time"));
+  parameter Real Ts_inner = 0.01 "Inner loop sampling time"
+    annotation(Dialog(group = "Sampling time"));
   LinearSystems.Continuous.TransferFunction
                                       P1(
     y_start=0,

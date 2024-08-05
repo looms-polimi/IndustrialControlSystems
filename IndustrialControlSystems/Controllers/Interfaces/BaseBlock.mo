@@ -1,7 +1,8 @@
 within IndustrialControlSystems.Controllers.Interfaces;
 partial model BaseBlock "partial interface for a continuous time control block"
    parameter Real Ts = 0
-    "|Discretisation| Sampling time (if <= 0 continuous time)"                     annotation(Evaluate=true);
+    "Sampling time (if <= 0 continuous time)"
+    annotation(Evaluate = true, Dialog(group = "Discretisation"));
   Modelica.Blocks.Interfaces.RealInput u "input"
     annotation (Placement(transformation(extent={{-100,-20},{-60,20}},
           rotation=0)));

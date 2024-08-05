@@ -7,31 +7,37 @@ partial model Controller "Partial interface for a generic controller"
   Boolean satHigh "High saturation signal";
   Boolean satLow "Low saturation signal";
   parameter Real Ts = 0
-    "|Discretisation| Sampling time (if <= 0 continuous time)"                     annotation(Evaluate=true);
+    "Sampling time (if <= 0 continuous time)"
+    annotation(Evaluate = true, Dialog(group = "Discretisation"));
   parameter IndustrialControlSystems.LinearSystems.Discrete.Types.discrMethod method=
       IndustrialControlSystems.LinearSystems.Discrete.Types.discrMethod.BE
-    "|Discretisation| Discretisation method" annotation(Evaluate=true);
+    "Discretisation method"
+    annotation(Evaluate = true, Dialog(group = "Discretisation"));
   parameter Boolean AntiWindup = false
-    "|Saturation| Flag that enables the antiwindup feature" annotation(Evaluate=true);
-  parameter Real CSmin = 0 "|Saturation| minimum value of the CS"  annotation(Evaluate=true);
-  parameter Real CSmax = 1 "|Saturation| maximum value of the CS"  annotation(Evaluate=true);
-  parameter Real CS_start = 0 "|Initialisation| output initial value"  annotation(Evaluate=true);
-  parameter Real eps = 1e-1 "|Attributes| small time constant that represents the time for switching 
+    "Flag that enables the antiwindup feature" 
+    annotation(Evaluate = true, Dialog(group = "Saturation"));
+  parameter Real CSmin = 0 "minimum value of the CS" 
+    annotation(Evaluate = true, Dialog(group = "Saturation"));
+  parameter Real CSmax = 1 "maximum value of the CS"
+    annotation(Evaluate = true, Dialog(group = "Saturation"));
+  parameter Real CS_start = 0 "output initial value"
+    annotation(Evaluate = true, Dialog(group = "Initialisation"));
+  parameter Real eps = 1e-1 "small time constant that represents the time for switching 
                             between auto and tracking mode"  annotation(Evaluate=true);
   parameter Boolean useTS = false
-    "|Attributes| =true, if TS and TR inputs are enabled"
+    "=true, if TS and TR inputs are enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   parameter Boolean useBIAS = false
-    "|Attributes| =true, if BIAS input is enabled"
+    "=true, if BIAS input is enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   parameter Boolean useAT = false
-    "|Attributes| =true, if AutoTuning input is enabled"
+    "=true, if AutoTuning input is enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   parameter Boolean useGS = false
-   "|Attributes| =true, if GainScheduling inputs are enabled"
+   "=true, if GainScheduling inputs are enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   parameter Boolean useSAT = false
-   "|Attributes| =true, if Saturation outputs are enabled"
+   "=true, if Saturation outputs are enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
 
   Modelica.Blocks.Interfaces.RealInput TR if useTS "Track Reference signal"

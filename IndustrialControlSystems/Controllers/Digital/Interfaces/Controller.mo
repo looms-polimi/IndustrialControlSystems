@@ -7,23 +7,28 @@ partial model Controller "Partial interface for a digital controller"
   Boolean man "manual enabling signal";
   Boolean F_inc "forbidden increment signal";
   Boolean F_dec "forbidden decrement signal";
-  parameter Real Ts = 0 "|Discretisation| Sampling time" annotation(Evaluate=true);
+  parameter Real Ts = 0 "Sampling time"
+    annotation(Evaluate = true, Dialog(group = "Discretisation"));
   parameter Boolean AntiWindup = false
-    "|Saturation| Flag that enables the antiwindup feature" annotation(Evaluate=true);
-  parameter Real CSmin = 0 "|Saturation| minimum value of the CS"  annotation(Evaluate=true);
-  parameter Real CSmax = 1 "|Saturation| maximum value of the CS"  annotation(Evaluate=true);
-  parameter Real CS_start = 0 "|Initialisation| output initial value"  annotation(Evaluate=true);
+    "Flag that enables the antiwindup feature"
+    annotation(Evaluate = true, Dialog(group = "Saturation"));
+  parameter Real CSmin = 0 "minimum value of the CS"
+    annotation(Evaluate = true, Dialog(group = "Saturation"));
+  parameter Real CSmax = 1 "maximum value of the CS"
+    annotation(Evaluate = true, Dialog(group = "Saturation"));
+  parameter Real CS_start = 0 "output initial value"
+    annotation(Evaluate = true, Dialog(group = "Initialisation"));
   parameter Boolean useTS = false
-    "|Attributes| =true, if TS and TR inputs are enabled"
+    "=true, if TS and TR inputs are enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   parameter Boolean useBIAS = false
-    "|Attributes| =true, if BIAS input is enabled"
+    "=true, if BIAS input is enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   parameter Boolean useMAN = false
-    "|Attributes| =true, if MANUAL input is enabled"
+    "=true, if MANUAL input is enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   parameter Boolean useForbid = false
-    "|Attributes| =true, if Forbid inputs are enabled"
+    "=true, if Forbid inputs are enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   Modelica.Blocks.Interfaces.RealInput TR if useTS "Track Reference signal"
                                                    annotation (Placement(

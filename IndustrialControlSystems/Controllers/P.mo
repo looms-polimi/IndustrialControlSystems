@@ -1,7 +1,8 @@
 within IndustrialControlSystems.Controllers;
 model P "Proportional controller"
   extends Interfaces.Controller;
-  parameter Real Kp = 5 "|Parameters| Proportional gain" annotation(Evaluate = true);
+  parameter Real Kp = 5 "Proportional gain"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
   Real Kp_act "Actual proportianal gain";
   Real Pout "output of the proportional block";
   Real satin "input of the saturation block";

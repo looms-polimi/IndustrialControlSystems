@@ -2,7 +2,8 @@ within IndustrialControlSystems.Controllers.Examples;
 model TestI_bias "Test of the Integral controller with bias"
   extends Modelica.Icons.Example;
   parameter Real Ts = 0
-    "|Sampling time| if Ts>=0 then discrete time controller, otherwise continuous time";
+    "if Ts>=0 then discrete time controller, otherwise continuous time"
+    annotation(Dialog(group = "Sampling time"));
   Modelica.Blocks.Sources.Step SPstep(startTime=10)
                                     annotation (
       Placement(transformation(extent={{-100,70},{-80,90}},rotation=0)));

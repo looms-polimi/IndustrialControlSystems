@@ -2,30 +2,46 @@ within IndustrialControlSystems.LinearSystems.Examples;
 model Basic "Comparison of the basic continuous and discrete time blocks"
   extends Modelica.Icons.Example;
   // Integrator
-  parameter Real mu_int = 0.04 "|Integrator | Integrating process gain";
+  parameter Real mu_int = 0.04 "Integrating process gain"
+    annotation(Dialog(group = "Integrator "));
   parameter Real y_start_int = 1
-    "|Integrator | Integrating process initial condition";
+    "Integrating process initial condition"
+    annotation(Dialog(group = "Integrator "));
   // First order
-  parameter Real mu_FO = 2 "|First Order | First order process gain";
-  parameter Real tau_FO = 3 "|First Order | First order time constant";
-  parameter Real y_start_FO = 0 "|First Order | initial condition";
+  parameter Real mu_FO = 2 "First order process gain"
+    annotation(Dialog(group = "First Order "));
+  parameter Real tau_FO = 3 "First order time constant"
+    annotation(Dialog(group = "First Order "));
+  parameter Real y_start_FO = 0 "initial condition"
+    annotation(Dialog(group = "First Order "));
   // Lead lag
-  parameter Real mu_LL = 2 "|Lead Lag | Lead Lag process gain";
-  parameter Real y_start_LL = 0 "|Lead Lag | Lead Lag initial condition";
-  parameter Real T1_LL = 2 "|Lead Lag | Lead Lag time constant of the zero";
-  parameter Real T2_LL = 3 "|Lead Lag | Lead Lag time constant of the pole";
+  parameter Real mu_LL = 2 "Lead Lag process gain"
+    annotation(Dialog(group = "Lead Lag "));
+  parameter Real y_start_LL = 0 "Lead Lag initial condition"
+    annotation(Dialog(group = "Lead Lag "));
+  parameter Real T1_LL = 2 "Lead Lag time constant of the zero"
+    annotation(Dialog(group = "Lead Lag "));
+  parameter Real T2_LL = 3 "Lead Lag time constant of the pole"
+    annotation(Dialog(group = "Lead Lag "));
   // Complex poles
-  parameter Real mu_cpx = 2 "|Complex poles| Complex poles process gain";
+  parameter Real mu_cpx = 2 "Complex poles process gain"
+    annotation(Dialog(group = "Complex poles"));
   parameter Real omegan_cpx = 1
-    "|Complex poles| Complex poles natural frequency";
-  parameter Real xi_cpx = 0.4 "|Complex poles| Complex poles dumping factor";
-  parameter Real y_start_cpx = 0 "|Complex poles| Complex poles initial value";
-  parameter Real dy_start_cpx = 0 "|Complex poles| Complex poles initial slope";
+    "Complex poles natural frequency"
+    annotation(Dialog(group = "Complex poles"));
+  parameter Real xi_cpx = 0.4 "Complex poles dumping factor"
+    annotation(Dialog(group = "Complex poles"));
+  parameter Real y_start_cpx = 0 "Complex poles initial value"
+    annotation(Dialog(group = "Complex poles"));
+  parameter Real dy_start_cpx = 0 "Complex poles initial slope"
+    annotation(Dialog(group = "Complex poles"));
   // Discretisation
-  parameter Real Ts = 0.5 "|Discretisation| Sampling time";
+  parameter Real Ts = 0.5 "Sampling time"
+    annotation(Dialog(group = "Discretisation"));
   parameter IndustrialControlSystems.LinearSystems.Discrete.Types.discrMethod method=
       IndustrialControlSystems.LinearSystems.Discrete.Types.discrMethod.FE
-    "|Discretisation| Method";
+    "Method"
+    annotation(Dialog(group = "Discretisation"));
   Continuous.Integrator int(mu=mu_int, y_start=y_start_int)
     annotation (Placement(transformation(extent={{-40,60},{-20,80}})));
   Discrete.Integrator int_dig(mu=mu_int, y_start=y_start_int,

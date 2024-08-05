@@ -3,7 +3,8 @@ model TestPID_tracking
   "Test of the Proportional + Integral + Derivative controller -- Tracking mode"
   extends Modelica.Icons.Example;
   parameter Real Ts = 0.01
-    "|Sampling time| if Ts>=0 then discrete time controller, otherwise continuous time";
+    "if Ts>=0 then discrete time controller, otherwise continuous time"
+    annotation(Dialog(group = "Sampling time"));
 
   Modelica.Blocks.Sources.Step step(startTime=10)
                                     annotation (

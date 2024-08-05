@@ -1,12 +1,18 @@
 within IndustrialControlSystems.Controllers.Digital;
 model PID_2dof "Digital 2-dof PID controller"
   extends Interfaces.Controller;
-  parameter Real Kp = 1 "|Parameters| Gain";
-  parameter Real Ti = 10 "|Parameters| Integral time";
-  parameter Real Td = 0 "|Parameters| Derivative time";
-  parameter Real N = 5 "|Parameters| Derivative filter ratio";
-  parameter Real b = 1 "|Parameters| SP weight in P action";
-  parameter Real c = 0 "|Parameters| SP weight in D action";
+  parameter Real Kp = 1 "Gain"
+    annotation(Dialog(group = "Parameters"));
+  parameter Real Ti = 10 "Integral time"
+    annotation(Dialog(group = "Parameters"));
+  parameter Real Td = 0 "Derivative time"
+    annotation(Dialog(group = "Parameters"));
+  parameter Real N = 5 "Derivative filter ratio"
+    annotation(Dialog(group = "Parameters"));
+  parameter Real b = 1 "SP weight in P action"
+    annotation(Dialog(group = "Parameters"));
+  parameter Real c = 0 "SP weight in D action"
+    annotation(Dialog(group = "Parameters"));
 protected
   discrete Real sp;
   discrete Real dsp;

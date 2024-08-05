@@ -3,12 +3,17 @@ model BasicComparisonLL
   "Comparison of the various discretisation methods (Lead Lag)"
   extends Modelica.Icons.Example;
   // Lead lag
-  parameter Real mu_LL = 2 "|Lead Lag | Lead Lag process gain";
-  parameter Real y_start_LL = 0 "|Lead Lag | Lead Lag initial condition";
-  parameter Real T1_LL = 2 "|Lead Lag | Lead Lag time constant of the zero";
-  parameter Real T2_LL = 3 "|Lead Lag | Lead Lag time constant of the pole";
+  parameter Real mu_LL = 2 "Lead Lag process gain"
+    annotation(Dialog(group = "Lead Lag "));
+  parameter Real y_start_LL = 0 "Lead Lag initial condition"
+    annotation(Dialog(group = "Lead Lag "));
+  parameter Real T1_LL = 2 "Lead Lag time constant of the zero"
+    annotation(Dialog(group = "Lead Lag "));
+  parameter Real T2_LL = 3 "Lead Lag time constant of the pole"
+    annotation(Dialog(group = "Lead Lag "));
   // Discretisation
-  parameter Real Ts = 0.5 "|Discretisation| Sampling time";
+  parameter Real Ts = 0.5 "Sampling time"
+    annotation(Dialog(group = "Discretisation"));
   // Errors
   Real error_BE = ll.y - ll_dig_BE.y;
   Real error_FE = ll.y - ll_dig_FE.y;

@@ -1,12 +1,17 @@
 within IndustrialControlSystems.MathOperations.RealType.Signals;
 model SmoothStep "Smooth step Set pointgenerator"
   extends Interfaces.RealNinOperation(final useInputs=false, final FixedPoint=false, final Nbit = 1, final scaleFactor = 1, final MAX = 1, final MIN = 0);
-  parameter Real tin = 10 "|Smooth step| Initial time";
+  parameter Real tin = 10 "Initial time"
+    annotation(Dialog(group = "Smooth step"));
   parameter Real alfa = 0.1
-    "|Smooth step| Portion of time for parabolic junctions";
-  parameter Real yin = 0 "|Smooth step| Output initial value";
-  parameter Real yfin = 1 "|Smooth step| Output final value";
-  parameter Real m = 0.1 "|Smooth step| Slope of the ramp";
+    "Portion of time for parabolic junctions"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real yin = 0 "Output initial value"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real yfin = 1 "Output final value"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real m = 0.1 "Slope of the ramp"
+    annotation(Dialog(group = "Smooth step"));
 equation
   assert(alfa>=0 and alfa<=1,"alfa out of range [0,1]");
 

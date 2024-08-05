@@ -1,8 +1,10 @@
 within IndustrialControlSystems.LinearSystems.Discrete;
 model Integrator "Integrator: mu/s"
   extends Interfaces.DiscreteBaseBlock;
-  parameter Real mu = 1 "|Block parameters| Gain";
-  parameter Real y_start = 0 "|Initial conditions| Output initial value";
+  parameter Real mu = 1 "Gain"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real y_start = 0 "Output initial value"
+    annotation(Dialog(group = "Initial conditions"));
 initial equation
   pre(y) = y_start;
 equation

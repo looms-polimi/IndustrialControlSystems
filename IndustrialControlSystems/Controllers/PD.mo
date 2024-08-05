@@ -1,9 +1,12 @@
 within IndustrialControlSystems.Controllers;
 model PD "Proportional + Derivative controller"
   extends Interfaces.Controller;
-  parameter Real Kp = 5 "|Parameters| Proportional gain" annotation(Evaluate = true);
-  parameter Real Td = 1 "|Parameters| Derivative time" annotation(Evaluate = true);
-  parameter Real N =  10 "|Parameters| Derivative filter ratio"  annotation(Evaluate = true);
+  parameter Real Kp = 5 "Proportional gain"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
+  parameter Real Td = 1 "Derivative time"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
+  parameter Real N =  10 "Derivative filter ratio"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
   Real Fin "Filtered input";
   Real satin "input of the saturation block";
 initial equation

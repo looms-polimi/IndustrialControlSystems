@@ -3,16 +3,22 @@ model TransferFunction " Model of a generic rational transfer function
   [a(m)*s^m + a(m-1)*s^(m-1) + ... + a(1)*s + a(0) ]/[b(n)*s^n + b(n-1)*s^(n-1) + ... + b(1)*s + b(0) ] "
   extends Interfaces.DiscreteBaseBlock;
   parameter Real num[:] = {1,1}
-    "|Block parameters| Numerators coefficients (4*s + 2) is {4,2}";
+    "Numerators coefficients (4*s + 2) is {4,2}"
+    annotation(Dialog(group = "Block parameters"));
   parameter Real den[:] = {2,1,1}
-    "|Block parameters| Denumerators coefficients (4*s + 2) is {4,2}";
-  parameter Real y_start = 0 "|Initial conditions| Output initial value";
+    "Denumerators coefficients (4*s + 2) is {4,2}"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real y_start = 0 "Output initial value"
+    annotation(Dialog(group = "Initial conditions"));
   parameter Boolean initOutput = false
-    "|Initial conditions| Initialise the output";
+    "Initialise the output"
+    annotation(Dialog(group = "Initial conditions"));
   parameter Boolean initSteadyState = false
-    "|Initial conditions| Initialise at steady state";
+    "Initialise at steady state"
+    annotation(Dialog(group = "Initial conditions"));
   parameter Boolean initSteadyOutput = false
-    "|Initial conditions| Initialise at steady output";
+    "Initialise at steady output"
+    annotation(Dialog(group = "Initial conditions"));
 protected
   parameter Integer N = size(num,1) "grade of the numerator";
   parameter Integer D = size(den,1) "grade of the denumerator";

@@ -1,8 +1,10 @@
 within IndustrialControlSystems.LinearSystems.Continuous;
 model Integrator "Integrator: mu/s"
   extends Interfaces.BaseBlock;
-  parameter Real mu = 1 "|Block parameters| Gain";
-  parameter Real y_start = 0 "|Initial conditions| output initial value";
+  parameter Real mu = 1 "Gain"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real y_start = 0 "output initial value"
+    annotation(Dialog(group = "Initial conditions"));
 initial equation
   y = y_start;
 equation

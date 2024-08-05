@@ -13,10 +13,14 @@ model SmoothThoothSignal "Smooth thooth Set Point generator, driven by signals"
   Boolean Sali(start=false);
   Boolean Scendi(start=false);
   parameter Real alfa =  0.1
-    "|Smooth step| Portion of time for parabolic junctions";
-  parameter Real m =     0.1 "|Smooth step| Slope of the ramp";
-  parameter Real wait_s = 0 "|Smooth step| Rising delay";
-  parameter Real wait_d = 0 "|Smooth step| Falling delay";
+    "Portion of time for parabolic junctions"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real m =     0.1 "Slope of the ramp"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real wait_s = 0 "Rising delay"
+    annotation(Dialog(group = "Smooth step"));
+  parameter Real wait_d = 0 "Falling delay"
+    annotation(Dialog(group = "Smooth step"));
 protected
   discrete Boolean Ed_d;
   discrete Boolean Es_d;

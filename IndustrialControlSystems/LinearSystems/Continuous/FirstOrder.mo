@@ -1,9 +1,12 @@
 within IndustrialControlSystems.LinearSystems.Continuous;
 model FirstOrder "First order process: mu/(1+tau*s)"
   extends Interfaces.BaseBlock;
-  parameter Real tau = 2 "|Block parameters| pole's time constant";
-  parameter Real mu = 1 "|Block parameters| Gain";
-  parameter Real y_start = 0 "|Initial conditions| output initial value";
+  parameter Real tau = 2 "pole's time constant"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real mu = 1 "Gain"
+    annotation(Dialog(group = "Block parameters"));
+  parameter Real y_start = 0 "output initial value"
+    annotation(Dialog(group = "Initial conditions"));
 initial equation
   y = y_start;
 equation

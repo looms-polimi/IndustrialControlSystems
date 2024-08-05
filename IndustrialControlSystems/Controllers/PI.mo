@@ -1,8 +1,10 @@
 within IndustrialControlSystems.Controllers;
 model PI "Proportional + Integral controller"
   extends Interfaces.Controller;
-  parameter Real Kp = 5 "|Parameters| Proportional gain" annotation(Evaluate = true);
-  parameter Real Ti = 1 "|Parameters| Integral time" annotation(Evaluate = true);
+  parameter Real Kp = 5 "Proportional gain"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
+  parameter Real Ti = 1 "Integral time"
+    annotation(Evaluate = true, Dialog(group = "Parameters"));
   Real Ti_act "Actual integral time";
   Real Kp_act "Actual proportianal gain";
   Real FBout "output (and state) of the feedback block 1/(1+sTi)";
