@@ -9,6 +9,6 @@ package IndustrialControlSystems "Modelica Industrial Control Systems Library"
 </p>
 </html>"),
     uses(Modelica(version="3.2.3")),
-    version="1.1.0",
-    conversion(noneFromVersion=""));
+    version="1.2.0",
+    conversion(noneFromVersion="1.1.0"));
 end IndustrialControlSystems;
