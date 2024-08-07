@@ -84,10 +84,6 @@ model CascadeLevelControl "Cascade level control with PI controllers"
     height=H,
     crossArea=A,
     m_flow_small=0.001,
-    portsData={Modelica.Fluid.Vessels.BaseClasses.VesselPortsData(diameter=
-        PipeD, height=H),Modelica.Fluid.Vessels.BaseClasses.VesselPortsData(
-        diameter=PipeD, height=0),
-        Modelica.Fluid.Vessels.BaseClasses.VesselPortsData(diameter=PipeD)},
     use_portsData=false) "water tank"
     annotation (Placement(transformation(extent={{42,0},{82,40}})));
   Modelica.Fluid.Valves.ValveLinear valveLinear(redeclare package Medium =
