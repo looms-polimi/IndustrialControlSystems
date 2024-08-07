@@ -5,7 +5,7 @@ model TestTrackingP "Tracking test mode for P block"
   IndustrialControlSystems.Controllers.Blocks.P P "proportional controller"
                  annotation (Placement(transformation(extent={{-60,60},{-40,
             80}}, rotation=0)));
-  Modelica.Blocks.Sources.Sine Input(amplitude=2)
+  Modelica.Blocks.Sources.Sine Input(amplitude=2, freqHz=1)
     annotation (Placement(transformation(extent={{-100,60},{-80,80}},
           rotation=0)));
   IndustrialControlSystems.Controllers.Blocks.P Ptr(useTS=true)
