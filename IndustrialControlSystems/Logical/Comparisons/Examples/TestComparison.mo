@@ -7,11 +7,11 @@ model TestComparison
     annotation(Dialog(group = "Real numbers"));
   RealType.Equal equal(Ts=Ts, eps=eps)
     annotation (Placement(transformation(extent={{-40,40},{-20,60}})));
-  Modelica.Blocks.Sources.Sine sine(amplitude=1, freqHz=1)
+  Modelica.Blocks.Sources.Sine sine(amplitude=1, f=1)
     annotation (Placement(transformation(extent={{-100,60},{-80,80}})));
   Modelica.Blocks.Sources.Sine cosine(
     amplitude=1,
-    freqHz=1,
+    f=1,
     phase=1.5707963267949)
     annotation (Placement(transformation(extent={{-100,20},{-80,40}})));
   RealType.Less less(Ts=Ts, eps=eps)

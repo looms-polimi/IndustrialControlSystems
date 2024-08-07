@@ -1,7 +1,7 @@
 within IndustrialControlSystems.Applications.ProcessControl;
 model CascadeLevelControl "Cascade level control with PI controllers"
   extends Modelica.Icons.Example;
-  import Modelica.SIunits.*;
+  import Modelica.Units.SI.*;
   parameter Length PipeL = 1 "Pipe length"
     annotation(Dialog(group = "Process"));
   parameter Length PipeD = 0.0254 "Pipe diameter"
@@ -158,8 +158,8 @@ model CascadeLevelControl "Cascade level control with PI controllers"
     Kp=Kp_v,
     Ti=Ti_v)
     annotation (Placement(transformation(extent={{-44,-36},{-24,-16}})));
-  Modelica.Fluid.Sensors.MassFlowRate   flowRateSensor(redeclare package Medium
-      = Modelica.Media.Water.ConstantPropertyLiquidWater)
+  Modelica.Fluid.Sensors.MassFlowRate   flowRateSensor(redeclare package Medium =
+        Modelica.Media.Water.ConstantPropertyLiquidWater)
     annotation (Placement(transformation(extent={{-10,-10},{10,10}},
         rotation=0,
         origin={98,-58})));

@@ -14,9 +14,9 @@ partial model Controller "Partial interface for a generic controller"
     "Discretisation method"
     annotation(Evaluate = true, Dialog(group = "Discretisation"));
   parameter Boolean AntiWindup = false
-    "Flag that enables the antiwindup feature" 
+    "Flag that enables the antiwindup feature"
     annotation(Evaluate = true, Dialog(group = "Saturation"));
-  parameter Real CSmin = 0 "minimum value of the CS" 
+  parameter Real CSmin = 0 "minimum value of the CS"
     annotation(Evaluate = true, Dialog(group = "Saturation"));
   parameter Real CSmax = 1 "maximum value of the CS"
     annotation(Evaluate = true, Dialog(group = "Saturation"));

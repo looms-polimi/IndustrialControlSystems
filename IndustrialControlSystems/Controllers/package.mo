@@ -1,4 +1,4 @@
-﻿within IndustrialControlSystems;
+within IndustrialControlSystems;
 package Controllers "Industrial controllers"
   extends Modelica.Icons.Package;
 

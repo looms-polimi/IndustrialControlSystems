@@ -1,6 +1,7 @@
 within IndustrialControlSystems.MathOperations.RealType.Interfaces;
 partial model RealNinOperation "Real comparison interface"
-  parameter Modelica.SIunits.Time Ts = 0.1 "sampling time" annotation(Evaluate=true);
+  parameter Modelica.Units.SI.Time Ts=0.1 "sampling time"
+    annotation (Evaluate=true);
   parameter Integer nInput = 1 "number of inputs" annotation(Evaluate=true);
   parameter Boolean useInputs = true "=true, if inputs are enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));

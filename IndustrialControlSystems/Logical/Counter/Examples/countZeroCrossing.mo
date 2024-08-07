@@ -11,7 +11,7 @@ model countZeroCrossing "test model of the counter"
   Modelica.Blocks.Sources.BooleanTable reset(startValue=false, table={15})
                                              annotation (Placement(
         transformation(extent={{-100,-50},{-80,-30}})));
-  Modelica.Blocks.Sources.Sine sine(amplitude=1, freqHz=1)
+  Modelica.Blocks.Sources.Sine sine(amplitude=1, f=1)
     annotation (Placement(transformation(extent={{-100,70},{-80,90}})));
   Comparisons.RealType.Equal
                  equal(Ts=0.01, eps=0.005)

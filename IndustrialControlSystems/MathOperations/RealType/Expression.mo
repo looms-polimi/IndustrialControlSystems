@@ -25,10 +25,9 @@ model Expression "User defined real function"
     "String that represent the name of the implemented function";
   replaceable function g =
       IndustrialControlSystems.MathOperations.RealType.Functions.GeneralReScalingFunction
-    "Output re-scaling function" 
-	annotation (
-	  Dialog(group = "Fixed Point"),
-	  Documentation(
+    "Output re-scaling function" annotation (
+   Dialog(group = "Fixed Point"),
+   Documentation(
         revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>

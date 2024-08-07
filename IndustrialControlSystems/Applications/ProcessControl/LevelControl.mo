@@ -1,7 +1,7 @@
 within IndustrialControlSystems.Applications.ProcessControl;
 model LevelControl "Level control with a PI controller"
   extends Modelica.Icons.Example;
-  import Modelica.SIunits.*;
+  import Modelica.Units.SI.*;
   parameter Length PipeL = 1 "Pipe length"
     annotation(Dialog(group = "Process"));
   parameter Length PipeD = 0.0254 "Pipe diameter"

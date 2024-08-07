@@ -1,4 +1,4 @@
-﻿within IndustrialControlSystems;
+within IndustrialControlSystems;
 package LinearSystems "Linear systems blocks"
   extends Modelica.Icons.Package;
 

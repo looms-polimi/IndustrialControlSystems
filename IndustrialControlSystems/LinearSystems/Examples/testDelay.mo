@@ -7,8 +7,7 @@ model testDelay
     amplitude=2,
     offset=2,
     startTime=2,
-    freqHz=0.2)
-    annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
+    f=0.2) annotation (Placement(transformation(extent={{-100,-10},{-80,10}})));
   IndustrialControlSystems.LinearSystems.Continuous.Delay delay
     annotation (Placement(transformation(extent={{-40,40},{-16,62}})));
   IndustrialControlSystems.LinearSystems.Discrete.MultiStepsDelay multiStepsDelay(Ts=0.1, N=

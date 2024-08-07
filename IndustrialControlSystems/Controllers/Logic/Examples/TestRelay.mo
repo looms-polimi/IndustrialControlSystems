@@ -2,9 +2,8 @@ within IndustrialControlSystems.Controllers.Logic.Examples;
 model TestRelay "Test of relay controllers"
   extends Modelica.Icons.Example;
 
-  Modelica.Blocks.Sources.Sine Input(freqHz=1, amplitude=1)
-    annotation (Placement(transformation(extent={{-100,60},{-80,80}},
-          rotation=0)));
+  Modelica.Blocks.Sources.Sine Input(f=1, amplitude=1) annotation (Placement(
+        transformation(extent={{-100,60},{-80,80}}, rotation=0)));
   IndustrialControlSystems.Controllers.Logic.RelayHysteresis Rhyst_DIGITAL(
     initState=false,
     ThL=-0.5,
