@@ -94,7 +94,6 @@ algorithm
   // Auto Tuning shutdown
   when (iMode==1 or iMode==2) and not AT and sample(0,Ts) then
        iMode := 0;
-       reinit(linFBout,CSat);
   end when;
 
   // Auto Tuning run mode
@@ -149,6 +148,14 @@ algorithm
            nOx          := nOx+1;
         end if;
   end when;
+equation
+  // This reinit statement concerns the auto-tuning mode but cannot belong
+  // to an algorithm section
+  when (iMode==1 or iMode==2) and not AT and sample(0,Ts) then
+    reinit(linFBout,CSat);
+  end when;
+
+
   annotation (Icon(graphics={
         Text(
           extent={{-78,-36},{78,-62}},
