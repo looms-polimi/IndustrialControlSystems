@@ -1,8 +1,6 @@
 within IndustrialControlSystems.MathOperations.RealType.Signals;
 model noiseGen "Noise generator"
   extends Interfaces.RealNinOperation(final useInputs=false, final FixedPoint=false, final Nbit = 1, final scaleFactor = 1, final MAX = 1, final MIN = 0);
-  parameter Modelica.SIunits.Time Ts = 0.1 "Sampling time"
-    annotation(Evaluate = true, Dialog(group = "Noise generator"));
   parameter Real amp = 0.01 "Amplitude"
     annotation(Evaluate = true, Dialog(group = "Noise generator"));
   parameter Real Tf = 1 "First order filter time constant"

@@ -1,12 +1,12 @@
 within IndustrialControlSystems.MathOperations.RealType.Interfaces;
 partial model RealNinOperation "Real comparison interface"
-  parameter Real Ts = 0.1 "sampling time" annotation(Evaluate=true);
+  parameter Modelica.SIunits.Time Ts = 0.1 "sampling time" annotation(Evaluate=true);
   parameter Integer nInput = 1 "number of inputs" annotation(Evaluate=true);
   parameter Boolean useInputs = true "=true, if inputs are enabled"
   annotation(Evaluate=true, HideResult=true, choices(checkBox=true));
   parameter Boolean FixedPoint = false
-    "Use fixed point real numbers"  
-	annotation(Evaluate=true, Dialog(group = "Fixed Point"));
+    "Use fixed point real numbers"
+       annotation(Evaluate=true, Dialog(group = "Fixed Point"));
   parameter Integer Nbit=16 " Number of bits for representing the real numbers"
     annotation (Dialog(group="Fixed Point", enable=FixedPoint));
   parameter Real scaleFactor = 1
