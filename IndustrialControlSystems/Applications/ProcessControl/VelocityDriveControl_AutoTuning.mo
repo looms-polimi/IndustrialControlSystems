@@ -23,8 +23,14 @@ model VelocityDriveControl_AutoTuning
             {-40,12}}, rotation=0)));
   Modelica.Electrical.Machines.BasicMachines.DCMachines.DC_PermanentMagnet
     M1(
+    TaOperational=293.15,
     VaNominal=24,
     IaNominal=5,
+    TaNominal=293.15,
+    Ra=0.05,
+    TaRef=293.15,
+    alpha20a=0,
+    La=0.0015,
     Jr =    0.0005,
     wNominal=(1000)*2*3.14159265358979323846/60)
                    annotation (Placement(transformation(extent={{66,-16},{86,4}},
@@ -83,7 +89,7 @@ equation
           174,12},{108,12},{108,24},{116,24}},
                                            color={0,0,127}));
   connect(ATPIdigital.CS, VG1.v) annotation (Line(
-      points={{4.7,30},{33,30}},
+      points={{4.7,30},{28,30}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(noiseGen.y, addNoise.u1)
