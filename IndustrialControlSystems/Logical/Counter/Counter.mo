@@ -39,9 +39,9 @@ equation
   
   In the former image, are reported the <FONT FACE=Courier>S</FONT> (Set), <FONT FACE=Courier>R</FONT> (Reset), <FONT FACE=Courier>CU</FONT> (CountUP),
   <FONT FACE=Courier>CD</FONT> (CountDown) signals.<br>
-  The latter images contains the <FONT FACE=Courier>CV</FONT> (Current Value) and the <FONT FACE=Courier>PV</FONT>(Preset Value).<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Logical/Counter/Counter1.png\"><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Logical/Counter/Counter2.png\">
+  The latter Images contains the <FONT FACE=Courier>CV</FONT> (Current Value) and the <FONT FACE=Courier>PV</FONT>(Preset Value).<br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Counter/Counter1.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Counter/Counter2.png\">
   <br><br>
   
   The counter update the <FONT FACE=Courier>CV</FONT> when the Set signal rises, then for each rising edge of the Count Up (<FONT FACE=Courier>CU</FONT>) 

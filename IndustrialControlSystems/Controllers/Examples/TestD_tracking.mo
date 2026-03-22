@@ -114,10 +114,10 @@ equation
   The output signal of the process controlled without tracking is the red line, while the green line is the 
   output of the process controlled with the tracking mode. The signal moves away from the SP because of the integrator 
   in the process. The derivative controller, cannot act in order to move the PV closer to the SP.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/D_track_PV.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/D_track_PV.png\"><br><br>
   The CS of the controller becomes equal to the track reference signal TR when the Track Switch signal becomes true.
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/D_track_CS.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/D_track_CS.png\"><br><br>
   <h4>Discrete time</h4>
   If the model parameter <FONT FACE=Courier>Ts</FONT> is <FONT FACE=Courier>>=0</FONT> the continuous time controllers are 
   replaced by their discrete time versions.<br>

@@ -7,7 +7,7 @@ model SetPointGeneration
     alfa=0.3,
     yfin=3,
     m=0.2) annotation (Placement(transformation(extent={{-80,60},{-60,80}})));
-  IndustrialControlSystems.MathOperations.RealType.Signals.SmoothThooth smoothThooth_alpha_01
+  IndustrialControlSystems.MathOperations.RealType.Signals.SmoothTooth smoothTooth_alpha_01
     annotation (Placement(transformation(extent={{-40,60},{-20,80}})));
   RealType.Signals.SmoothStepSignal smoothStepSignal(
     alfa=0.3,
@@ -17,7 +17,7 @@ model SetPointGeneration
            annotation (Placement(transformation(extent={{-40,20},{-20,40}})));
   Modelica.Blocks.Sources.BooleanStep startRise(startTime=15)
     annotation (Placement(transformation(extent={{-100,26},{-80,46}})));
-  RealType.Signals.SmoothThoothSignal smoothThoothSignal
+  RealType.Signals.SmoothToothSignal smoothToothSignal
     annotation (Placement(transformation(extent={{0,-40},{20,-20}})));
   Modelica.Blocks.Sources.BooleanTable enRise(table={5,6})
     annotation (Placement(transformation(extent={{-40,-20},{-20,0}})));
@@ -29,26 +29,26 @@ model SetPointGeneration
     annotation (Placement(transformation(extent={{-100,-20},{-80,0}})));
   RealType.Signals.noiseGen noiseGen
     annotation (Placement(transformation(extent={{0,60},{20,80}})));
-  IndustrialControlSystems.MathOperations.RealType.Signals.SmoothThooth smoothThooth_alpha_04(alfa=0.4)
+  IndustrialControlSystems.MathOperations.RealType.Signals.SmoothTooth smoothTooth_alpha_04(alfa=0.4)
     annotation (Placement(transformation(extent={{40,60},{60,80}})));
 equation
   connect(startRise.y, smoothStepSignal.ENup)   annotation (Line(
       points={{-79,36},{-38,36}},
       color={255,0,255},
       smooth=Smooth.None));
-  connect(enRise.y, smoothThoothSignal.ENup)       annotation (Line(
+  connect(enRise.y, smoothToothSignal.ENup)       annotation (Line(
       points={{-19,-10},{-10,-10},{-10,-24},{2,-24}},
       color={255,0,255},
       smooth=Smooth.None));
-  connect(enFall.y, smoothThoothSignal.ENdown)       annotation (Line(
+  connect(enFall.y, smoothToothSignal.ENdown)       annotation (Line(
       points={{-19,-50},{-10,-50},{-10,-36},{2,-36}},
       color={255,0,255},
       smooth=Smooth.None));
-  connect(Yend.y, smoothThoothSignal.u[2]) annotation (Line(
+  connect(Yend.y, smoothToothSignal.u[2]) annotation (Line(
       points={{-79,-10},{-60,-10},{-60,-29},{2,-29}},
       color={0,0,127},
       smooth=Smooth.None));
-  connect(Ystart.y, smoothThoothSignal.u[1]) annotation (Line(
+  connect(Ystart.y, smoothToothSignal.u[1]) annotation (Line(
       points={{-79,-48},{-60,-48},{-60,-31},{2,-31}},
       color={0,0,127},
       smooth=Smooth.None));

@@ -143,17 +143,17 @@ equation
   controller can be used within a more complex structure called Smith predictor. This scheme is based on the knowledge of the process<br>
   since it is a model based control strategy.
   The control scheme follows, and can be replicated with the blocks contained in the library<br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/Smith.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/Smith.png\"><br><br>
   
   Two different scheme have been tested. In the first scheme the Smith predictor is based on a model that is equal to the<br>
   real process (M(s) = P(s)), while in the second one the model is an approximation of the process. The step responces are reported below
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/SmithPV.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/SmithPV.png\"><br>
   The red line is the process responce without the controller action, the green line is the process controlled with the
   Smith predictor (M(s) = P(s)) while the pink one is the responce of the Smith predictor with an approximate model.<br>
   Every 8 seconds (the time delay) there is an action due to the uncorrectness of the model M. However, the amplitude<br>
   of these peacks decrease with time. The control signal of the two controllers are reported below.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/SmithCS.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/SmithCS.png\"><br>
   
   
 </html>"));

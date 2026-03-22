@@ -58,7 +58,7 @@ equation
   </pre>
   <br/><br/>
   <b>Scheme</b><br/><br/>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/PropDerivative.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/PropDerivative.png\">
   <br/><br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH >Name</TH><TH>Description</TH><TH>Conditional?</TH></TR>

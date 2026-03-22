@@ -134,7 +134,7 @@ equation
    U(s)        20*s^2 + 12*s + 1
   </pre>
   The image compares the outputs of the process <FONT FACE=Courier>y</FONT> with and without the controller action.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Digital/Examples/PIDincDigRisp.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Digital/Examples/PIDincDigRisp.png\"><br>
   
   
   <h4>Functionalities</h4>
@@ -145,8 +145,8 @@ equation
   Control signal follows the TR one (the green one). To note that at the end the transition between Tracking and Automatic mode<br>
   is bumpless.<br>
   Between t = 200 and t = 300, the PID manual mode is enabled. In this phase the Control Signal varies according to the CSinc signal (see figure below).<br> 
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Digital/Examples/PIDincDig.png\"><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Digital/Examples/PIDincDig_csinc.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Digital/Examples/PIDincDig.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Digital/Examples/PIDincDig_csinc.png\">
   
   </HTML>",
       revisions="<html>

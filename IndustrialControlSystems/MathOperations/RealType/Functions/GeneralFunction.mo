@@ -1,5 +1,5 @@
 within IndustrialControlSystems.MathOperations.RealType.Functions;
-partial function GeneralFunction
+partial function GeneralFunction "single output function"
   input Real u[:];
   output Real y;
   annotation (Documentation(revisions="<html>

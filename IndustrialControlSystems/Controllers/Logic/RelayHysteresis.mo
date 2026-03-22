@@ -73,7 +73,7 @@ equation
   </pre>
   
   <h4>Characteristic</h4><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Logic/RelayHystChar.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Logic/RelayHystChar.png\"><br>
   If the sampling time parameter <FONT FACE=Courier>Ts</FONT> is less or equal to zero, ( <FONT FACE=Courier>Ts &lt;= 0</FONT> )
   The continuous time vesion is used, otherwise the discrete time one.
   

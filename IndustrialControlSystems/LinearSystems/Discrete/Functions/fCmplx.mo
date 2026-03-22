@@ -1,6 +1,6 @@
 within IndustrialControlSystems.LinearSystems.Discrete.Functions;
 function fCmplx "Function process with two complex poles"
-  input Real alfa "Parametro di discretizzazione";
+  input Real alfa "Discretisation parameter";
   input Real u "Current input";
   input Real u_pre1 "Previous input";
   input Real u_pre2 "ingresso a 2 passi precedente";

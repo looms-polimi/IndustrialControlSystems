@@ -75,13 +75,13 @@ equation
   <h4>Description</h4>
   <p>
   In this example has been tested the AntiWindup.<br>
-  The images show the step responces of the transfer functions without limiter, and with an higher limit of <FONT FACE=Courier>Ymax = 1.8</FONT>
+  The Images show the step responces of the transfer functions without limiter, and with an higher limit of <FONT FACE=Courier>Ymax = 1.8</FONT>
   
   <h4>No Antiwindup</h4>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Blocks/Examples/NotSaturatedBlocks.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Blocks/Examples/NotSaturatedBlocks.png\"><br>
   
   <h4>Antiwindup</h4>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Blocks/Examples/saturatedBlocks.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Blocks/Examples/saturatedBlocks.png\">
   
   </HTML>",
       revisions="<html>

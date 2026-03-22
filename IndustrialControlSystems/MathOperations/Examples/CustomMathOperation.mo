@@ -24,7 +24,7 @@ model CustomMathOperation "test of custom real math operations"
         IndustrialControlSystems.MathOperations.Examples.reScale,
     fname="Mean",
     FixedPoint=true)
-    annotation (Placement(transformation(extent={{20,0},{40,20}})));
+    annotation (Placement(transformation(extent={{20.0,0.0},{40.0,20.0}},rotation = 0.0,origin = {0.0,0.0})));
   Modelica.Blocks.Math.IntegerToReal integerToReal
     annotation (Placement(transformation(extent={{-20,60},{0,80}})));
   Modelica.Blocks.Math.IntegerToReal integerToReal1
@@ -67,19 +67,19 @@ equation
       color={255,127,0},
       smooth=Smooth.None));
   connect(integerToReal.y, REALexp.u[4])     annotation (Line(
-      points={{1,70},{16,70},{16,11.5},{22,11.5}},
+      points={{1,70},{16,70},{16,10},{22,10}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(integerToReal1.y, REALexp.u[3])     annotation (Line(
-      points={{1,30},{10,30},{10,10.5},{22,10.5}},
+      points={{1,30},{10,30},{10,10},{22,10}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(integerToReal2.y, REALexp.u[2])     annotation (Line(
-      points={{1,-10},{10,-10},{10,9.5},{22,9.5}},
+      points={{1,-10},{10,-10},{10,10},{22,10}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(integerToReal3.y, REALexp.u[1])     annotation (Line(
-      points={{1,-50},{16,-50},{16,8.5},{22,8.5}},
+      points={{1,-50},{16,-50},{16,10},{22,10}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(graphics),

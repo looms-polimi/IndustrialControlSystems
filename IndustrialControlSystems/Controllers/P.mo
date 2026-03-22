@@ -45,7 +45,7 @@ equation
   </pre>
   <br/><br/>
   <b>Scheme</b><br/><br/>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Proportional.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Proportional.png\">
   
   <br/><br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >

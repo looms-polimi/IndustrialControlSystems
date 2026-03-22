@@ -145,7 +145,7 @@ equation
   <li>with a PI controller,</li> 
   <li>and a PI controller with bias signal</li> 
   </ul><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PI_bias.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PI_bias.png\"><br><br>
   The output signal of the process without control is the red line. Of course the system performs poorly,
   in particular when an external disturb is applied.<br>
   In the closed loop system, the proportional + integral controller reach the SP with a null steady state error. 

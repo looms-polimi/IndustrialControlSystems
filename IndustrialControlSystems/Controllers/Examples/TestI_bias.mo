@@ -143,7 +143,7 @@ equation
   <li>with a I controller,</li> 
   <li>and a I controller with bias signal</li> 
   </ul><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/Int_bias.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/Int_bias.png\"><br><br>
   The output signal of the process without control is the red line. Of course the system performs poorly,
   in particular when an external disturb is applied.<br>
   In the closed loop system, the integral controller reach the SP with a null steady state error. 

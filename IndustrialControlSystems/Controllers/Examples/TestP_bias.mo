@@ -143,7 +143,7 @@ equation
   <li>with a P controller,</li> 
   <li>and a P controller with bias signal</li> 
   </ul><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/P_bias.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/P_bias.png\"><br><br>
   The output signal of the process without control is the red line. Of course the system performs poorly
   especially when an external disturb is applied.<br>
   In the closed loop system, the proportional controller tries to follow the SP with a steady state error that can 

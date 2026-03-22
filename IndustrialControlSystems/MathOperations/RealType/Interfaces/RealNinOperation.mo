@@ -18,9 +18,9 @@ partial model RealNinOperation "Real comparison interface"
   Modelica.Blocks.Interfaces.RealInput u[nInput] if useInputs "input vector"
                                                               annotation (Placement(
         transformation(
-        origin={-80,0},
-        extent={{-20,-20},{20,20}},
-        rotation=0), iconTransformation(extent={{-100,-20},{-60,20}},
+        origin={0.0,0.0},
+        extent={{-100.0,-20.0},{-60.0,20.0}},
+        rotation=0.0), iconTransformation(extent={{-100,-20},{-60,20}},
           rotation=0)));
   Modelica.Blocks.Interfaces.RealOutput y "output"
     annotation (Placement(transformation(extent={{80,-10},{100,10}},
@@ -31,6 +31,12 @@ partial model RealNinOperation "Real comparison interface"
   parameter Integer MIN = -integer(2^(Nbit-1)) + 1
     "minimum number that can be represented with Fixed Point notation"
     annotation(Evaluate=true, Dialog(group = "Fixed Point"));
+  //parameter Real u_par[nInput] = ones(nInput) "input u when the connector is disabled";
+    .Modelica.Blocks.Sources.RealExpression[nInput]  u_par(y = zeros(nInput)) if (not useInputs) annotation(Placement(transformation(extent = {{-63.0,22.0},{-53.0,34.0}},rotation = 0.0,origin = {0.0,0.0})));
+    .Modelica.Blocks.Interfaces.RealOutput u_set[nInput] "u value if not an input" annotation(Placement(transformation(extent = {{-38.0,18.0},{-18.0,38.0}},rotation = 0.0,origin = {0.0,0.0}),iconTransformation(extent = {{80,-10},{100,10}})));
+equation
+    connect(u_par.y,u_set) annotation(Line(points = {{-52.5,28},{-28,28}},color = {0,0,127}));
+    connect(u,u_set) annotation(Line(points = {{-80,0},{-44,0},{-44,28},{-28,28}},color = {0,0,127}));
 
   annotation (Diagram(graphics),
                        Icon(graphics={Rectangle(

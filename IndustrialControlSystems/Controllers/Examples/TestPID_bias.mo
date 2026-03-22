@@ -148,7 +148,7 @@ equation
   <li>with a PID controller,</li> 
   <li>and a PID controller with bias signal</li> 
   </ul><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PID_bias.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PID_bias.png\"><br><br>
   The output signal of the process without control is the red line. Of course the system performs poorly,
   in particular when an external disturb is applied.<br>
   In the closed loop system, the proportional + integral + derivative controller reach the SP with a null steady state error. 
@@ -161,10 +161,10 @@ equation
   <h4>examples</h4><br>
   <FONT FACE=Courier>Ts = 0.01 s</FONT> and <FONT FACE=Courier>method = BE</FONT>
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PID_bias_001.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PID_bias_001.png\"><br><br>
   <br>
   <FONT FACE=Courier>Ts = 0.05 s</FONT> and <FONT FACE=Courier>method = BE</FONT>
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PID_bias_005.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PID_bias_005.png\"><br><br>
   </HTML>"));
 end TestPID_bias;

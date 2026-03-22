@@ -1,5 +1,5 @@
 within IndustrialControlSystems.Logical.Comparisons.IntegerType;
-model Great "Greather (>)"
+model Great "Greater (>)"
   extends Interfaces.IntComparison;
 equation
   if Ts > 0 then

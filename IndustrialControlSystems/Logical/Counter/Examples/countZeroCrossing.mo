@@ -78,7 +78,7 @@ y(t) = sin(t)
 
 with the zero value. For each zero crossing detection a boolean signal is rised. The boolean signals comprises between 2.2 and 10.2 second 
 are counted by the counter.<br><br>
-<img src=\"modelica://IndustrialControlSystems/help/images/Logical/Counter/LogicSignals.png\"><br>
-<img src=\"modelica://IndustrialControlSystems/help/images/Logical/Counter/CounterSignal.png\"><br>
+<img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Counter/LogicSignals.png\"><br>
+<img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Counter/CounterSignal.png\"><br>
 </html>"));
 end countZeroCrossing;

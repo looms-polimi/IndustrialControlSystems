@@ -2,13 +2,13 @@ within IndustrialControlSystems.Applications.ControlProblems;
 model ATProcessControl "PI control of typical processes, with automatic tuning"
   extends Modelica.Icons.Example;
 
-  IndustrialControlSystems.Applications.TrasferFunctions.TypicalTF NoControl(delay_FOD=
+  IndustrialControlSystems.Applications.TransferFunctions.TypicalTF NoControl(delay_FOD=
        1, delay_iD=1)
     annotation (Placement(transformation(extent={{0,132},{40,212}})));
   Modelica.Blocks.Sources.TimeTable
                                step(table=[0,0; 0,0.6; 400,0.6; 400,1; 600,1])
     annotation (Placement(transformation(extent={{-100,190},{-80,210}})));
-  IndustrialControlSystems.Applications.TrasferFunctions.TypicalTF Controlled(delay_FOD=
+  IndustrialControlSystems.Applications.TransferFunctions.TypicalTF Controlled(delay_FOD=
        1, delay_iD=1)
     annotation (Placement(transformation(extent={{60,44},{100,124}})));
   Controllers.AutoTuning.ATPIrelayNCmixedMode
@@ -334,7 +334,7 @@ equation
   <tr><td>pm</td><td>65</td></tr>
   <tr><td>nOxMin</td><td>3</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/IntegratorControlledAT.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/IntegratorControlledAT.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -362,7 +362,7 @@ equation
   <tr><td>pm</td><td>70</td></tr>
   <tr><td>nOxMin</td><td>3</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/IntegratorDelayControlledAT.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/IntegratorDelayControlledAT.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -390,7 +390,7 @@ equation
   <tr><td>pm</td><td>65</td></tr>
   <tr><td>nOxMin</td><td>3</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/FirstOrderControlledAT.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/FirstOrderControlledAT.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -418,7 +418,7 @@ equation
   <tr><td>pm</td><td>65</td></tr>
   <tr><td>nOxMin</td><td>3</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/FirstOrderDelayControlledAT.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/FirstOrderDelayControlledAT.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -446,7 +446,7 @@ equation
   <tr><td>pm</td><td>65</td></tr>
   <tr><td>nOxMin</td><td>3</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/FastSlowControlledAT.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/FastSlowControlledAT.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -474,7 +474,7 @@ equation
   <tr><td>pm</td><td>65</td></tr>
   <tr><td>nOxMin</td><td>3</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/OverShootingControlledAT.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/OverShootingControlledAT.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -502,7 +502,7 @@ equation
   <tr><td>pm</td><td>45</td></tr>
   <tr><td>nOxMin</td><td>3</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/UnderShootingControlledAT.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/UnderShootingControlledAT.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -530,7 +530,7 @@ equation
   <tr><td>pm</td><td>65</td></tr>
   <tr><td>nOxMin</td><td>3</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CompexPolesControlledAT.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CompexPolesControlledAT.png\"><br>
   
   </p>
   

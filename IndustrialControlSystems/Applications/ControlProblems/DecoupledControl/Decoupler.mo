@@ -103,15 +103,15 @@ equation
   The aim of the decoupler (represented in the following figure) is to reduce (ideally to delete them) the effects of the first 
   input U1 on the second output Y2 and vice versa.<br> This can be done introducing the new variables (V1,V2) and placing the decoupler between them and the real process. 
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/DecoupledController/Decoupler1.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/Decoupler1.png\"><br><br>
   The decoupler is described by the following scheme (backward decoupler)
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/DecoupledController/Decoupler2.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/Decoupler2.png\"><br><br>
   The effect of the decoupler is shown in the following picture where the decoupler with its backward action deletes the relation between V1 and Y2 (the sum of the blue and red paths).
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/DecoupledController/Decoupler3.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/Decoupler3.png\"><br><br>
   
-  Once the process is known (P11,P21,P21,P22), the decoupler can be specified by the definition of the two rational trasfer functions
+  Once the process is known (P11,P21,P21,P22), the decoupler can be specified by the definition of the two rational transfer functions
   <pre>
   P12(s)
   ------ 
