@@ -1,5 +1,5 @@
 within IndustrialControlSystems.MathOperations.RealType.Signals;
-model SmoothThoothSignal "Smooth thooth Set Point generator, driven by signals"
+model SmoothToothSignal "Smooth tooth Set Point generator, driven by signals"
   extends Interfaces.RealNinOperation(final useInputs=true,final nInput = 2, final FixedPoint=false, final Nbit = 1, final scaleFactor = 1, final MAX = 1, final MIN = 0);
   Modelica.Blocks.Interfaces.BooleanInput ENup annotation (Placement(
         transformation(extent={{-100,36},{-60,76}}), iconTransformation(extent={{-100,40},
@@ -48,8 +48,8 @@ equation
     td,
     alfa,
     m,
-    u[1],
-    u[2]);
+    u_set[1],
+    u_set[2]);
 
   // No Fixed Point here
   Ufp = zeros(nInput);
@@ -71,7 +71,7 @@ equation
   <p>
   Model of a smooth thooth signal.
   <br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Math/RealType/Signals/SmoothThoothSignal.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Math/RealType/Signals/SmoothToothSignal.png\">
   <br><br>
   The output ( <FONT FACE=Courier>y</FONT> ) remains at its initial value <FONT FACE=Courier>yin</FONT> 
   until the enabling input <FONT FACE=Courier>ENup</FONT> remains <FONT FACE=Courier>false</FONT>.<br>
@@ -102,4 +102,4 @@ equation
 <dd><i>The IndustrialControlSystems package is <b>free</b> software; it can be redistributed and/or modified under the terms of the <b>Modelica license</b>.</i><br/></dd>
 </dl></html>"),
     Diagram(graphics));
-end SmoothThoothSignal;
+end SmoothToothSignal;

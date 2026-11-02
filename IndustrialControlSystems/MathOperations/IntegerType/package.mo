@@ -1,6 +1,6 @@
 within IndustrialControlSystems.MathOperations;
 package IntegerType "Integer mathematical operations"
-  extends Modelica.Icons.Package;
+  extends Modelica.Icons.TypeInteger;
 
 
   annotation (Documentation(

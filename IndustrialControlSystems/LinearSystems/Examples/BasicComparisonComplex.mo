@@ -90,7 +90,7 @@ equation
   </ul><br/>
   
   <b> Comparison </b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/LinearSystems/Examples/Comparison_CPX.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/LinearSystems/Examples/Comparison_CPX.png\">
   
   </p>
   </HTML>", revisions="<html>

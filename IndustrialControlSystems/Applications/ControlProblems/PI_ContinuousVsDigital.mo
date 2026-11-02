@@ -191,11 +191,11 @@ equation
   </pre>
   <br>
   
-  The following images show the SetPoint following and disturbance rejection without saturation<br><br>
+  The following Images show the SetPoint following and disturbance rejection without saturation<br><br>
   <b>Set Point and Process Variables</b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CvsD_PV.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CvsD_PV.png\"><br>
   <b>Control Signals</b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CvsD_CS.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CvsD_CS.png\"><br>
   <br>
   
   To be noticed that the discretised version of the PID and the digital implementation of the incremental PID have 
@@ -203,10 +203,10 @@ equation
   The same is not valid when the saturation is introduced. If limiting the controller action between [0,2] the 
   discrete time version and the digital one behave quite differently<br><br>
   <b>Set Point and Process Variables</b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CvsD_PV_aw.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CvsD_PV_aw.png\"><br>
   <b>Control Signals</b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CvsD_CS_aw.png\"><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CvsD_CS_aw2.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CvsD_CS_aw.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CvsD_CS_aw2.png\"><br>
   <br>
   
   This difference is due to the nature of the digital implementation that is incremental, while the other two are 
@@ -215,7 +215,7 @@ equation
   as shown in the following picture.
   <br><br>
   <b>Process Variables and Control Signals with a ramp Set Point</b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CvsD_ramp.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CvsD_ramp.png\"><br>
   
 </html>"));
 end PI_ContinuousVsDigital;

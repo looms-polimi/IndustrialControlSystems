@@ -3,7 +3,9 @@ package Logical "Binary and logic operations"
   extends Modelica.Icons.Package;
 
 
-  annotation (Documentation(
+  annotation (Icon(graphics={Line(
+          points={{-86,-22},{-50,-22},{-50,22},{48,22},{48,-22},{88,-24}},
+          color={255,0,255})}), Documentation(
 info="
   <HTML>
   <h4>Description</h4>

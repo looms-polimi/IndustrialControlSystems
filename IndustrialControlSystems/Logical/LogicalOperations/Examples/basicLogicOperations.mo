@@ -108,11 +108,11 @@ Depending on the value of the sampling time <FONT FACE=Courier>Ts</FONT> the beh
 In the following figure the output of two different NOT operators are compared. The blue line is the input signal while the green one is the output
 of a NOT with <FONT FACE=Courier>Ts = 0.15</FONT> and the red one the output of a NOT with <FONT FACE=Courier>Ts = 0</FONT> (thus continuous time).
 <br><br>
-<img src=\"modelica://IndustrialControlSystems/help/images/Logical/LogicalOperations/Examples/NotDelay.png\"><br><br>
+<img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/LogicalOperations/Examples/NotDelay.png\"><br><br>
 To note that the red line is exactly the NOT of the input, while the green one is approximately the NOT of the input. This is due to the time discretisation.
 <br><br>
 This is the output of the AND operation, where the blue lines are the four inputs while the red one is the output
-<img src=\"modelica://IndustrialControlSystems/help/images/Logical/LogicalOperations/Examples/ANDoperator.png\"><br><br>
+<img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/LogicalOperations/Examples/ANDoperator.png\"><br><br>
 Even in this case small delays are introduced by the time discretisation.
 </p>
 </html>"),

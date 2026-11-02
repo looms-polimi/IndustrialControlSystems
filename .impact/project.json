@@ -1,0 +1,56 @@
+{
+  "name": "Industrialcontrolsystems",
+  "format": "1.0.0",
+  "dependencies": [
+    {
+      "name": "Modelica",
+      "versionSpecifier": "4.1.0"
+    }
+  ],
+  "content": [
+    {
+      "relpath": "IndustrialControlSystems",
+      "contentType": "MODELICA",
+      "name": "IndustrialControlSystems",
+      "defaultDisabled": false,
+      "id": "7f65c0a103934a5192fc8fd165ea5658"
+    },
+    {
+      "relpath": "Resources/Views",
+      "contentType": "VIEWS",
+      "defaultDisabled": false,
+      "id": "535c384120e043a3bec436c5a66df2c8"
+    },
+    {
+      "relpath": "Resources/Favorites",
+      "contentType": "FAVORITES",
+      "defaultDisabled": false,
+      "id": "6f2ec7f4037644c6b755106656ea4b96"
+    },
+    {
+      "relpath": "Resources/CustomFunctions",
+      "contentType": "CUSTOM_FUNCTIONS",
+      "defaultDisabled": false,
+      "id": "5c6b085fb78f42459d19f27584702e45"
+    },
+    {
+      "relpath": "Resources/Custom",
+      "contentType": "GENERIC",
+      "defaultDisabled": false,
+      "id": "87a08cf3859a445997ec85e079f1acaa"
+    },
+    {
+      "relpath": "ReferenceResults",
+      "contentType": "REFERENCE_RESULTS",
+      "defaultDisabled": false,
+      "id": "6df915dac9b149d98aad79b34836aa8e"
+    },
+    {
+      "relpath": "Resources/ExperimentDefinitions",
+      "contentType": "EXPERIMENT_DEFINITIONS",
+      "defaultDisabled": false,
+      "id": "5153aba7c3a1456f92f41cecaa20e0ad"
+    }
+  ],
+  "executionOptions": []
+}
