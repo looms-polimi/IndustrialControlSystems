@@ -26,6 +26,7 @@ model PID
   Real satin "saturation input";
   Real satDiff "difference between saturation input and output signals";
   Real cs "Control Signal before the biasing";
+  Real Itrack "integral state target in tracking mode (bumpless transfer)";
 initial equation
 
   if Ts > 0 then
@@ -63,8 +64,8 @@ equation
         Iaction =
           IndustrialControlSystems.LinearSystems.Discrete.Functions.f1Pole(
           alfa,
-          cs,
-          pre(cs),
+          Itrack,
+          pre(Itrack),
           pre(Iaction),
           Ts,
           1,
@@ -82,6 +83,10 @@ equation
         Kp*N,
         Td/N) else 0;
 
+      // bumpless transfer: in tracking mode the integral state follows TR - bias - P - D,
+      // so that the automatic output equals TR when tracking ends
+      Itrack = (if AntiWindup then max(CSmin,min(CSmax,tr)) else tr) - pre(bias) - Paction - (if Td>0 then Daction else 0);
+
       // sum of the three actions
       satin = Iaction + Paction + (if Td>0 then Daction else 0);
 
@@ -92,7 +97,8 @@ equation
       satDiff = cs - satin;
 
       // biasing the output
-      CS = if AntiWindup then max(CSmin,min(CSmax,cs + pre(bias))) else cs + pre(bias);
+      // no bias in tracking mode, so that CS = TR
+      CS = if AntiWindup then max(CSmin,min(CSmax,cs + (if ts then 0 else pre(bias)))) else cs + (if ts then 0 else pre(bias));
 
     end when;
   else
@@ -105,12 +111,16 @@ equation
     if not ts then
       der(Iaction) = Kp/Ti*(SP - PV) + 1/Tt*satDiff;
     else
-      Iaction + eps*der(Iaction) = cs;
+      Iaction + eps*der(Iaction) = Itrack;
     end if;
 
     // derivative action
     Daction = Kp*N*(c*SP - PV) - Fder;
     Fder    = if Td >0 then (-Td/N*der(Fder) + Kp*N*(c*SP - PV)) else 0;
+
+    // bumpless transfer: in tracking mode the integral state follows TR - bias - P - D,
+    // so that the automatic output equals TR when tracking ends
+    Itrack = (if AntiWindup then max(CSmin,min(CSmax,tr)) else tr) - bias - Paction - (if Td>0 then Daction else 0);
 
     // sum of the three actions
     satin = Iaction + Paction + (if Td>0 then Daction else 0);
@@ -122,7 +132,8 @@ equation
     satDiff = cs - satin;
 
     // biasing the output
-    CS = if AntiWindup then max(CSmin,min(CSmax,cs + bias)) else cs + bias;
+    // no bias in tracking mode, so that CS = TR
+    CS = if AntiWindup then max(CSmin,min(CSmax,cs + (if ts then 0 else bias))) else cs + (if ts then 0 else bias);
 
   end if;
   annotation (Diagram(graphics), Icon(graphics={
@@ -163,16 +174,18 @@ equation
   <li>and Tracking</li>
   </ul><br/>
   
-  In the Automatic mode, the control output is computed with the integral control law, while in the tracking mode<br>
-  it is defined by the input TR.<br/><br/>
-  To note that in the tracking mode the output of the integral block is forced to follow the track reference
+  In the Automatic mode, the control output is computed with the PID control law, while in the tracking mode<br>
+  it is defined by the input TR: CS = TR (saturated if AntiWindup = true), the bias is not added.<br/><br/>
+  To note that in the tracking mode the output of the integral block is forced to follow
   <pre>
               1
-  I(s) = ---------- TR(S)
+  I(s) = ---------- ( TR(s) - Bias(s) - P(s) - D(s) )
            1+s*eps
   </pre> 
-  where eps is a small time constant. Thanks to such a scheme, the integrator does not diverge while the tracking mode<br>
-  is enabled.
+  where eps is a small time constant, TR is saturated if AntiWindup = true, and P and D are the proportional and
+  derivative actions. Thanks to such a scheme, the integrator does not diverge while the tracking mode
+  is enabled, and the transfer back to the automatic mode is bumpless: the automatic control law gives CS = TR
+  when the tracking mode ends (after it has lasted a few eps).
   </p>
   </HTML>",
           revisions="<html>

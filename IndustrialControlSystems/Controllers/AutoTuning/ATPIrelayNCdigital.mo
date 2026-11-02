@@ -70,7 +70,8 @@ algorithm
         if CS<CSmin then
            CS:=CSmin;
         end if;
-        CSi := if ts then tr else CS - CSp - bias;
+        // bumpless transfer: also in tracking mode, CSi is reset so that CSp + CSi + bias = CS (= TR)
+        CSi := CS - CSp - bias;
     end if;
     // AutoTuning PHASE
     if iMode==1 then          // AT

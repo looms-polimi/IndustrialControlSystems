@@ -23,7 +23,7 @@ equation
     when sample(0,Ts) then
       CS    = if AntiWindup then max(CSmin,min(CSmax,satin)) else satin;
       satin = if ts then tr else Pout;
-      Pout  = Kp*(SP-PV) + pre(bias);
+      Pout  = Kp_act*(SP-PV) + pre(bias);
     end when;
   else
     // Continuous time controller

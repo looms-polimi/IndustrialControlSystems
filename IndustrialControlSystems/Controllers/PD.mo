@@ -7,16 +7,22 @@ model PD "Proportional + Derivative controller"
     annotation(Evaluate = true, Dialog(group = "Parameters"));
   parameter Real N =  10 "Derivative filter ratio"
     annotation(Evaluate = true, Dialog(group = "Parameters"));
-  Real Fin "Filtered input";
+  Real Fin "Low-pass filtered error, scaled by Kp*N (state of the derivative filter)";
   Real satin "input of the saturation block";
 initial equation
 
+  // Initialise the derivative filter so that the output starts at CS_start
+  // (saturated if AntiWindup): Kp*(SP-PV) + Kp*N*(SP-PV) - Fin + bias = CS_start.
+  // In the sampled branch this sets the state one sample before t=0, so at t=0
+  // the derivative part has already decayed by one filter step.
   if Ts > 0 then
     // Discrete time initialisation
-    pre(Fin) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
+    pre(Fin) = Kp*(1 + N)*(SP - PV) + bias
+               - (if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start);
   else
     // Continuous time initialisation
-    Fin = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
+    Fin = Kp*(1 + N)*(SP - PV) + bias
+          - (if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start);
   end if;
 
 equation
@@ -25,20 +31,22 @@ equation
     // Discrete time controller
     when sample(0,Ts) then
       CS    = if AntiWindup then max(CSmin,min(CSmax,satin)) else satin;
-      satin = if ts then tr else Kp*N*(SP - PV) + pre(bias) - Kp*N*Fin;
+      // proportional action + real derivative action Kp*N*(e - lowpass(e))
+      satin = if ts then tr else Kp*(SP - PV) + Kp*N*(SP - PV) - Fin + pre(bias);
       Fin = IndustrialControlSystems.LinearSystems.Discrete.Functions.f1Pole(
         alfa,
         SP - PV,
         pre(SP) - pre(PV),
         pre(Fin),
         Ts,
-        1,
+        Kp*N,
         Td/N);
     end when;
   else
     // Continuous time controller
     CS    = if AntiWindup then max(CSmin,min(CSmax,satin)) else satin;
-    satin = if ts then tr else N*Kp*(SP - PV) + bias - Fin;
+    // proportional action + real derivative action Kp*N*(e - lowpass(e))
+    satin = if ts then tr else Kp*(SP - PV) + Kp*N*(SP - PV) - Fin + bias;
     Fin + Td/N*der(Fin) = Kp*N*(SP - PV);
   end if;
 
@@ -52,10 +60,14 @@ equation
   Proportional + real derivative controller with Automatic, Tracking mode and bias signal.<br/>
   The control law is defined as
   <pre>
-                sTd
-  CS(s) = Kp ------------ (SP(s) - PV(S))
-              1 + sTd/N
+            [                      sTd                      ]
+  CS(s) = Kp[ (SP(s) - PV(s)) + ----------- (SP(s) - PV(S)) ] + Bias
+            [                   1 + sTd/N                   ]
   </pre>
+  The output starts at <code>CS_start</code> (saturated to [CSmin, CSmax] if AntiWindup = true):
+  the state of the derivative filter is initialised accordingly. In the sampled version
+  (Ts &gt; 0) the state is set one sample before t = 0, so the derivative part has already
+  decayed by one filter step at t = 0.
   <br/><br/>
   <b>Scheme</b><br/><br/>
   <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/PropDerivative.png\">
@@ -79,7 +91,7 @@ equation
   <li>and Tracking</li>
   </ul><br/>
   
-  In the Automatic mode, the control output is computed with the integral control law, while in the tracking mode<br>
+  In the Automatic mode, the control output is computed with the proportional + derivative control law, while in the tracking mode<br>
   it is defined by the input TR.<br/><br/>
   To note that in the tracking mode the output signal CS is equal to TR.
   </p>

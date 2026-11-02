@@ -26,6 +26,16 @@ Version 2.0.0 is the same as 1.2.0 but it works with MSL 4.0.0. Technically spea
 
 Version 2.0.1 removed a few minor Modelica language issues to make the library compatible with Modelon Impact, and updated the library to Modelica 4.1.0. 
 
+#### Unreleased changes after 2.0.1
+
+Bug fixes that change simulation results for the configurations listed (details in `UserGuide.ReleaseNotes`):
+
+ - `Controllers.PD` now has proportional action, and `CS_start` is its initial output; results of all models using `PD` change (#4)
+ - Continuous `Controllers.I` no longer drifts at `Bias/eps` when `useBIAS = true` (#3)
+ - Gain scheduling (`useGS`) now works in the sampled versions of `P`, `PI`, `I` (#5)
+ - Tracking mode outputs `TR` without the bias in all controllers (#6)
+ - Bumpless return from tracking to automatic mode in `PI`, `PID`, `I` and the PI autotuners (`P`, `PD`, `D` have no integral state and still step)
+
 #### Main authors
 
 Marco Bonvini and Alberto Leva
