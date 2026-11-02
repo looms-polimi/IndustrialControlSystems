@@ -21,8 +21,14 @@ package Examples "Examples"
       control signal to follow an externally provided track reference (TR). The examples
       also demonstrate bumpless transition back to automatic mode for controllers with
       integrating action (PI, PID).</li>
+  <li><b>Regression tests</b> &mdash; open-loop models with constant inputs that check
+      specific controller behaviour fixed in version 2.0.1. Each documents its expected
+      results: <b>TestI_biasNoDrift</b>, <b>TestPD_proportional</b>,
+      <b>TestGainScheduling</b>, <b>TestTracking_bias</b>, <b>TestTracking_bumpless</b>
+      and <b>TestPI_initFromFBstart</b>. These instantiate continuous and sampled
+      controllers side by side and have no parameter Ts.</li>
   </ul>
-  All examples support both continuous-time and discrete-time operation through the
+  The TestX_bias and TestX_tracking examples support both continuous-time and discrete-time operation through the
   model parameter <b>Ts</b>: setting Ts &gt; 0 switches the controllers to their
   discrete-time equivalents, allowing the effect of different sampling periods and
   discretisation methods to be studied.
