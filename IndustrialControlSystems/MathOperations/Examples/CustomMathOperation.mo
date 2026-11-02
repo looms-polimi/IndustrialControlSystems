@@ -85,7 +85,36 @@ equation
   annotation (Diagram(graphics),
     experiment,
     __Dymola_experimentSetupOutput,
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example demonstrates how to use custom, user-defined mathematical functions with the
+  generic <b>Expression</b> blocks provided by the IndustrialControlSystems library.
+  </p>
+  <p>
+  Two expression evaluators are instantiated side by side:
+  <ul>
+    <li>
+      <b>INTexp</b> — an integer-type Expression block with four inputs, configured with the
+      <code>SumSquare</code> function. It receives four integer constant inputs (2, 4, -4, 5)
+      and computes the sum of their squares: 2&sup2; + 4&sup2; + (-4)&sup2; + 5&sup2; = 61.
+    </li>
+    <li>
+      <b>REALexp</b> — a real-type Expression block with four inputs, configured with the
+      <code>Mean</code> function and the <code>reScale</code> rescaling function.
+      Fixed-point mode is enabled (<code>FixedPoint=true</code>). The same four integer
+      constants are converted to Real and fed in; the block computes their arithmetic mean
+      and applies the fixed-point rescaling defined by <code>reScale</code>.
+    </li>
+  </ul>
+  </p>
+  <p>
+  The example illustrates the redeclaration mechanism: any function conforming to the
+  <code>GeneralFunction</code> or <code>GeneralReScalingFunction</code> interface can be
+  plugged in without modifying the Expression block itself.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

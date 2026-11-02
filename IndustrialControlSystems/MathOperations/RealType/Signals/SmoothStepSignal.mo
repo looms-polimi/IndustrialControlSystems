@@ -18,8 +18,8 @@ model SmoothStepSignal "Smooth step Set Point generator, driven by signals"
   parameter Real delay = 0 "Delay"
     annotation(Dialog(group = "Smooth step"));
 protected
-  discrete Boolean En_d;
-  discrete Boolean St(start=false);
+  discrete Boolean En_d "Sampled ENup (edge detection)";
+  discrete Boolean St(start=false) "Flag: transition started";
   Real StartTime(   start=0);
 equation
   En_d = ENup;

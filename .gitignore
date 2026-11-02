@@ -34,3 +34,7 @@ dymosim.lib
 .ipynb_checkpoints
 # Files only for Modelon Impact, when developing for all tools
 Resources/
+Modelica/
+
+# Modelica Standard Library (downloaded, not part of this repo)
+ModelicaStandardLibrary-4.1.0/

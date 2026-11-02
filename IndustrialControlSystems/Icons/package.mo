@@ -3,7 +3,17 @@ package Icons "Icons"
   extends Modelica.Icons.IconsPackage;
 
 
-annotation (Documentation(revisions="<html>
+annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This package collects the icon definitions used throughout the IndustrialControlSystems library.
+  Each partial package or class defined here provides a graphical icon that can be inherited by
+  sub-packages and models to give them a consistent visual appearance in a Modelica tool's
+  package browser. The icons follow the conventions established by the Modelica Standard Library
+  (MSL) Icons package, extending the corresponding MSL icon classes where appropriate.
+  </p>
+  </HTML>", revisions="<html>
 <p><h4>Revisions</h4></p>
 <dl><dt>First release of the ControlLibrary: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>

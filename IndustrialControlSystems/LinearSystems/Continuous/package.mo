@@ -20,7 +20,19 @@ info="
   <HTML>
   <h4>Description</h4>
   <p>
-  Continuous time blocks<br>
+  This package provides continuous-time linear system blocks for use in
+  dynamic control system models.  All blocks extend the common
+  <code>BaseBlock</code> partial model and expose a single Real input
+  <code>u</code> and a single Real output <code>y</code>.
+  </p>
+  <p>
+  The following continuous-time transfer function blocks are included:
+  <ul>
+    <li><b>Integrator</b> &mdash; pure integrator mu/s</li>
+    <li><b>FirstOrder</b> &mdash; first-order lag mu/(1+s*tau)</li>
+    <li><b>Delay</b> &mdash; pure time delay e^(-s*T)</li>
+    <li><b>SmithDelay</b> &mdash; Smith predictor delay element (1-e^(-s*T))</li>
+  </ul>
   </p>
   </HTML>", revisions="<html>
 </html>"));

@@ -11,7 +11,7 @@ model ComplexPoles "Process with complex poles"
     annotation(Dialog(group = "Initial conditions"));
   parameter Real dy_start = 0 "Slope initial value"
     annotation(Dialog(group = "Initial conditions"));
-  Real dy;
+  Real dy "First derivative of output dy/dt";
 initial equation
   y  = y_start;
   dy = dy_start;

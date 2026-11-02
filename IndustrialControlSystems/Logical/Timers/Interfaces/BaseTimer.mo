@@ -37,7 +37,28 @@ partial model BaseTimer "Partial interface of a generic timer"
           fillColor={213,255,170},
           fillPattern=FillPattern.Solid,
           textString="%name")}), Diagram(graphics),
-      Documentation(revisions="<html>
+      Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial model defines the common interface for all timer blocks. It declares the following
+  ports and parameters:
+  </p>
+  <ul>
+  <li><em>S</em> (Boolean input) &mdash; Set signal that starts or enables the timer.</li>
+  <li><em>R</em> (Boolean input) &mdash; Reset signal that immediately stops and clears the
+  timer.</li>
+  <li><em>PV</em> (Real input) &mdash; Programmed Value: the target duration of the timer in
+  seconds.</li>
+  <li><em>Q</em> (Boolean output) &mdash; Status output: true while the timer is running,
+  false otherwise.</li>
+  </ul>
+  <p>
+  The parameter <em>Ts</em> specifies the sampling period in seconds. Concrete timer blocks
+  extend this interface and implement their specific timing behaviour (on-delay, off-delay,
+  edge-triggered variants) using the functions in the Functions sub-package.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

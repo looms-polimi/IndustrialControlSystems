@@ -18,25 +18,25 @@ model ATPIrelayNCmixedMode
   parameter Integer nOxMin = 3
     "minimum number of oscillations"
     annotation(Dialog(group = "Auto Tuning Algorithm"));
-  Integer iMode;
-  Real K;
-  Real TI;
+  Integer iMode "Operating mode: 0=PI, 1=init, 2=run";
+  Real K "Current proportional gain";
+  Real TI "Current integral time";
 protected
-  Real satIn;
-  Real linFBout(start=0,stateSelect=StateSelect.always);
-  Real CSpi;
-  discrete Real CSat;
-  discrete Boolean AT;
-  discrete Boolean UP;
-  discrete Real rPVmax;
-  discrete Real rPVmin;
-  discrete Real rCSmax;
-  discrete Real rCSmin;
-  discrete Real lastToggleUp;
-  discrete Real period;
-  discrete Real wox;
-  discrete Real Pox;
-  discrete Integer nOx;
+  Real satIn "Input to anti-windup saturation";
+  Real linFBout(start=0,stateSelect=StateSelect.always) "Internal state in anti-windup";
+  Real CSpi "Control signal from PI law";
+  discrete Real CSat "Control signal during auto-tuning";
+  discrete Boolean AT "Auto-tuning active flag";
+  discrete Boolean UP "Relay state: true = CS going up";
+  discrete Real rPVmax "Recorded max PV in last half-cycle";
+  discrete Real rPVmin "Recorded min PV in last half-cycle";
+  discrete Real rCSmax "Recorded max CS in last half-cycle";
+  discrete Real rCSmin "Recorded min CS in last half-cycle";
+  discrete Real lastToggleUp "Time of last upward relay toggle";
+  discrete Real period "Measured oscillation period [s]";
+  discrete Real wox "Oscillation frequency [rad/s]";
+  discrete Real Pox "Process gain at oscillation freq.";
+  discrete Integer nOx "Number of oscillations counted";
 equation
   // the sampling time must be greater than zero
   assert(Ts>0,"Ts MUST be >0 for the AutoTuning phase");

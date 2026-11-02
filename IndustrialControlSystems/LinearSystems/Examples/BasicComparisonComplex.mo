@@ -18,9 +18,9 @@ model BasicComparisonComplex
   parameter Real Ts = 0.5 "Sampling time"
     annotation(Dialog(group = "Discretisation"));
   // Errors
-  Real error_BE = cplxP.y - cplxP_dig_BE.y;
-  Real error_FE = cplxP.y - cplxP_dig_FE.y;
-  Real error_TU = cplxP.y - cplxP_dig_TU.y;
+  Real error_BE = cplxP.y - cplxP_dig_BE.y "Backward Euler discretisation error";
+  Real error_FE = cplxP.y - cplxP_dig_FE.y "Forward Euler discretisation error";
+  Real error_TU = cplxP.y - cplxP_dig_TU.y "Tustin discretisation error";
   Continuous.ComplexPoles cplxP(
     xi=xi_cpx,
     omegan=omegan_cpx,

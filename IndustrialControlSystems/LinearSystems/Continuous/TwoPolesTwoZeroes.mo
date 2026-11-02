@@ -12,12 +12,12 @@ model TwoPolesTwoZeroes
     annotation(Dialog(group = "Block parameters"));
   parameter Real y_start = 0 "Output initial value"
     annotation(Dialog(group = "Initial conditions"));
-  Real dy;
-  Real z;
-  Real h;
+  Real dy "Pole state (lag output)";
+  Real z "Intermediate signal (zero output)";
+  Real h "First zero state variable";
 protected
-  parameter Real A = T2/T3;
-  parameter Real B = 1 - A;
+  parameter Real A = T2/T3 "Ratio T2/T3 for partial fraction";
+  parameter Real B = 1 - A "Complement of A (= 1 - T2/T3)";
 initial equation
   y = y_start;
 equation

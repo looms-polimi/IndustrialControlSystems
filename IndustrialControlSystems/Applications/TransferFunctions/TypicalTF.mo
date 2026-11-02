@@ -346,122 +346,115 @@ equation
   <HTML>
   <h4>Description</h4>
   <p>
-  This model is a container of different trasfer functions that can model the typical processes.
-  The parameters of each TF (listed in a table below), can be modified in order to adapt each process to the user's needs. 
-  
-  <br/>
+  This model is a container of different transfer functions that can model typical processes.
+  The parameters of each transfer function (listed in the tables below) can be modified to
+  adapt each process to the user's needs.
+  </p>
+
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH colspan=2>Integrator</TH></TR>
   <tr>
-  <td colspan =2>
+  <td colspan=2>
   <pre>
   Y(s)     1
   ---- = -----
   U(s)     5s  </pre>
   </td>
   </tr>
-  </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/Integrator.png\"><br>
-  
-  <br/>
+  </table><br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/Integrator.png\"/><br/>
+
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH colspan=2>Integrator + delay</TH></TR>
   <tr>
-  <td colspan =2>
+  <td colspan=2>
   <pre>
   Y(s)     1     -2s
   ---- = ----- e
   U(s)     5s  </pre>
   </td>
   </tr>
-  </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/Int+Delay.png\"><br>
-  
-  <br/>
+  </table><br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/Int+Delay.png\"/><br/>
+
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH colspan=2>First Order</TH></TR>
   <tr>
-  <td colspan =2>
+  <td colspan=2>
   <pre>
-  Y(s)      1   
-  ---- = -------- 
+  Y(s)      1
+  ---- = --------
   U(s)    1 + 5s  </pre>
   </td>
   </tr>
-  </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/FirstOrder.png\"><br>
-  
-  <br/>
+  </table><br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/FirstOrder.png\"/><br/>
+
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH colspan=2>First Order + delay</TH></TR>
   <tr>
-  <td colspan =2>
+  <td colspan=2>
   <pre>
   Y(s)      1      -2s
   ---- = -------- e
   U(s)    1 + 5s  </pre>
   </td>
   </tr>
-  </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/FirstOrder+Delay.png\"><br>
-  </p>
-  
-  <br/>
+  </table><br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/FirstOrder+Delay.png\"/><br/>
+
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH colspan=2>Fast Slow</TH></TR>
   <tr>
-  <td colspan =2>
+  <td colspan=2>
   <pre>
-  Y(s)      1 + 5.8s  
-  ---- = -------------- 
+  Y(s)      1 + 5.8s
+  ---- = --------------
   U(s)    (1 + 6s)(1+s)  </pre>
   </td>
   </tr>
-  </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/FastSlow.png\"><br>
-  
-  <br/>
+  </table><br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/FastSlow.png\"/><br/>
+
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH colspan=2>Overshooting</TH></TR>
   <tr>
-  <td colspan =2>
+  <td colspan=2>
   <pre>
-  Y(s)      1 + 8s  
-  ---- = --------------- 
+  Y(s)      1 + 8s
+  ---- = ---------------
   U(s)    (1 + 5s)(1+2s)  </pre>
   </td>
   </tr>
-  </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TrasferFunction/OverShooting.png\"><br>
-  
-  <br/>
+  </table><br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/OverShooting.png\"/><br/>
+
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH colspan=2>Undershooting</TH></TR>
   <tr>
-  <td colspan =2>
+  <td colspan=2>
   <pre>
-  Y(s)      1 - 5.5s  
-  ---- = --------------- 
+  Y(s)      1 - 5.5s
+  ---- = ---------------
   U(s)    (1 + 5s)(1+2s)  </pre>
   </td>
   </tr>
-  </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/UnderShooting.png\"><br>
-  
-  <br/>
+  </table><br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/UnderShooting.png\"/><br/>
+
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH colspan=2>Complex Poles</TH></TR>
   <tr>
-  <td colspan =2>
+  <td colspan=2>
   <pre>
-  Y(s)            1  
-  ---- = -------------------- 
+  Y(s)            1
+  ---- = --------------------
   U(s)    1 + 1.2 s + 0.025s  </pre>
   </td>
   </tr>
-  </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/ComplexPoles.png\"><br>
-  
+  </table><br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/ComplexPoles.png\"/><br/>
+
   </HTML>",
           revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>

@@ -1,5 +1,6 @@
 within IndustrialControlSystems.Logical.Comparisons.Examples;
 model TestComparison
+  "Test of logical comparison operators (equal, greater, less, etc.)"
   extends Modelica.Icons.Example;
   parameter Real Ts = 0.001 "Sampling time"
     annotation(Dialog(group = "Sampling"));

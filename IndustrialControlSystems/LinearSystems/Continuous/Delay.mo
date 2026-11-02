@@ -16,13 +16,20 @@ equation
   <HTML>
   <h4>Description</h4>
   <p>
-  Continuous time delay.
+  Continuous-time pure time delay block.  The block shifts its input signal
+  by a fixed delay time T and passes it to the output.  In the Laplace domain:
   <pre>
-   Y(s) = e^(-s*T)*U(s)
+   Y(s) = e^(-s*T) * U(s)
   </pre>
-  <br>
-  The delay must be positive <FONT FACE=Courier>T &gt;= 0</FONT>.
+  The delay time T must be non-negative.  The block uses the Modelica built-in
+  <code>delay(u, T)</code> operator, which provides an ideal (non-rational)
+  continuous delay.
   </p>
+  <h4>Parameters</h4>
+  <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
+    <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+    <tr><td>T</td><td>1</td><td>Fixed delay time [s], must satisfy T &gt;= 0</td></tr>
+  </table>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>

@@ -3,7 +3,7 @@ model Timer_On "ON timer model"
   extends IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer;
   Boolean run "Flag: true while the timer is counting";
   Real startTime "start time of the timer counting";
-  discrete Boolean Sd;
+  discrete Boolean Sd "Sampled set signal S";
 initial equation
   startTime = 0;
   pre(Sd) = false;
