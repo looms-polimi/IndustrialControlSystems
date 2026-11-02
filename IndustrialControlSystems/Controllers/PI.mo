@@ -6,8 +6,13 @@ model PI "Proportional + Integral controller"
   parameter Real Ti = 1 "Integral time"
     annotation(Evaluate = true, Dialog(group = "Parameters"));
   Real Ti_act "Actual integral time";
-  Real Kp_act "Actual proportianal gain";
-  Real FBout "output (and state) of the feedback block 1/(1+sTi)";
+  Real Kp_act "Actual proportional gain";
+  Real FBout(start = FBstart) "output (and state) of the feedback block 1/(1+sTi)";
+  parameter Boolean initFromFBstart = false
+    "= true, initialize the reset state FBout from FBstart instead of from CS_start"
+    annotation(Evaluate = true, Dialog(group = "Initialisation"));
+  parameter Real FBstart = 0.0 "Initial value of output (and state) of the feedback block 1/(1+sTi), used if initFromFBstart"
+    annotation(Dialog(group = "Initialisation", enable = initFromFBstart));
   Real cs "Pre-biased Control Signal";
   Real satin "input of the saturation block";
   Real FBin "input of the feedback (reset) filter: cs, or in tracking mode the value giving CS = TR on release";
@@ -30,7 +35,14 @@ protected
   Modelica.Blocks.Interfaces.RealInput Kp_in "Internal protected Kp gain real input";
 initial equation
 
-  if Ts > 0 then
+  if initFromFBstart then
+    // Reset state given directly by the user
+    if Ts > 0 then
+      pre(FBout) = FBstart;
+    else
+      FBout = FBstart;
+    end if;
+  elseif Ts > 0 then
     // Discrete time initialisation
     pre(FBout) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias - Kp_act*(SP - PV);
   else
@@ -83,23 +95,22 @@ equation
   annotation (Icon(graphics={Text(
           extent={{-34,30},{46,-40}},
           lineColor={0,0,255},
-          textString="PI")}),Documentation(info="
-  <HTML>
+          textString="PI")}),Documentation(info="<html>
+  
   <h4>Description</h4>
   <p>
-  Proportional + Integral controller with Automatic, Tracking mode and bias signal.<br/>
+  Proportional + Integral controller with Automatic, Tracking mode and bias signal.<br>
   The control law is defined as
-  <pre>
-              1+sTi 
+  </p><pre>              1+sTi 
   CS(s) = Kp ------- (SP(s) - PV(S))
                sTi
   </pre>
-  <br/><br/>
-  <b>Scheme</b><br/><br/>
-  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/PropInt.png\">
-  <br/><br/>
-  <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
-  <TR bgcolor=#e0e0e0><TH >Name</TH><TH>Description</TH><TH>Conditional?</TH></TR>
+  <br><br>
+  <p><strong>Scheme</strong></p><br><br>
+  <p><img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/PropInt.png\">
+  </p><br><br>
+  <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
+  <tbody><tr bgcolor=\"#e0e0e0\"><th>Name</th><th>Description</th><th>Conditional?</th></tr>
   <tr>  <td>SP</td><td>Set Point</td><td>NO</td></tr>
   <tr>  <td>PV</td><td>Process Variable</td><td>NO</td></tr>
   <tr>  <td>CS</td><td>Control Signal</td><td>NO</td></tr>
@@ -107,39 +118,42 @@ equation
   <tr>  <td>TS</td><td>Track Switch signal</td><td>YES (useTS)</td></tr>
   <tr>  <td>Bias</td><td>Biasing signal</td><td>YES (useBIAS)</td></tr>
   <tr>  <td>ATreq</td><td>AutoTuning request</td><td>YES (*)</td></tr>
-  </table>
-  (*) AutoTuning Not available here, please see the package<br>
-  <a href=\"Modelica://IndustrialControlSystems.Controllers.AutoTuning\">AutoTuning</a>
-  <br/><br/>
+  </tbody></table><p>
+  (*) AutoTuning Not available here, please see the package</p><br>
+  <p><a href=\"Modelica://IndustrialControlSystems.Controllers.AutoTuning\">AutoTuning</a>
+  </p><br><br><p>
   The controller can have various operating conditions:
-  <ul>
+  </p><ul>
   <li>Automatic,</li>
   <li>and Tracking</li>
-  </ul><br/>
+  </ul><br><p>
   
-  In the Automatic mode, the control output is computed with the proportional+integral control law, while in the tracking mode<br>
-  it is defined by the input TR.<br/><br/>
+  In the Automatic mode, the control output is computed with the proportional+integral control law, while in the tracking mode</p><br><p>
+  it is defined by the input TR.</p><br><br><p>
   To note that in the tracking mode the output signal CS is equal to TR (the bias is not added,
   in both the continuous and the sampled version), and the first order filter 
-  <pre>
-     1
+  </p><pre>     1
   -------- TR(S)
    1+s*Ti
-  </pre>
+  </pre><p>
   is replaced by
-  <pre>
-     1
+  </p><pre>     1
   -------- TR(S)
    1+s*eps
-  </pre>
-  where eps is a small time constant. With such a scheme, the integrator does not diverge while the tracking mode<br>
-  is enabled.<br/><br/>
-  <b>Bumpless transfer.</b> In the tracking mode the input of the reset filter is not TR but
+  </pre><p>
+  where eps is a small time constant. With such a scheme, the integrator does not diverge while the tracking mode</p><br><p>
+  is enabled.</p><br><br><p>
+  <strong>Bumpless transfer.</strong> In the tracking mode the input of the reset filter is not TR but
   <code>TR - Bias - Kp*(SP - PV)</code> (TR saturated if AntiWindup = true), i.e. the value of the reset state
   for which the automatic control law gives CS = TR. When the tracking mode ends, the output therefore continues
   from TR without a step (after the tracking mode has lasted a few eps).
-  </p>
-  </HTML>",
+  </p><p>
+  <strong>Initialisation.</strong> By default the reset state FBout is initialised so that the output starts at
+  CS_start (<code>FBout = CS_start - Bias - Kp*(SP - PV)</code>, or <code>FBout = CS_start</code> saturated if
+  AntiWindup = true). With <code>initFromFBstart = true</code> the reset state is set directly to
+  <code>FBstart</code> instead, and the initial output follows from the control law.
+  </p><p><br></p>
+  </html>",
           revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
