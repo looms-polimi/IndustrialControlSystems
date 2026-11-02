@@ -5,7 +5,7 @@ model LeadLagFilter
 
   // Required for MSL BandLimitedWhiteNoise; fixed seed ensures reproducible runs
   inner Modelica.Blocks.Noise.GlobalSeed globalSeed(fixedSeed = 1234)
-    annotation (Placement(transformation(extent={{130,60},{170,90}})));
+    annotation (Placement(transformation(extent={{59.76,59.89},{80.24,80.11}},rotation = 0.0,origin = {0.0,0.0})));
 
   // ---- Process signal ----
   parameter Real step_height    = 10.0 "Height of the process step"
@@ -42,59 +42,58 @@ model LeadLagFilter
     height    = step_height,
     offset=process_offset,
     startTime = step_startTime)
-    annotation (Placement(transformation(extent={{-190,-10},{-170,10}})));
+    annotation (Placement(transformation(extent={{-80.0,20.0},{-60.0,40.0}},rotation = 0.0,origin = {0.0,0.0})));
 
   LinearSystems.Continuous.FirstOrder sensor(
     tau     = tau_sensor,
     mu      = 1,
     y_start=process_offset)
-    annotation (Placement(transformation(extent={{-150,-20},{-110,20}})));
+    annotation (Placement(transformation(extent={{-39.71,0.29},{-20.29,19.71}},rotation = 0.0,origin = {0.0,0.0})));
 
   Modelica.Blocks.Noise.BandLimitedWhiteNoise noiseSource(
     samplePeriod = noise_samplePeriod,
     noisePower   = noise_power)
-    annotation (Placement(transformation(extent={{-150,-68},{-110,-38}})));
+    annotation (Placement(transformation(extent={{-80.15,-20.4},{-59.85,0.4}},rotation = 0.0,origin = {0.0,0.0})));
 
   Modelica.Blocks.Math.Add addNoise(k1 = 1, k2 = 1)
-    annotation (Placement(transformation(extent={{-60,-20},{-20,20}})));
+    annotation (Placement(transformation(extent={{0.1,-9.9},{19.9,9.9}},rotation = 0.0,origin = {0.0,0.0})));
 
   LinearSystems.Continuous.FirstOrder lowPassFilter(
     tau=2,
     mu      = 1,
     y_start=process_offset)
-    annotation (Placement(transformation(extent={{20,-20},{60,20}})));
+    annotation (Placement(transformation(extent={{30.1,-9.9},{49.9,9.9}},rotation = 0.0,origin = {0.0,0.0})));
 
   LinearSystems.Continuous.LeadLag leadLagFilter(
     T1=2,
     T2=0.5,
     mu      = 1,
     y_start=-30)
-    annotation (Placement(transformation(extent={{110,-20},{150,20}})));
+    annotation (Placement(transformation(extent={{80.44,-9.56},{99.56,9.56}},rotation = 0.0,origin = {0.0,0.0})));
 
 equation
   connect(processStep.y, sensor.u) annotation (Line(
-      points={{-169,0},{-146,0}},
+      points={{-59,30},{-46,30},{-46,10},{-37.77,10}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(noiseSource.y, addNoise.u2) annotation (Line(
-      points={{-108,-53},{-74,-53},{-74,-12},{-64,-12}},
+      points={{-58.83,-10},{-13.34,-10},{-13.34,-5.94},{-1.88,-5.94}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(addNoise.y, lowPassFilter.u) annotation (Line(
-      points={{-18,0},{24,0}},
+      points={{20.89,0},{32.08,0}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(lowPassFilter.y, leadLagFilter.u) annotation (Line(
-      points={{58,0},{114,0}},
+      points={{48.91,0},{82.35,0}},
       color={0,0,127},
       smooth=Smooth.None));
 
-  connect(sensor.y, addNoise.u1) annotation (Line(points={{-112,0},{-74,0},{-74,
-          12},{-64,12}}, color={0,0,127}));
+  connect(sensor.y, addNoise.u1) annotation (Line(points={{-21.26,10},{-12,10},{-12,5.94},{-1.88,5.94}}, color={0,0,127}));
   annotation (
     Diagram(coordinateSystem(
         preserveAspectRatio=false,
-        extent={{-200,-120},{200,100}})),
+        extent={{-100,-100},{100,100}})),
     experiment(StopTime=120, Tolerance=1e-6),
     experimentSetupOutput,
     Documentation(info="
