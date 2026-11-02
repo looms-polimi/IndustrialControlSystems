@@ -3,7 +3,7 @@ model Timer_OffDelay_Fedge "OFF delay timer model, active on falling edge"
   extends IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer;
   discrete Boolean run "Flag: true while the timer is counting";
   Real startTime "start time of the timer counting";
-  discrete Boolean Sd;
+  discrete Boolean Sd "Sampled set signal S";
 initial equation
   startTime = 0;
   run = false;
@@ -59,9 +59,9 @@ info="
     <li>and the remaining time <FONT FACE=Courier>tr</FONT></li>
     </ul>
     
-    <img src=\"modelica://IndustrialControlSystems/help/images/Logical/Timers/T_OffDelayFedge_1.png\"><br>
-    <img src=\"modelica://IndustrialControlSystems/help/images/Logical/Timers/T_OffDelayFedge_2.png\"><br>
-    <img src=\"modelica://IndustrialControlSystems/help/images/Logical/Timers/T_OffDelayFedge_3.png\">
+    <img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Timers/T_OffDelayFedge_1.png\"><br>
+    <img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Timers/T_OffDelayFedge_2.png\"><br>
+    <img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Timers/T_OffDelayFedge_3.png\">
     </p>
   </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>

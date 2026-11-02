@@ -171,13 +171,13 @@ equation
   that acts <br> directly on the fast process P1 and measures the output of the second process P2.<br>
   In the second case, there are two controllers that act respectively on the fast and slow dynamics. 
   The second approach is called cascade control.<br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/Cascade.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/Cascade.png\"><br>
   The Step responce of the two scheme are listed below.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CascadePV.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CascadePV.png\"><br>
   Despite for a step variation of the Set Point, the two responces (classic scheme red line, and cascade the green one) are<br>
   practically the same, this is not true when disturbances occur. It is evident that the cascade control scheme<br>
   performs better than the classic one. Below are reported the control signal of the controllers<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CascadeCS.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CascadeCS.png\"><br>
   where is evidenced the fast action of the inner control loop.<br><br>
    
   Since the controller are discrete time ones, it is important to choose the right sampling time for each loop <br>

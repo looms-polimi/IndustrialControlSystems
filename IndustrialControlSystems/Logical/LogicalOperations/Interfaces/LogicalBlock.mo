@@ -19,7 +19,19 @@ partial model LogicalBlock
           extent={{-56,14},{76,-14}},
           lineColor={0,0,0},
           textString="%nInput x %nOutput ")}),
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial model defines the common interface for generic n-input m-output Boolean blocks.
+  It declares a Boolean input vector <em>u</em> of length <em>nInput</em>, a Boolean output
+  vector <em>y</em> of length <em>nOutput</em>, and a sampling time parameter <em>Ts</em>.
+  When <em>Ts</em> is set to zero the block operates in continuous time; a positive value
+  introduces a sampling delay equal to one period. Concrete logical blocks (AND, OR, NOT, XOR)
+  extend this interface and implement their operation in a when-clause sampled at rate
+  <em>1/Ts</em>.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

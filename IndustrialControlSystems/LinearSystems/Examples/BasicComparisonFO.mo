@@ -13,9 +13,9 @@ model BasicComparisonFO
   parameter Real Ts = 0.5 "Sampling time"
     annotation(Dialog(group = "Discretisation"));
   // Errors
-  Real error_BE = fO.y - fO_dig_BE.y;
-  Real error_FE = fO.y - fO_dig_FE.y;
-  Real error_TU = fO.y - fO_dig_TU.y;
+  Real error_BE = fO.y - fO_dig_BE.y "Backward Euler discretisation error";
+  Real error_FE = fO.y - fO_dig_FE.y "Forward Euler discretisation error";
+  Real error_TU = fO.y - fO_dig_TU.y "Tustin discretisation error";
   Continuous.FirstOrder fO(
     tau=tau_FO,
     mu=mu_FO,
@@ -77,7 +77,7 @@ equation
   </ul><br/>
   
   <b> Comparison </b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/LinearSystems/Examples/Comparison_FO.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/LinearSystems/Examples/Comparison_FO.png\">
   </p>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>

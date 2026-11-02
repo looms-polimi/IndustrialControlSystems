@@ -2,13 +2,30 @@ within IndustrialControlSystems.MathOperations.Examples;
 function Mean "This function computes the mean of a vector"
   extends RealType.Functions.GeneralFunction;
 protected
-  Integer n;
+  Integer n =size(u,1);
 algorithm
-  n :=size(u,1);
-
   y := sum(u[i] for i in 1:n)/n;
-
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function computes the arithmetic mean of a vector of real-valued inputs.
+  It extends <code>RealType.Functions.GeneralFunction</code> and therefore accepts a
+  variable-length real input vector <code>u[:]</code> and returns a single real output
+  <code>y</code>.
+  </p>
+  <p>
+  <b>Algorithm:</b> the length <code>n</code> of the input vector is determined at run time,
+  and the output is computed as
+  </p>
+  <pre>
+    y := sum(u[i] for i in 1:n) / n;
+  </pre>
+  <p>
+  This function is used as a plug-in for the real-type <code>Expression</code> block in the
+  <code>CustomMathOperation</code> example.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

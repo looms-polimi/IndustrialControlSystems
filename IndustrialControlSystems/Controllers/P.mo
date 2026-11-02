@@ -23,7 +23,7 @@ equation
     when sample(0,Ts) then
       CS    = if AntiWindup then max(CSmin,min(CSmax,satin)) else satin;
       satin = if ts then tr else Pout;
-      Pout  = Kp*(SP-PV) + pre(bias);
+      Pout  = Kp_act*(SP-PV) + pre(bias);
     end when;
   else
     // Continuous time controller
@@ -45,7 +45,7 @@ equation
   </pre>
   <br/><br/>
   <b>Scheme</b><br/><br/>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Proportional.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Proportional.png\">
   
   <br/><br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >

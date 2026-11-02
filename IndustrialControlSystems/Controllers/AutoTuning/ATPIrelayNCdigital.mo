@@ -18,23 +18,23 @@ model ATPIrelayNCdigital
   parameter Integer nOxMin = 3
     "minimum number of oscillations"
     annotation(Dialog(group = "Auto Tuning Algorithm"));
-  discrete Real K;
-  discrete Real TI;
+  discrete Real K "Current proportional gain";
+  discrete Real TI "Current integral time";
   discrete Integer iMode " 0: PI, 1: AT";
 protected
-  discrete Boolean UP;
-  discrete Real lastToggleUp;
-  discrete Real period;
-  discrete Real wox;
-  discrete Real Pox;
-  discrete Real rPVmax;
-  discrete Real rPVmin;
-  discrete Real rCSmax;
-  discrete Real rCSmin;
-  discrete Real e;
-  discrete Real CSp;
-  discrete Real CSi;
-  discrete Integer nOx;
+  discrete Boolean UP "Relay state: true = CS going up";
+  discrete Real lastToggleUp "Time of last upward relay toggle";
+  discrete Real period "Measured oscillation period [s]";
+  discrete Real wox "Oscillation frequency [rad/s]";
+  discrete Real Pox "Process gain at oscillation freq.";
+  discrete Real rPVmax "Recorded max PV in last half-cycle";
+  discrete Real rPVmin "Recorded min PV in last half-cycle";
+  discrete Real rCSmax "Recorded max CS in last half-cycle";
+  discrete Real rCSmin "Recorded min CS in last half-cycle";
+  discrete Real e "Control error (SP - PV)";
+  discrete Real CSp "Proportional part of control signal";
+  discrete Real CSi "Integral part of control signal";
+  discrete Integer nOx "Number of oscillations counted";
 algorithm
   // the sampling time must be greater than zero
   assert(Ts>0,"This is a discrete time controller, Ts MUST be >0");
@@ -70,7 +70,8 @@ algorithm
         if CS<CSmin then
            CS:=CSmin;
         end if;
-        CSi := if ts then tr else CS - CSp - bias;
+        // bumpless transfer: also in tracking mode, CSi is reset so that CSp + CSi + bias = CS (= TR)
+        CSi := CS - CSp - bias;
     end if;
     // AutoTuning PHASE
     if iMode==1 then          // AT
@@ -180,7 +181,7 @@ end when;
   </pre>
   <br/><br/>
   <b>Scheme</b><br/><br/>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/PropInt.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/PropInt.png\">
   <br/><br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH >Name</TH><TH>Description</TH><TH>Conditional?</TH></TR>
@@ -244,7 +245,7 @@ end when;
   <br>
   <h4>References</h4>
   For more information please refers to the following
-  <a href=\"modelica://IndustrialControlSystems/help/refs/EffHybPITuning.pdf\">paper</a>:<br><br>
+  <a href=\"modelica://IndustrialControlSystems/Resources/References/EffHybPITuning.pdf\">paper</a>:<br><br>
   <b>Efficient hybrid simulation of autotuning PI controllers</b><br>
   Alberto Leva, Marco Bonvini<br>
   8th Modelica Conference, Dresden, Germany<br>

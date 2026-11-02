@@ -120,9 +120,9 @@ equation
   controller whitout Increment/Decrement lock.<br>
   The black line shows a windup like effect that turns in a slower reaction when the Set Point changes at time t = 30.<br><br>
   Set Point, Process Variables (with and without external lock) and outer control signals (with and without external lock) 
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/PID_extLock.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/PID_extLock.png\"><br><br>
   inner regulators Control Signal (with and without external lock)
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/PID_extLockCS.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/PID_extLockCS.png\"><br>
 </html>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
