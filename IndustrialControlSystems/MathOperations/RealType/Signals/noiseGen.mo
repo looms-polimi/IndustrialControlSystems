@@ -14,8 +14,8 @@ model noiseGen "Noise generator"
   constant Real c= 10 "coefficient"
     annotation(Dialog(group = "Algorithm"));
 protected
-  discrete Real X;
-  discrete Real U;
+  discrete Real X "PRNG state variable";
+  discrete Real U "Unscaled random sample";
 equation
   // No Fixed Point here
   Ufp = zeros(nInput);
@@ -27,7 +27,7 @@ algorithm
   end when;
 
   // Random sample generator algorithm
-  when noEvent(sample(0,Ts)) then
+  when sample(0,Ts) then
        X := (a*X+c)-div((a*X+c),m)*m;
        U := (X/2e9-0.5)*amp;
        y := (Tf*y+Ts*U)/(Tf+Ts);
@@ -49,7 +49,7 @@ algorithm
   <p>
   Model of a noisy signal.<br><br>
   
-  <img src=\"modelica://IndustrialControlSystems/help/images/Math/RealType/Signals/Noise.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Math/RealType/Signals/Noise.png\">
   <br><br>
   The output ( <FONT FACE=Courier>y</FONT> ) is the result of an algorithm that produces a sequence of pseudo random values.<br>
   The properties of the signal can be modified through the algorithm parameters: <FONT FACE=Courier>amp</FONT> and <FONT FACE=Courier>X_start</FONT>.<br>

@@ -3,9 +3,9 @@ model Pow "Power of two integer numbers"
   extends
     IndustrialControlSystems.MathOperations.IntegerType.Interfaces.IntSimpleOperation;
 protected
-  Real u1R;
-  Real u2R;
-  Real yR;
+  Real u1R "Real-cast of integer input u1";
+  Real u2R "Real-cast of integer input u2";
+  Real yR "Real-valued intermediate result";
 equation
   assert(u1<>0 or u2>0,"division by zero");
 

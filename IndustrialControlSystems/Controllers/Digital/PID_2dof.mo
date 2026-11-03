@@ -14,16 +14,16 @@ model PID_2dof "Digital 2-dof PID controller"
   parameter Real c = 0 "SP weight in D action"
     annotation(Dialog(group = "Parameters"));
 protected
-  discrete Real sp;
-  discrete Real dsp;
-  discrete Real pv;
-  discrete Real dpv;
-  discrete Real dp;
-  discrete Real di;
-  discrete Real d;
-  discrete Real dd;
-  discrete Real cs;
-  discrete Real dcs;
+  discrete Real sp "Sampled set point";
+  discrete Real dsp "Set point increment";
+  discrete Real pv "Sampled process variable";
+  discrete Real dpv "Process variable increment";
+  discrete Real dp "Proportional action increment";
+  discrete Real di "Integral action increment";
+  discrete Real d "Filtered derivative term";
+  discrete Real dd "Derivative action increment";
+  discrete Real cs "Internal control signal";
+  discrete Real dcs "Control signal increment";
 algorithm
   when sample(0,Ts) then
 

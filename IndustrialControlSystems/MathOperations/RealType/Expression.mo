@@ -57,7 +57,7 @@ equation
     // FixedPoint variables
     // conversion from Real to Integer
     for i in 1:nInput loop
-      Ufp[i] = integer(Functions.toFixedPoint(u[i],scaleFactor,MAX,MIN));
+      Ufp[i] = integer(Functions.toFixedPoint(u_set[i],scaleFactor,MAX,MIN));
     end for;
 
     // Math operation
@@ -81,10 +81,10 @@ equation
     // Math operation
     if Ts > 0 then
       when sample(0,Ts) then
-        y = f(u[:]);
+        y = f(u_set[:]);
       end when;
     else
-       y = f(u[:]);
+       y = f(u_set[:]);
     end if;
 
   end if;
