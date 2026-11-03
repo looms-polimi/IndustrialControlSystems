@@ -53,7 +53,33 @@ partial model BaseCounter "Partial interface of a generic counter"
           fillColor={213,255,170},
           fillPattern=FillPattern.Solid,
           textString="%name")}), Diagram(graphics),
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial model defines the common interface contract for all counter blocks. It exposes the
+  following ports and parameters:
+  </p>
+  <ul>
+  <li><em>CU</em> (Boolean input) &mdash; Count-Up: the counter is incremented by 1 on each
+  0-to-1 transition of this signal.</li>
+  <li><em>CD</em> (Boolean input) &mdash; Count-Down: the counter is decremented by 1 on each
+  0-to-1 transition of this signal.</li>
+  <li><em>S</em> (Boolean input) &mdash; Set: loads the counter with the preset value <em>PV</em>
+  on a rising edge; counting is only active while <em>S</em> is high.</li>
+  <li><em>R</em> (Boolean input) &mdash; Reset: immediately clears the counter to 0 and stops
+  counting.</li>
+  <li><em>PV</em> (Integer input) &mdash; Preset Value loaded into the counter when <em>S</em>
+  rises.</li>
+  <li><em>CV</em> (Integer output) &mdash; Current Value of the counter.</li>
+  <li><em>Q</em> (Boolean output) &mdash; Status: true while the counter is active (CV &gt; 0),
+  false when the counter is at zero or has been reset.</li>
+  </ul>
+  <p>
+  Parameters: <em>Ts</em> is the sampling period in seconds; <em>Max</em> is the counter modulus
+  (maximum count value before wrap-around).
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

@@ -1,5 +1,6 @@
 within IndustrialControlSystems.Logical.Timers.Examples;
 model testT_OffDelay
+  "Test of the T_off-delay timer block"
   extends Modelica.Icons.Example;
 
   IndustrialControlSystems.Logical.Timers.Timer_OffDelay timer
@@ -29,7 +30,18 @@ equation
   annotation (Diagram(graphics),
     experiment(StopTime=50),
     experimentSetupOutput,
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example demonstrates the basic operation of the <em>Timer_OffDelay</em> block. The timer
+  is configured with a programmed value of 10 seconds. A Boolean table drives the Set signal
+  with transitions at t = 0.5, 4, and 6.5 s, and another table drives the Reset signal at
+  t = 5 and 6.5 s. The simulation runs for 50 s, allowing observation of the timer output Q
+  activating after the configured off-delay has elapsed from the start of the Set condition
+  and being cleared immediately by the Reset signal.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

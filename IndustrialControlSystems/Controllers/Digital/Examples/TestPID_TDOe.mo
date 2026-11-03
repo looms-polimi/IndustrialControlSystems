@@ -124,10 +124,10 @@ equation
    U(s)        20*s^2 + 12*s + 1
   </pre>
   The image compares the outputs of the process <FONT FACE=Courier>y</FONT> with and without the controllers action.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Digital/Examples/PIDTDOe.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Digital/Examples/PIDTDOe.png\"><br>
   The following image compares the CS computed by the TDO controller (before its conversion), and the CS comuted by the<br>
   controller without TDO. 
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Digital/Examples/PIDTDOeCS.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Digital/Examples/PIDTDOeCS.png\"><br>
   </p>
   <h4>Event Based implementation</h4>
   <p>

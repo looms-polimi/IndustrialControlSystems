@@ -112,10 +112,10 @@ equation
   </ul><br>
   The output signal of the process controlled without tracking is the red line, while the green line is the 
   output of the process controlled with the tracking mode.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/I_track_PV.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/I_track_PV.png\"><br><br>
   The CS of the controller becomes equal to the track reference signal TR when the Track Switch signal becomes true.
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/I_track_CS.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/I_track_CS.png\"><br><br>
   <br>
   <h4>Discrete time</h4>
   If the model parameter <FONT FACE=Courier>Ts</FONT> is <FONT FACE=Courier>>=0</FONT> the continuous time controllers are 

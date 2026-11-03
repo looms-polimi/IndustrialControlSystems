@@ -44,7 +44,30 @@ algorithm
     Q := false;
   else
   end if;
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function implements the core logic of a modular up/down counter. At each call it computes
+  the new counter value <em>NVal</em> and the Boolean status output <em>Q</em> according to the
+  following priority-ordered rules:
+  </p>
+  <ol>
+  <li>If <em>R</em> (Reset) is true, <em>NVal</em> is set to 0 and <em>Q</em> to false.</li>
+  <li>Otherwise, if a rising edge of <em>S</em> (Set) is detected, <em>NVal</em> is loaded from
+  the preset value <em>preset_val</em> and <em>Q</em> becomes true.</li>
+  <li>Otherwise, if a rising edge of <em>CU</em> (Count-Up) is detected while <em>CD</em> is
+  inactive and <em>S</em> is active, <em>NVal</em> is incremented by 1.</li>
+  <li>Otherwise, if a rising edge of <em>CD</em> (Count-Down) is detected while <em>CU</em> is
+  inactive and <em>S</em> is active, <em>NVal</em> is decremented by 1.</li>
+  <li>If both <em>CU</em> and <em>CD</em> are simultaneously active, <em>NVal</em> is unchanged.</li>
+  </ol>
+  <p>
+  The counter wraps around modulo <em>Max</em>: if <em>NVal</em> would become &minus;1 it is set to
+  <em>Max</em>, and if it would exceed <em>Max</em> it is reset to 0. The output <em>Q</em> is
+  forced to false whenever <em>NVal</em> equals 0.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

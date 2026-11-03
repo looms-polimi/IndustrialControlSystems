@@ -8,14 +8,14 @@ function fSmoothStep "This function generates a smooth set point signal"
   input Real yfin;
   output Real y;
 protected
-  Real a;
-  Real tp;
-  Real tr;
-  Real parAsc;
-  Real parDisc;
-  Real retta;
-  Real hp;
-  Real m;
+  Real a "Parabolic acceleration coefficient";
+  Real tp "Duration of parabolic segment";
+  Real tr "Duration of linear ramp segment";
+  Real parAsc "Parabolic ascending segment value";
+  Real parDisc "Parabolic descending segment value";
+  Real retta "Linear ramp segment value";
+  Real hp "Height covered by parabolic segment";
+  Real m "Magnitude of maximum slope";
 algorithm
   // modulus of m
   if
@@ -72,7 +72,43 @@ algorithm
     y := yfin;
   end if;
 
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function generates a smooth, trapezoidal-velocity set-point profile that transitions
+  from an initial value <code>yin</code> to a final value <code>yfin</code> starting at time
+  <code>tin</code>. The profile consists of three phases: a parabolic acceleration segment,
+  a linear ramp segment, and a parabolic deceleration segment.
+  </p>
+  <p>
+  <b>Inputs:</b>
+  </p>
+  <ul>
+    <li><b>t</b> — current simulation time.</li>
+    <li><b>tin</b> — start time of the transition.</li>
+    <li><b>alfa</b> — parabolic blending coefficient. When <code>alfa=0</code> the output
+        is a pure linear ramp; when <code>alfa&gt;0</code> parabolic segments are added at
+        both ends to provide smooth acceleration and deceleration.</li>
+    <li><b>M</b> — maximum rate of change (slope) of the linear segment; the sign is
+        handled internally so only the magnitude matters.</li>
+    <li><b>yin</b> — initial value of the signal.</li>
+    <li><b>yfin</b> — final value of the signal.</li>
+  </ul>
+  <p>
+  <b>Output:</b>
+  </p>
+  <ul>
+    <li><b>y</b> — the smooth set-point value at time <code>t</code>.</li>
+  </ul>
+  <p>
+  <b>Algorithm:</b> the transition duration and parabolic segment length are derived from
+  <code>alfa</code> and <code>M</code>. Four time intervals are identified: before
+  <code>tin</code> (hold <code>yin</code>), parabolic rise, linear ramp, parabolic descent,
+  and after the transition (hold <code>yfin</code>). Both rising and falling directions are
+  supported.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

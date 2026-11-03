@@ -15,7 +15,31 @@ partial model IntNinOperation
           lineColor={0,0,0},
           fillColor={255,170,85},
           fillPattern=FillPattern.Solid)}),
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial model defines the interface for a generic integer mathematical operation block
+  that accepts a configurable number of integer inputs and produces a single integer output.
+  It serves as the base class for all N-input integer operation blocks in the library.
+  </p>
+  <p>
+  <b>Parameters:</b>
+  </p>
+  <ul>
+    <li><b>Ts</b> — sampling time [s] (default 0.1). Governs how frequently the output is
+        updated in discrete-time implementations.</li>
+    <li><b>nInput</b> — number of integer input signals (default 1). Sets the size of the
+        input port vector.</li>
+  </ul>
+  <p>
+  <b>Ports:</b>
+  </p>
+  <ul>
+    <li><b>u[nInput]</b> — vector of integer input signals.</li>
+    <li><b>y</b> — single integer output signal.</li>
+  </ul>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

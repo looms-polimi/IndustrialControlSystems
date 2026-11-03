@@ -1,5 +1,6 @@
 within IndustrialControlSystems.Logical.Timers.Examples;
 model testT_On
+  "Test of the T_on-delay timer block"
   extends Modelica.Icons.Example;
 
   IndustrialControlSystems.Logical.Timers.Timer_On timer
@@ -30,7 +31,18 @@ equation
   annotation (Diagram(graphics),
     experiment(StopTime=50),
     experimentSetupOutput,
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example demonstrates the basic operation of the <em>Timer_On</em> block. The timer is
+  configured with a programmed value of 30 s. A Boolean table drives the Set signal with
+  transitions at t = 0.5, 4, and 6.5 s, and another table drives the Reset signal at t = 5
+  and 6.5 s. The simulation runs for 50 s. The example shows that the timer output Q is active
+  while the Set signal is high and the elapsed time has not yet exceeded the programmed value,
+  and is immediately cleared by the Reset signal regardless of the elapsed time.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

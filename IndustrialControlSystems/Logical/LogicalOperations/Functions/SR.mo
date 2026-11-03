@@ -9,7 +9,21 @@ algorithm
          if (s==true and r==true) then false else
          if (s==false and r==true) then false else
          q_old;
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function implements the logic of an SR (Set-Reset) latch. Given the Set signal <em>s</em>,
+  the Reset signal <em>r</em>, and the previous latch output <em>q_old</em>, it computes the new
+  output <em>q</em> according to the following truth table:
+  </p>
+  <ul>
+  <li>S=true, R=false &rarr; q = true (Set wins).</li>
+  <li>S=true, R=true &rarr; q = false (Reset dominant, forbidden state resolved to false).</li>
+  <li>S=false, R=true &rarr; q = false (Reset).</li>
+  <li>S=false, R=false &rarr; q = q_old (hold previous state).</li>
+  </ul>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>
