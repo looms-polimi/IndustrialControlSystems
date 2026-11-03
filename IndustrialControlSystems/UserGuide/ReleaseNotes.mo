@@ -50,8 +50,16 @@ Results change only for models that use tracking mode.</li>
 <code>CS_start + Bias + Kp*(SP - PV)</code>; the sampled <code>I</code> ignored <code>CS_start</code>; and
 <code>D</code> initialised its filtered error with <code>CS_start - Bias</code>. As in <code>PD</code>, the
 sampled versions set the state one sample before t = 0. Results change only at the start of the simulation,
-and only for these configurations. <code>PID</code> is unchanged: it does not use <code>CS_start</code>.
+and only for these configurations.
 (<a href=\"https://github.com/hubertus65/IndustrialControlSystems/issues/15\">#15</a>)</li>
+<li><code>Controllers.PID</code> now starts at <code>CS_start</code> (saturated if <code>AntiWindup = true</code>),
+like the other controllers. Before, it ignored <code>CS_start</code>: the integral and derivative filter states
+started at zero, so the output started at <code>Kp*(b*SP - PV) + Bias</code> plus a derivative kick of
+<code>Kp*N*(c*SP - PV)</code> whenever the initial error was nonzero. The derivative filter now starts in steady
+state (no kick for a constant error) and the integral state at <code>CS_start - Bias - Kp*(b*SP - PV)</code>.
+<b>The start-up of all models using <code>PID</code> with a nonzero initial error, bias or <code>CS_start</code>
+changes</b>; the closed-loop steady state does not.
+(<a href=\"https://github.com/hubertus65/IndustrialControlSystems/issues/17\">#17</a>)</li>
 </ul>
 
 <p>Version 2.0.1 Mar. 18, 2026 Made compatible with Modelon Impact by removing a few minor compliance errors. Also fixed name-typos, and updated to MSL 4.1.0.</p>

@@ -29,14 +29,20 @@ model PID
   Real Itrack "integral state target in tracking mode (bumpless transfer)";
 initial equation
 
+  // The output starts at CS_start (saturated if AntiWindup):
+  // - the derivative filter starts in steady state, Fder = Kp*N*(c*SP - PV), so the
+  //   derivative action is zero at t=0 and there is no kick for a constant error;
+  // - the integral state is Iaction = CS_start - bias - Kp*(b*SP - PV).
+  // Paction is written out because in the sampled branch it is only defined at the samples.
+  // In the sampled branch the states are set one sample before t=0, as in PD and I.
   if Ts > 0 then
     // Discrete time initialisation
-    pre(Iaction) = 0;
-    pre(Fder)    = 0;
+    pre(Iaction) = (if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start) - bias - Kp*(b*SP - PV);
+    pre(Fder)    = if Td > 0 then Kp*N*(c*SP - PV) else 0;
   else
     // Continuous time initialisation
-    Iaction = 0;
-    Fder    = 0;
+    Iaction = (if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start) - bias - Kp*(b*SP - PV);
+    Fder    = if Td > 0 then Kp*N*(c*SP - PV) else 0;
   end if;
 
 equation
@@ -151,6 +157,11 @@ equation
   CS(s) = Kp[ (bSP(s) - PV(s)) + ----- (SP(s) - PV(S)) + -----------(cSP(s) - PV(s)) ]
             [                     sTi                     1 + sTd/N                  ]
   </pre>
+  The output starts at <code>CS_start</code> (saturated to [CSmin, CSmax] if AntiWindup = true). The derivative
+  filter starts in steady state, so the derivative action is zero at t = 0 and a constant initial error gives no
+  derivative kick; the integral state is initialised to <code>CS_start - Bias - Kp*(b*SP - PV)</code>.
+  In the sampled version (Ts &gt; 0) the states are set one sample before t = 0, so at t = 0 the output has
+  already moved by one integration step.
   <br/><br/>
   <b>Scheme</b><br/><br/>
   <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/PID.png\">
