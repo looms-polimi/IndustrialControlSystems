@@ -44,10 +44,10 @@ initial equation
     end if;
   elseif Ts > 0 then
     // Discrete time initialisation
-    pre(FBout) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias - Kp_act*(SP - PV);
+    pre(FBout) = (if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start) - bias - Kp_act*(SP - PV);
   else
     // Continuous time initialisation
-    FBout = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias - Kp_act*(SP - PV);
+    FBout = (if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start) - bias - Kp_act*(SP - PV);
   end if;
 
 equation
@@ -149,8 +149,8 @@ equation
   from TR without a step (after the tracking mode has lasted a few eps).
   </p><p>
   <strong>Initialisation.</strong> By default the reset state FBout is initialised so that the output starts at
-  CS_start (<code>FBout = CS_start - Bias - Kp*(SP - PV)</code>, or <code>FBout = CS_start</code> saturated if
-  AntiWindup = true). With <code>initFromFBstart = true</code> the reset state is set directly to
+  CS_start: <code>FBout = CS_start - Bias - Kp*(SP - PV)</code>, with CS_start saturated to [CSmin, CSmax] if
+  AntiWindup = true. With <code>initFromFBstart = true</code> the reset state is set directly to
   <code>FBstart</code> instead, and the initial output follows from the control law.
   </p><p><br></p>
   </html>",

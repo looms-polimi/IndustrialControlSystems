@@ -42,7 +42,7 @@ equation
 <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
 <tr><th>Instance</th><th>Configuration</th><th>CS for 0 &le; t &le; 10 s</th></tr>
 <tr><td>Ic</td><td>continuous</td><td>0, constant</td></tr>
-<tr><td>Ic_AW</td><td>continuous, AntiWindup, CSmin = -2, CSmax = 2</td><td>1, constant (with AntiWindup the state starts at CS_start, so CS = CS_start + bias)</td></tr>
+<tr><td>Ic_AW</td><td>continuous, AntiWindup, CSmin = -2, CSmax = 2</td><td>0, constant (until the CS_start fix, #15, it was 1: with AntiWindup the state started at CS_start, so CS = CS_start + bias)</td></tr>
 <tr><td>Id</td><td>sampled, Ts = 0.1</td><td>0, constant (the sampled branch was already correct)</td></tr>
 </table>
 </html>", revisions="<html>

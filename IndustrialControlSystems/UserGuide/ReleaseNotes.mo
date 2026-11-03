@@ -44,6 +44,14 @@ Before, it jumped by the proportional (and derivative) action plus the bias. <co
 already bumpless. <code>P</code>, <code>PD</code> and <code>D</code> have no integral state: on release
 their output still steps from <code>TR</code> to the value of their control law.
 Results change only for models that use tracking mode.</li>
+<li>Initial output <code>CS_start</code>: <code>I</code>, <code>PI</code> and <code>D</code> now start at
+<code>CS_start</code> (saturated if <code>AntiWindup = true</code>) in every configuration. Before, with
+<code>AntiWindup = true</code>, <code>I</code> started at <code>CS_start + Bias</code> and <code>PI</code> at
+<code>CS_start + Bias + Kp*(SP - PV)</code>; the sampled <code>I</code> ignored <code>CS_start</code>; and
+<code>D</code> initialised its filtered error with <code>CS_start - Bias</code>. As in <code>PD</code>, the
+sampled versions set the state one sample before t = 0. Results change only at the start of the simulation,
+and only for these configurations. <code>PID</code> is unchanged: it does not use <code>CS_start</code>.
+(<a href=\"https://github.com/hubertus65/IndustrialControlSystems/issues/15\">#15</a>)</li>
 </ul>
 
 <p>Version 2.0.1 Mar. 18, 2026 Made compatible with Modelon Impact by removing a few minor compliance errors. Also fixed name-typos, and updated to MSL 4.1.0.</p>

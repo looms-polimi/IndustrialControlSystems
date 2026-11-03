@@ -24,8 +24,8 @@ package Examples "Examples"
   <li><b>Regression tests</b> &mdash; open-loop models with constant inputs that check
       specific controller behaviour fixed in version 2.0.1. Each documents its expected
       results: <b>TestI_biasNoDrift</b>, <b>TestPD_proportional</b>,
-      <b>TestGainScheduling</b>, <b>TestTracking_bias</b>, <b>TestTracking_bumpless</b>
-      and <b>TestPI_initFromFBstart</b>. These instantiate continuous and sampled
+      <b>TestGainScheduling</b>, <b>TestTracking_bias</b>, <b>TestTracking_bumpless</b>,
+      <b>TestPI_initFromFBstart</b> and <b>TestInit_CSstart</b>. These instantiate continuous and sampled
       controllers side by side and have no parameter Ts.</li>
   </ul>
   The TestX_bias and TestX_tracking examples support both continuous-time and discrete-time operation through the
