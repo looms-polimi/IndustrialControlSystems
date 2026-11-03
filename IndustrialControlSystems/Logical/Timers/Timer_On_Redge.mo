@@ -5,8 +5,8 @@ model Timer_On_Redge "ON timer model, active on rising edge"
   Real startTime "start time of the timer counting";
   Boolean S_hold
     "This variable is kept on by a rising edge of set signal until a rising edge of reset signal.";
-  discrete Boolean Sd;
-  discrete Boolean Shd;
+  discrete Boolean Sd "Sampled set signal S";
+  discrete Boolean Shd "Sampled hold state of S";
 initial equation
   startTime = 0;
   run = false;
@@ -67,9 +67,9 @@ info="
     <li>and the remaining time <FONT FACE=Courier>tr</FONT></li>
     </ul>
     
-    <img src=\"modelica://IndustrialControlSystems/help/images/Logical/Timers/Timer_On_Redge_1.png\"><br>
-    <img src=\"modelica://IndustrialControlSystems/help/images/Logical/Timers/Timer_On_Redge_2.png\"><br>
-    <img src=\"modelica://IndustrialControlSystems/help/images/Logical/Timers/Timer_On_Redge_3.png\">
+    <img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Timers/Timer_On_Redge_1.png\"><br>
+    <img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Timers/Timer_On_Redge_2.png\"><br>
+    <img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Timers/Timer_On_Redge_3.png\">
     </p>
     </HTML>
   </HTML>", revisions="<html>

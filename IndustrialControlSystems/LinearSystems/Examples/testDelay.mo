@@ -44,8 +44,8 @@ equation
   cause problems, in wrongly defined.
   <br/><br/>
   
-  <img src=\"modelica://IndustrialControlSystems/help/images/LinearSystems/Examples/TestDelay1.png\"><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/LinearSystems/Examples/TestDelay2.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/LinearSystems/Examples/TestDelay1.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/LinearSystems/Examples/TestDelay2.png\">
   <br/
   </p>
   </HTML>", revisions="<html>

@@ -20,7 +20,17 @@ partial model LogicalBlock2x2
           lineColor={0,0,0},
           fillColor={255,170,255},
           fillPattern=FillPattern.Solid)}),
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial model defines the common interface for two-input two-output Boolean blocks,
+  used as the base for SR flip-flop elements. It declares Boolean inputs <em>u1</em> and
+  <em>u2</em>, Boolean outputs <em>y1</em> and <em>y2</em>, and a sampling time parameter
+  <em>Ts</em>. Concrete blocks extending this interface implement their stateful logic (e.g.,
+  SR latch with complementary outputs Q and not-Q) evaluated at each sampling step.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

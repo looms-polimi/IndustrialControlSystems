@@ -17,13 +17,23 @@ equation
   <HTML>
   <h4>Description</h4>
   <p>
-  Continuous time delay block for the Smith's predictor.
+  Continuous-time delay block intended for use inside a Smith predictor
+  structure.  The block outputs the difference between the current input
+  and its delayed version, effectively modelling the part of the process
+  response that is attributable to the dead time alone:
   <pre>
-   Y(s) = (1 - e^(-s*T))*U(s)
+   Y(s) = (1 - e^(-s*T)) * U(s)
   </pre>
-  <br>
-  The delay must be positive <FONT FACE=Courier>T &gt;= 0</FONT>.
+  When placed in feedback around a process model without delay, this block
+  allows the Smith predictor to compensate for the dead time T and achieve
+  better closed-loop performance compared to a standard feedback controller.
+  The delay time T must be non-negative.
   </p>
+  <h4>Parameters</h4>
+  <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
+    <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+    <tr><td>T</td><td>1</td><td>Fixed delay time [s], must satisfy T &gt;= 0</td></tr>
+  </table>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>

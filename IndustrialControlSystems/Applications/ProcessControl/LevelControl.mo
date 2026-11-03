@@ -228,7 +228,7 @@ equation
   the water in the atmosphere. The valve actuator is represented by a first order filter.<br>
   The control system is composed by the measurement part and the controller. The pressure sensor measures the absolute pressure<br>
   on the bottom of the tank.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/LevelControl_Scheme.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/LevelControl_Scheme.png\"><br>
   The measured pressure is subtracted from the atmospheric pressure and then divided by the<br>
   gravity acceleration and the water density in order to obtain the water level.
   <pre>
@@ -246,7 +246,7 @@ equation
   decrease as a step (SP = 0.5 m). The controller has to act on the valve in order to decrease the water level to the desired value.<br>
   A disturb represented by a water mass flow rate entering the tank, becomes different from zero at time t = 3600 s.<br>
   <br>Set Point reference, water level and valve position command<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/LevelControl_1.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/LevelControl_1.png\"><br>
   The simulation can be perfomed at an initial stage assuming that the controller is a continuous time one (<FONT FACE=Courier>Ts = 0</FONT>)
   , that the math<br> operations are in double precision (<FONT FACE=Courier>FixedPoint = false</FONT>). In such a phase it is possible to concentrate on the controller design.
   </p>
@@ -256,7 +256,7 @@ equation
   a more realistic system.
   At first it is possible to introduce the time discretisation and investigate the effect of the sampling time.<br> 
   Here follows the results for a sapling time <FONT FACE=Courier>Ts = 5</FONT>.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/LevelControl_2.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/LevelControl_2.png\"><br><br>
   An additional level of detail can be the introduction of the fixed point math operation in the level measurement process.
   In this case has been choosen a number of bit
   <FONT FACE=Courier>Nbit = 24</FONT>
@@ -274,7 +274,7 @@ equation
   <b>N.B.</b> A large amount of bit is requireb because the pressure variation is small with respect to its absolute value.
   Using such a modelling approach it is possible to estimate the amount of bits required and test directly the correctness 
   of the design strategy. In the following image the numerical errors due to a wrong design are visible on the Control Signal<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/LevelControl_3.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/LevelControl_3.png\"><br><br>
   
   </p>
   

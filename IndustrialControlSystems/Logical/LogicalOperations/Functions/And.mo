@@ -10,7 +10,16 @@ algorithm
     y := y and u[i];
   end for;
 
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function computes the logical AND of all elements in the Boolean input array <em>u</em>.
+  The result <em>y</em> is initialised to <code>u[1] and u[2]</code> and then combined with
+  each subsequent element using AND, so <em>y</em> is true if and only if every element of
+  <em>u</em> is true.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>
