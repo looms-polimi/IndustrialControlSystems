@@ -13,12 +13,15 @@ model I "Integral controller"
 protected
   Modelica.Blocks.Interfaces.RealInput T_in "Internal protected integral time real input";
 initial equation
+  // The output starts at CS_start (saturated if AntiWindup): Iout + bias = CS_start.
   if Ts > 0 then
-    // Discrete time initialisation
-    pre(Iout) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
+    // Discrete time initialisation: the integrator recursion starts from pre(CS) - pre(bias),
+    // so it is pre(CS) that is initialised. As in the other sampled controllers the state is
+    // set one sample before t=0: CS(0) = CS_start plus one integration step.
+    pre(CS) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start;
   else
     // Continuous time initialisation
-    Iout = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
+    Iout = (if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start) - bias;
   end if;
 equation
   connect(T_in,T_GS);
@@ -31,23 +34,27 @@ equation
     when sample(0,Ts) then
       CS    = if AntiWindup then max(CSmin,min(CSmax,(if ts then tr else satin))) else satin;
       satin = Iout + pre(bias);
-      Iout = if ts then tr else
+      // in tracking mode the state follows TR - bias, so that CS = TR and the release is bumpless
+      Iout = if ts then tr - pre(bias) else
         IndustrialControlSystems.LinearSystems.Discrete.Functions.fIntegrator(
         alfa,
         SP - PV,
         pre(SP) - pre(PV),
         pre(CS) - pre(bias),
         Ts,
-        1/T);
+        1/T_act);
     end when;
   else
     // Continuous time controller
     CS    = if AntiWindup then max(CSmin,min(CSmax,(if ts then tr else satin))) else satin;
     satin = Iout + bias;
     if not ts then
-      der(Iout)   = 1/T_act*(SP - PV) + 1/eps*(CS - (satin - bias));
+      // Anti-windup pull-back: compare the (possibly saturated) output without bias
+      // with the integrator state. Without saturation CS - bias = Iout and the term is zero.
+      der(Iout)   = 1/T_act*(SP - PV) + 1/eps*((CS - bias) - Iout);
     else
-      eps*der(Iout) = -Iout + tr;
+      // in tracking mode the state follows TR - bias, so that CS = TR and the release is bumpless
+      eps*der(Iout) = -Iout + tr - bias;
     end if;
 
   end if;
@@ -66,9 +73,12 @@ equation
   CS(s) = ----- (SP(s) - PV(S))
            sTi
   </pre>
+  The output starts at <code>CS_start</code> (saturated to [CSmin, CSmax] if AntiWindup = true): the integrator
+  state is initialised to <code>CS_start - Bias</code>. In the sampled version (Ts &gt; 0) the state is set one
+  sample before t = 0, so at t = 0 the output has already moved by one integration step.
   <br/><br/>
   <b>Scheme</b><br/><br/>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Integrator.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Integrator.png\">
   <br/><br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH >Name</TH><TH>Description</TH><TH>Conditional?</TH></TR>
@@ -97,7 +107,9 @@ equation
   CS(s) = -------- TR(S)
            1+s*eps
   </pre> 
-  where eps is a small time constant. Thanks to such a scheme, the integrator does not diverge while the tracking mode<br>
+  where eps is a small time constant (with AntiWindup = true, CS = TR saturated). The bias is not added:
+  the integrator state follows TR - Bias, so that the output equals TR and the return to the automatic mode
+  is bumpless. Thanks to such a scheme, the integrator does not diverge while the tracking mode<br>
   is enabled.
   </p>
   </HTML>",

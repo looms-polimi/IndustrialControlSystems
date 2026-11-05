@@ -15,9 +15,9 @@ model BasicComparisonLL
   parameter Real Ts = 0.5 "Sampling time"
     annotation(Dialog(group = "Discretisation"));
   // Errors
-  Real error_BE = ll.y - ll_dig_BE.y;
-  Real error_FE = ll.y - ll_dig_FE.y;
-  Real error_TU = ll.y - ll_dig_TU.y;
+  Real error_BE = ll.y - ll_dig_BE.y "Backward Euler discretisation error";
+  Real error_FE = ll.y - ll_dig_FE.y "Forward Euler discretisation error";
+  Real error_TU = ll.y - ll_dig_TU.y "Tustin discretisation error";
   Continuous.LeadLag    ll(
     mu=mu_LL,
     y_start=y_start_LL,
@@ -83,7 +83,7 @@ equation
   </ul><br/>
   
   <b> Comparison </b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/LinearSystems/Examples/Comparison_LL.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/LinearSystems/Examples/Comparison_LL.png\">
   </p>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>

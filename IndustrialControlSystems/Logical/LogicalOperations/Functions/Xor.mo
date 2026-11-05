@@ -11,7 +11,17 @@ algorithm
     y := (u[i] and (not y)) or ((not u[i]) and y);
   end for;
 
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function computes the logical XOR of all elements in the Boolean input array <em>u</em>.
+  The result is obtained by chaining pairwise XOR operations: <em>y</em> is initialised to
+  <code>(u[1] and not u[2]) or (not u[1] and u[2])</code>, and then each subsequent element
+  <em>u[i]</em> is XOR-combined with the running result. The final output <em>y</em> is true if
+  and only if an odd number of elements in <em>u</em> are true.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

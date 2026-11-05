@@ -111,7 +111,7 @@ equation
   <h4>Description</h4>
   <p>
   Velocity control of an electric engine with a PI controller.<br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/AutoTuningPIMotor.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/AutoTuningPIMotor.png\"><br><br>
   The PI controller regulates the voltage source of the electric engine, and measures its angular velocity (corrupted by noise).
   The aim of this example is to show how a controller with Automatic Tuning can be used in a real context.
   <br><br>
@@ -130,11 +130,11 @@ equation
   <tr><td>nOxMin</td><td>3</td></tr>
   </table><br><br>
   The figure below show the velocity set point, the measured process variable and the control signal, that is limited between 0 and 24 V.
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/AutoTuningPIMotorPV.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/AutoTuningPIMotorPV.png\"><br><br>
   
   <h4>References</h4>
   For more information please refers to the following
-  <a href=\"modelica://IndustrialControlSystems/help/refs/EffHybPITuning.pdf\">paper</a>:<br><br>
+  <a href=\"modelica://IndustrialControlSystems/Resources/References/EffHybPITuning.pdf\">paper</a>:<br><br>
   <b>Efficient hybrid simulation of autotuning PI controllers</b><br>
   Alberto Leva, Marco Bonvini<br>
   8th Modelica Conference, Dresden, Germany<br>

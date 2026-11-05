@@ -18,7 +18,27 @@ algorithm
   else
     Y := false;
   end if;
-    annotation (Documentation(revisions="<html>
+    annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function implements a signal-hold logic used by timer blocks to sustain the Set condition
+  across clock steps. Given the previous Set value <em>S_old</em>, the current Set value
+  <em>S</em>, the Reset signal <em>R</em>, and the previous hold output <em>S_hold</em>, the
+  function returns the output <em>Y</em> which is true in any of the following conditions:
+  </p>
+  <ul>
+  <li>A rising edge of <em>S</em> is detected (<em>S_old</em>=false, <em>S</em>=true) and Reset
+  is not active.</li>
+  <li>A falling edge of <em>S</em> is detected (<em>S_old</em>=true, <em>S</em>=false) and
+  Reset is not active.</li>
+  <li><em>S</em> is currently high and Reset is not active.</li>
+  <li>The previous hold output <em>S_hold</em> was true and Reset is not active.</li>
+  </ul>
+  <p>
+  The output <em>Y</em> is false only when Reset is asserted, which clears the held state.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

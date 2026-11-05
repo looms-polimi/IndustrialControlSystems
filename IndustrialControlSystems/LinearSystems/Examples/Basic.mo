@@ -143,10 +143,10 @@ equation
   as well the sampling time in order to see the changes.
   <br/><br/>
   <b> Continuous time </b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/LinearSystems/Examples/BasicStepresp.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/LinearSystems/Examples/BasicStepresp.png\">
   <br/><br/>
   <b> Discrete time (Forward Euler) </b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/LinearSystems/Examples/BasicSteprespDig.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/LinearSystems/Examples/BasicSteprespDig.png\">
   </p>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>

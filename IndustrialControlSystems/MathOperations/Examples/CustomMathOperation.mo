@@ -24,7 +24,7 @@ model CustomMathOperation "test of custom real math operations"
         IndustrialControlSystems.MathOperations.Examples.reScale,
     fname="Mean",
     FixedPoint=true)
-    annotation (Placement(transformation(extent={{20,0},{40,20}})));
+    annotation (Placement(transformation(extent={{20.0,0.0},{40.0,20.0}},rotation = 0.0,origin = {0.0,0.0})));
   Modelica.Blocks.Math.IntegerToReal integerToReal
     annotation (Placement(transformation(extent={{-20,60},{0,80}})));
   Modelica.Blocks.Math.IntegerToReal integerToReal1
@@ -67,25 +67,54 @@ equation
       color={255,127,0},
       smooth=Smooth.None));
   connect(integerToReal.y, REALexp.u[4])     annotation (Line(
-      points={{1,70},{16,70},{16,11.5},{22,11.5}},
+      points={{1,70},{16,70},{16,10},{22,10}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(integerToReal1.y, REALexp.u[3])     annotation (Line(
-      points={{1,30},{10,30},{10,10.5},{22,10.5}},
+      points={{1,30},{10,30},{10,10},{22,10}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(integerToReal2.y, REALexp.u[2])     annotation (Line(
-      points={{1,-10},{10,-10},{10,9.5},{22,9.5}},
+      points={{1,-10},{10,-10},{10,10},{22,10}},
       color={0,0,127},
       smooth=Smooth.None));
   connect(integerToReal3.y, REALexp.u[1])     annotation (Line(
-      points={{1,-50},{16,-50},{16,8.5},{22,8.5}},
+      points={{1,-50},{16,-50},{16,10},{22,10}},
       color={0,0,127},
       smooth=Smooth.None));
   annotation (Diagram(graphics),
     experiment,
     __Dymola_experimentSetupOutput,
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example demonstrates how to use custom, user-defined mathematical functions with the
+  generic <b>Expression</b> blocks provided by the IndustrialControlSystems library.
+  </p>
+  <p>
+  Two expression evaluators are instantiated side by side:
+  <ul>
+    <li>
+      <b>INTexp</b> — an integer-type Expression block with four inputs, configured with the
+      <code>SumSquare</code> function. It receives four integer constant inputs (2, 4, -4, 5)
+      and computes the sum of their squares: 2&sup2; + 4&sup2; + (-4)&sup2; + 5&sup2; = 61.
+    </li>
+    <li>
+      <b>REALexp</b> — a real-type Expression block with four inputs, configured with the
+      <code>Mean</code> function and the <code>reScale</code> rescaling function.
+      Fixed-point mode is enabled (<code>FixedPoint=true</code>). The same four integer
+      constants are converted to Real and fed in; the block computes their arithmetic mean
+      and applies the fixed-point rescaling defined by <code>reScale</code>.
+    </li>
+  </ul>
+  </p>
+  <p>
+  The example illustrates the redeclaration mechanism: any function conforming to the
+  <code>GeneralFunction</code> or <code>GeneralReScalingFunction</code> interface can be
+  plugged in without modifying the Expression block itself.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

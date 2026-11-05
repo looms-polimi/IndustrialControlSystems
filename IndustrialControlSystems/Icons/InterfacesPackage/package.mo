@@ -3,7 +3,17 @@ partial package InterfacesPackage "Interfaces package icon"
   extends Modelica.Icons.InterfacesPackage;
 
 
-  annotation (Icon(graphics),               Documentation(revisions="<html>
+  annotation (Icon(graphics),               Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial package defines the icon used to identify interface packages throughout the
+  IndustrialControlSystems library. Any package that collects partial models, connectors, or
+  base classes defining port contracts should extend this class to inherit the standard
+  interfaces-package graphical appearance, consistent with the Modelica Standard Library
+  InterfacesPackage icon convention.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

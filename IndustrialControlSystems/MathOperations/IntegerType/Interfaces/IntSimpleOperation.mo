@@ -17,7 +17,31 @@ partial model IntSimpleOperation
           lineColor={0,0,0},
           fillColor={255,170,85},
           fillPattern=FillPattern.Solid)}),
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial model defines the interface for a generic two-input integer mathematical
+  operation block. It provides two separate scalar integer inputs and one integer output,
+  and serves as the base class for simple binary integer operation blocks such as integer
+  add, subtract, multiply, or divide.
+  </p>
+  <p>
+  <b>Parameters:</b>
+  </p>
+  <ul>
+    <li><b>Ts</b> — sampling time [s] (default 0.1). Governs how frequently the output is
+        updated in discrete-time implementations.</li>
+  </ul>
+  <p>
+  <b>Ports:</b>
+  </p>
+  <ul>
+    <li><b>u1</b> — first integer input signal (upper port).</li>
+    <li><b>u2</b> — second integer input signal (lower port).</li>
+    <li><b>y</b> — single integer output signal.</li>
+  </ul>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

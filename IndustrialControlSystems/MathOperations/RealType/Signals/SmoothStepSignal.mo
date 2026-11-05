@@ -18,8 +18,8 @@ model SmoothStepSignal "Smooth step Set Point generator, driven by signals"
   parameter Real delay = 0 "Delay"
     annotation(Dialog(group = "Smooth step"));
 protected
-  discrete Boolean En_d;
-  discrete Boolean St(start=false);
+  discrete Boolean En_d "Sampled ENup (edge detection)";
+  discrete Boolean St(start=false) "Flag: transition started";
   Real StartTime(   start=0);
 equation
   En_d = ENup;
@@ -51,7 +51,7 @@ equation
   <p>
   Model of a smooth step signal.
   <br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Math/RealType/Signals/SmoothStepSignal.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Math/RealType/Signals/SmoothStepSignal.png\">
   <br><br>
   The output ( <FONT FACE=Courier>y</FONT> ) remains at its initial value <FONT FACE=Courier>yin</FONT> 
   until the enabling input <FONT FACE=Courier>ENup</FONT> remains <FONT FACE=Courier>false</FONT>.<br>

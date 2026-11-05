@@ -25,8 +25,8 @@ protected
   parameter Real b[D] = den[:] "den. coefficients";
   Real a[D] "num. coefficients";
   Real c[D-1] "num. coefficients (proper part)";
-  Real Y[D];
-  Real U[D-1];
+  Real Y[D] "State variable vector (canonical form)";
+  Real U[D-1] "Delayed input vector";
   Real A "terms used if the system is not strictly proper";
   Real w "proper part of the output";
 initial equation

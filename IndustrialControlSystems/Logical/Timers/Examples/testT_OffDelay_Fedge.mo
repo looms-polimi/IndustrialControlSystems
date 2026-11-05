@@ -1,5 +1,6 @@
 within IndustrialControlSystems.Logical.Timers.Examples;
 model testT_OffDelay_Fedge
+  "Test of the T_off-delay timer triggered on a falling edge"
   extends Modelica.Icons.Example;
 
   IndustrialControlSystems.Logical.Timers.Timer_OffDelay_Fedge timer
@@ -30,7 +31,18 @@ equation
   annotation (Diagram(graphics),
     experiment(StopTime=100),
     experimentSetupOutput,
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example demonstrates the <em>Timer_OffDelay_Fedge</em> block, which starts its delay on a
+  falling edge (1-to-0 transition) of the Set signal. The programmed value is set to 10 s.
+  Set signal transitions occur at t = 0.5, 1, 8, and 9 s; Reset signal transitions at
+  t = 5, 6, and 30 s. The simulation runs for 100 s. The example shows that the timer output Q
+  becomes active only after the programmed delay has elapsed following each falling edge of the
+  Set signal, and is immediately cleared by the Reset signal.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

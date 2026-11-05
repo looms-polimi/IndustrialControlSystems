@@ -9,10 +9,10 @@ model LeadLag "Lead lag process: mu(1+T1*s)/(1+T2*s)"
     annotation(Dialog(group = "Block parameters"));
   parameter Real y_start = 0 "output initial value"
     annotation(Dialog(group = "Initial conditions"));
-  Real dy;
+  Real dy "Lag state variable (pole output)";
 protected
-  parameter Real A = T1/T2;
-  parameter Real B = 1 - A;
+  parameter Real A = T1/T2 "Ratio T1/T2 for partial fraction";
+  parameter Real B = 1 - A "Complement of A (= 1 - T1/T2)";
 initial equation
   dy = y_start;
 equation

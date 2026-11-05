@@ -4,7 +4,7 @@ model I "Integrator with tracking mode (and limiter)"
   parameter Real T = 1 "Integral time" annotation(Evaluate = true);
   parameter Real y_start = 0 "State initial value" annotation(Evaluate = true);
 protected
-  Real Y;
+  Real Y "Internal integrator state (anti-windup)";
 initial equation
   y = y_start;
 equation

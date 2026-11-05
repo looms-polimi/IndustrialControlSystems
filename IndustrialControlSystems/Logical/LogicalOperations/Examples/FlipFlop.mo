@@ -1,5 +1,5 @@
 within IndustrialControlSystems.Logical.LogicalOperations.Examples;
-model FliFlop "Flip Flop test"
+model FlipFlop "Flip Flop test"
   extends Modelica.Icons.Example;
 
   FlipFlopSR flipFlopSR(              Ts=0.1, q_start=false)
@@ -46,8 +46,8 @@ In this examples is tested the Set reset Flip Flop.<br>
 In this case <FONT FACE=Courier>Ts = 0.1</FONT> and the initial value of the FF is <FONT FACE=Courier>Q = false</FONT>.
 <br>When a rising edge of the SET signal is detected, the output Q becomes true while a rising edge of the RESET signal is detected the output Q becomes false.
 <br><br>
-<img src=\"modelica://IndustrialControlSystems/help/images/Logical/LogicalOperations/Examples/FLIPFLOP.png\"><br><br>
+<img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/LogicalOperations/Examples/FLIPFLOP.png\"><br><br>
 <br><br>
 </p>
 </html>"));
-end FliFlop;
+end FlipFlop;
