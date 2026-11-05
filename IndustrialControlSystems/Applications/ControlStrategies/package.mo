@@ -17,10 +17,6 @@ package ControlStrategies "Examples demonstrating signal conditioning and contro
         a first-order sensor model with additive noise, a low-pass filter for noise
         rejection, and a lead-lag filter to recover the speed lost by the low-pass
         stage.</li>
-    <li><b>SelectorControl</b> — a MIN-select override pressure control example based
-        on the MSL drum boiler plant, with two ICS PI controllers (upstream pressure
-        ceiling and downstream delivery target) whose outputs are arbitrated by a
-        minimum selector with bumpless transfer via tracking ports.</li>
   </ul>
   </HTML>"));
 end ControlStrategies;
