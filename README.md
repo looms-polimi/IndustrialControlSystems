@@ -28,11 +28,13 @@ The changes proposed upstream in PRs [#2](https://github.com/looms-polimi/Indust
 - Compatible with Modelon Impact / OCT: conditional components used as the Modelica specification allows, an illegal `noEvent()` in a `when` clause removed, a function output given an explicit size.
 - Images and references moved from the Dymola-specific `help` folder to `Resources/Images` and `Resources/References`, referenced with `modelica://` URIs.
 - MSL-style package icons.
-- Typos in class names fixed. **These classes are renamed**, and models that use them must be updated by hand:
+- Typos in class names fixed:
   - `MathOperations.RealType.Signals.SmoothThooth` → `SmoothTooth`
   - `MathOperations.RealType.Signals.SmoothThoothSignal` → `SmoothToothSignal`
   - `Applications.TrasferFunctions` → `Applications.TransferFunctions`
   - `Logical.LogicalOperations.Examples.FliFlop` → `FlipFlop`
+
+  The two signal blocks keep their old names as obsolete classes that extend the new ones, so models built with 2.0.0 still work. The other two are examples.
 
 #### Bug fixes that change simulation results ([#2](https://github.com/looms-polimi/IndustrialControlSystems/pull/2), [#5](https://github.com/looms-polimi/IndustrialControlSystems/pull/5), [#6](https://github.com/looms-polimi/IndustrialControlSystems/pull/6))
 

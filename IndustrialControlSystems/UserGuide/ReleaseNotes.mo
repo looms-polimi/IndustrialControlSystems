@@ -26,13 +26,15 @@ and an illegal <code>noEvent()</code> in a <code>when</code> clause was removed.
 <li>Images and references moved from the Dymola-specific <code>help</code> folder to <code>Resources/Images</code> and
 <code>Resources/References</code>, and are referenced with <code>modelica://</code> URIs.</li>
 <li>Packages have MSL-style icons.</li>
-<li>Typos in class names fixed. <b>These classes are renamed</b>, and models that use them must be updated by hand:
+<li>Typos in class names fixed:
 <ul>
 <li><code>MathOperations.RealType.Signals.SmoothThooth</code> &rarr; <code>SmoothTooth</code></li>
 <li><code>MathOperations.RealType.Signals.SmoothThoothSignal</code> &rarr; <code>SmoothToothSignal</code></li>
 <li><code>Applications.TrasferFunctions</code> &rarr; <code>Applications.TransferFunctions</code></li>
 <li><code>Logical.LogicalOperations.Examples.FliFlop</code> &rarr; <code>FlipFlop</code></li>
-</ul></li>
+</ul>
+The two signal blocks keep their old names as obsolete classes that extend the new ones, so models built with 2.0.0 still work;
+tools mark them as obsolete. They will be removed in a later version. The other two are examples.</li>
 </ul>
 
 <h5>Bug fixes that change simulation results (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/2\">PR #2</a>, <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/5\">PR #5</a>, <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/6\">PR #6</a>)</h5>
