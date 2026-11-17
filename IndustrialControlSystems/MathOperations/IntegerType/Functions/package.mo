@@ -15,7 +15,7 @@ package Functions "Functions"
         must extend.</li>
   </ul>
   Concrete implementations such as <code>SumSquare</code> reside in the
-  <code>Examples</code> package and extend <code>GeneralFunction</code> to supply
+  <a href=\"modelica://Tests.MathOperations\">Tests.MathOperations</a> package and extend <code>GeneralFunction</code> to supply
   specific algorithmic behaviour.
   </p>
   </HTML>", revisions="<html>

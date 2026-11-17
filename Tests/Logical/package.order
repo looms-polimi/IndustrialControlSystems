@@ -1,3 +1,4 @@
-IntegerComparisons
-RealComparisons
-NegatedGates
+Comparisons
+Counter
+LogicalOperations
+Timers

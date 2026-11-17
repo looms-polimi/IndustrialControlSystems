@@ -3,14 +3,16 @@ package Tests "Verification tests for the IndustrialControlSystems library"
   extends Modelica.Icons.Package;
   annotation (
     uses(IndustrialControlSystems(version="2.0.1"), Modelica(version="4.1.0")),
-    version="0.1.0",
+    version="2.0.1",
     Documentation(info="<html>
-<p>Self-checking test models for classes of
-<a href=\"modelica://IndustrialControlSystems\">IndustrialControlSystems</a>
-that are not exercised by any example of the library itself. Together with the
-library's own <code>Examples</code> and <code>Applications</code> they cover every
+<p>Test and example models for
+<a href=\"modelica://IndustrialControlSystems\">IndustrialControlSystems</a>.
+The packages mirror the library's structure. They hold the former
+<code>Examples</code> sub-packages of the library (moved here, without the
+<code>Examples</code> level) and self-checking tests for the classes those examples
+did not exercise. Together with the library's <code>Applications</code> they cover every
 non-partial model, block and function of the library.</p>
-<p>Each test drives the class under test with known inputs and compares its output
+<p>Each self-checking test drives the class under test with known inputs and compares its output
 with an independently stated expected value, using the blocks in
 <a href=\"modelica://Tests.Utilities\">Tests.Utilities</a>. Each test model has a
 Boolean <code>passed</code>; it is <code>true</code> when every check in the model

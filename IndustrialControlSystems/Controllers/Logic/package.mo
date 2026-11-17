@@ -25,7 +25,7 @@ info="
       used internally by the auto-tuning controllers in the <b>AutoTuning</b> sub-package
       to induce controlled oscillations in the process.</li>
   </ul>
-  Simulation examples are provided in the <b>Examples</b> sub-package.
+  Simulation examples are provided in <a href=\"modelica://Tests.Controllers.Logic\">Tests.Controllers.Logic</a>.
   </p>
   </HTML>",
           revisions="<html>
