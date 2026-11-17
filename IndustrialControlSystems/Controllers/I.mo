@@ -15,14 +15,17 @@ protected
   Real SP_s "Set point at the last sampling instant (sampled branch; = SP in continuous time)";
   Real PV_s "Process variable at the last sampling instant (sampled branch; = PV in continuous time)";
 initial equation
+  // The output starts at CS_start (saturated if AntiWindup): Iout + bias = CS_start.
   if Ts > 0 then
     pre(SP_s) = SP;
     pre(PV_s) = PV;
-    // Discrete time initialisation
-    pre(Iout) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
+    // Discrete time initialisation: the integrator recursion starts from pre(CS) - pre(bias),
+    // so it is pre(CS) that is initialised. As in the other sampled controllers the state is
+    // set one sample before t=0: CS(0) = CS_start plus one integration step.
+    pre(CS) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start;
   else
     // Continuous time initialisation
-    Iout = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
+    Iout = (if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start) - bias;
   end if;
 equation
   connect(T_in,T_GS);
@@ -78,6 +81,9 @@ equation
   CS(s) = ----- (SP(s) - PV(S))
            sTi
   </pre>
+  The output starts at <code>CS_start</code> (saturated to [CSmin, CSmax] if AntiWindup = true): the integrator
+  state is initialised to <code>CS_start - Bias</code>. In the sampled version (Ts &gt; 0) the state is set one
+  sample before t = 0, so at t = 0 the output has already moved by one integration step.
   <br/><br/>
   <b>Scheme</b><br/><br/>
   <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Integrator.png\">
