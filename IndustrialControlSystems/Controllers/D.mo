@@ -9,12 +9,15 @@ model D "Real derivative controller"
   Real satin "input of the saturation block";
 initial equation
 
+  // Initialise the filter state so that the output starts at CS_start (saturated if
+  // AntiWindup): N*(SP-PV) + bias - N*Fin = CS_start. In the sampled branch this sets
+  // the state one sample before t=0, as in PD.
   if Ts > 0 then
     // Discrete time initialisation
-    pre(Fin) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
+    pre(Fin) = (SP - PV) - ((if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start) - bias)/N;
   else
     // Continuous time initialisation
-    Fin = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
+    Fin = (SP - PV) - ((if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start) - bias)/N;
   end if;
 
 equation
@@ -54,6 +57,10 @@ equation
   CS(s) = ------------ (SP(s) - PV(S))
            1 + sTd/N
   </pre>
+  The output starts at <code>CS_start</code> (saturated to [CSmin, CSmax] if AntiWindup = true) and decays
+  to the bias for a constant error: the state of the derivative filter is initialised accordingly. In the
+  sampled version (Ts &gt; 0) the state is set one sample before t = 0, so the output has already decayed by
+  one filter step at t = 0.
   <br/><br/>
   <b>Scheme</b><br/><br/>
   <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Derivative.png\">

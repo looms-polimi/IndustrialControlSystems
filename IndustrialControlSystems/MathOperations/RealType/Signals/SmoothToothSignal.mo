@@ -8,8 +8,8 @@ model SmoothToothSignal "Smooth tooth Set Point generator, driven by signals"
         transformation(extent={{-100,-70},{-60,-30}}),
                                                      iconTransformation(extent={{-100,
             -80},{-60,-40}})));
-  Real ts;
-  Real td;
+  Real ts "Rising transition start time";
+  Real td "Falling transition start time";
   Boolean Sali(start=false);
   Boolean Scendi(start=false);
   parameter Real alfa =  0.1
@@ -22,8 +22,8 @@ model SmoothToothSignal "Smooth tooth Set Point generator, driven by signals"
   parameter Real wait_d = 0 "Falling delay"
     annotation(Dialog(group = "Smooth step"));
 protected
-  discrete Boolean Ed_d;
-  discrete Boolean Es_d;
+  discrete Boolean Ed_d "Sampled ENdown (edge detection)";
+  discrete Boolean Es_d "Sampled ENup (edge detection)";
 equation
   Ed_d = ENdown;
   Es_d = ENup;

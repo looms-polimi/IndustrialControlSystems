@@ -10,7 +10,25 @@ function positiveEdge
 algorithm
   st_time := if (S_old==false and S==true and R==false) then t else 0.0;
   st_time := max(s_time,st_time);
-    annotation (Documentation(revisions="<html>
+    annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function detects a rising edge (0-to-1 transition) of the Set signal <em>S</em> and
+  records the simulation time at which the edge occurred. Given the previous and current values
+  of <em>S</em>, the Reset signal <em>R</em>, the previously recorded start time <em>s_time</em>,
+  and the current time <em>t</em>, it returns:
+  </p>
+  <ul>
+  <li><em>st_time</em> &mdash; set to <em>t</em> when a rising edge is detected and Reset is not
+  active; otherwise 0.0. A max operation with <em>s_time</em> ensures the recorded start time is
+  never decreased.</li>
+  </ul>
+  <p>
+  Unlike <em>risingEdge</em>, this function does not maintain a Run flag; it is used to capture
+  only the timestamp of the positive transition.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

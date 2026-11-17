@@ -16,7 +16,18 @@ partial model IntComparison "Partial interface for integer comparisons"
           lineColor={0,0,0},
           fillColor={255,170,85},
           fillPattern=FillPattern.Solid)}),
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial model defines the common interface for all integer comparison blocks. It declares
+  two integer inputs <em>u1</em> and <em>u2</em>, a Boolean output <em>y</em>, and a sampling
+  time parameter <em>Ts</em>. Concrete comparison models (==, !=, &gt;, &lt;, &gt;=, &lt;=)
+  extend this interface and implement the comparison logic that evaluates <em>u1</em> against
+  <em>u2</em> at each sampling step, setting <em>y</em> to <em>true</em> when the condition
+  is satisfied and <em>false</em> otherwise.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

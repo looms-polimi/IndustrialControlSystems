@@ -111,15 +111,21 @@ equation
 <dd>Copyright &copy; 2010-2012, Marco Bonvini and Alberto Leva.<br/></dd>
 <dd><i>The IndustrialControlSystems package is <b>free</b> software; it can be redistributed and/or modified under the terms of the <b>Modelica license</b>.</i><br/></dd>
 </dl></html>",
-             info="<html>
-<p><b>Description</b> </p>
-<p>
-The 2x2 process reported below has to be controlled<br/><br/>
-<img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/Process.png\"/><br/><br/>
-The process is controlled using a decoupler and two PIs ( R1(s) and R2(s) ), each one controlling the corresponding output signal.<br/>
-<img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/DecouplerController.png\"/><br/><br/>
-The goal of the control system is to maintain the output of the processe as close as possible to the set point references,<br>
-avoiding the cross effects between the first input and the second output and vice versa.<br>
-
-</html>"));
+             info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example demonstrates decoupled control of a 2x2 MIMO process. The plant has two inputs and
+  two outputs with significant cross-coupling: the first input affects both outputs through P11 and P21,
+  and similarly the second input affects both outputs through P12 and P22.
+  A backward decoupler is inserted between the two independent PI controllers and the physical process
+  to cancel the off-diagonal interactions, so that each controller effectively sees a single-loop system.
+  The outer PI controllers then track independent step set points on each output channel.<br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/Process.png\"/><br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/DecouplerController.png\"/><br/><br/>
+  Compare this model with
+  <a href=\"modelica://IndustrialControlSystems.Applications.ControlProblems.DecoupledControl.NoDecoupledControl\">NoDecoupledControl</a>
+  to observe the improvement in set-point tracking and cross-coupling rejection achieved by the decoupler.
+  </p>
+  </HTML>"));
 end DecoupledControl;

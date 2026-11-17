@@ -1,5 +1,6 @@
 within IndustrialControlSystems.Logical.Timers.Examples;
 model testT_On_Redge
+  "Test of the T_on-delay timer with rising edge detection"
   extends Modelica.Icons.Example;
 
   IndustrialControlSystems.Logical.Timers.Timer_On_Redge timer
@@ -30,7 +31,18 @@ equation
   annotation (Diagram(graphics),
     experiment(StopTime=50),
     experimentSetupOutput,
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example demonstrates the <em>Timer_On_Redge</em> block, which activates its output on a
+  rising edge (0-to-1 transition) of the Set signal and keeps it active for the programmed
+  duration. The programmed value is set to 30 s. Set signal rising edges occur at t = 0.5, 7,
+  and 12 s; the Reset signal transitions at t = 5 and 5.1 s. The simulation runs for 50 s.
+  The example illustrates that each rising edge of the Set signal independently starts the
+  programmed timing interval, and that the Reset signal immediately clears the timer output Q.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

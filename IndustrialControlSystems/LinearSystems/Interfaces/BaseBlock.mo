@@ -22,8 +22,24 @@ partial model BaseBlock "Partial continuous time block interfaces"
   <HTML>
   <h4>Description</h4>
   <p>
-  Partial interface for a continuos time block.<br>
-  Each block has a single input anda single output (SISO). 
+  Partial base interface for continuous-time linear system blocks.
+  All concrete blocks in the <code>LinearSystems.Continuous</code> package
+  extend this partial model to obtain a consistent connector layout and
+  icon style.
+  </p>
+  <p>
+  The interface declares one scalar Real input and one scalar Real output,
+  making every derived block a single-input single-output (SISO) element:
+  </p>
+  <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
+    <tr><th>Connector</th><th>Type</th><th>Description</th></tr>
+    <tr><td>u</td><td>RealInput</td><td>Input signal</td></tr>
+    <tr><td>y</td><td>RealOutput</td><td>Output signal</td></tr>
+  </table>
+  <p>
+  The icon displays a white rectangle with the instance name shown below.
+  Derived blocks add their own graphical elements (text labels, lines) on
+  top of this base icon to indicate the transfer function implemented.
   </p>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>

@@ -2,9 +2,9 @@ within IndustrialControlSystems.Logical.Counter;
 model Counter "Model of an Up-Down counter"
   extends Interfaces.BaseCounter;
   discrete Integer Value( start=0);
-  discrete Boolean CUd;
-  discrete Boolean CDd;
-  discrete Boolean Sd;
+  discrete Boolean CUd "Sampled count-up input CU";
+  discrete Boolean CDd "Sampled count-down input CD";
+  discrete Boolean Sd "Sampled set signal S";
 equation
   // assertions
   assert(PV>=0 and PV<=Max, "Preset Value out of range 0-999");

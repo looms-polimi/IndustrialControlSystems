@@ -15,9 +15,9 @@ model BasicComparisonLL
   parameter Real Ts = 0.5 "Sampling time"
     annotation(Dialog(group = "Discretisation"));
   // Errors
-  Real error_BE = ll.y - ll_dig_BE.y;
-  Real error_FE = ll.y - ll_dig_FE.y;
-  Real error_TU = ll.y - ll_dig_TU.y;
+  Real error_BE = ll.y - ll_dig_BE.y "Backward Euler discretisation error";
+  Real error_FE = ll.y - ll_dig_FE.y "Forward Euler discretisation error";
+  Real error_TU = ll.y - ll_dig_TU.y "Tustin discretisation error";
   Continuous.LeadLag    ll(
     mu=mu_LL,
     y_start=y_start_LL,

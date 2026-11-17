@@ -20,13 +20,26 @@ equation
   <HTML>
   <h4>Description</h4>
   <p>
-  Discrete version of the single step time delay.
+  Discrete-time single-step delay block.  At each sampling instant the block
+  outputs the value of its input from the previous sampling period, i.e. it
+  introduces a delay of exactly one sampling time Ts.  In the z-domain:
   <pre>
-   Y(s) = e^(-s*Ts)*U(s)
+   Y(z) = z^(-1) * U(z)
   </pre>
-  <br>
-  The delay must be positive <FONT FACE=Courier>T &gt;= 0</FONT>.
+  which corresponds to a continuous-domain delay of:
+  <pre>
+   Y(s) = e^(-s*Ts) * U(s)
+  </pre>
+  The implementation uses the Modelica <code>pre(u)</code> operator inside a
+  <code>when sample(0, Ts)</code> clause.  An initial output value
+  <code>y_start</code> can be specified.
   </p>
+  <h4>Parameters</h4>
+  <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
+    <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+    <tr><td>Ts</td><td>(from DiscreteBaseBlock)</td><td>Sampling time [s]</td></tr>
+    <tr><td>y_start</td><td>0</td><td>Initial value of the output y</td></tr>
+  </table>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>

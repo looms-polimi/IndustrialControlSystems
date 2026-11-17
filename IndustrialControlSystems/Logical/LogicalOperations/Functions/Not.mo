@@ -7,7 +7,16 @@ algorithm
   for i in 1:size(u,1) loop
     y[i] := not u[i];
   end for;
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function applies logical NOT element-wise to the Boolean input array <em>u</em> and
+  returns the result in the output array <em>y</em>, which has the same length as <em>u</em>
+  (given by <em>nOutput</em>). Each output element <em>y[i]</em> is the logical complement of
+  the corresponding input <em>u[i]</em>.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

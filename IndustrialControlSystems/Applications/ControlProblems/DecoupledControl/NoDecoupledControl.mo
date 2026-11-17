@@ -85,17 +85,22 @@ equation
 <dd>Copyright &copy; 2010-2012, Marco Bonvini and Alberto Leva.<br/></dd>
 <dd><i>The IndustrialControlSystems package is <b>free</b> software; it can be redistributed and/or modified under the terms of the <b>Modelica license</b>.</i><br/></dd>
 </dl></html>",
-             info="<html>
-<p><b>Description</b> </p>
-<p>
-The 2x2 process reported below has to be controlled<br/><br/>
-<img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/Process.png\"/><br/><br/>
-The process is controlled using two PIs ( R1(s) and R2(s) ), each one controlling the corresponding output signal.<br/>
-<img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/NoDecouplerController.png\"/><br/><br/>
-The goal of the control system is to maintain the output of the processe as close as possible to the set point references,<br>
-avoiding the cross effects between the first input and the second output and vice versa.<br><br>
-
-</html>"),
+             info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example demonstrates diagonal (non-decoupled) control of the same 2x2 MIMO process used in
+  <a href=\"modelica://IndustrialControlSystems.Applications.ControlProblems.DecoupledControl.DecoupledControl\">DecoupledControl</a>.
+  Two independent PI controllers are connected directly to the plant inputs without any decoupling
+  network; each controller measures only its own output and ignores the cross-channel interactions.
+  Because the process has significant off-diagonal coupling between inputs and outputs, changes in
+  one set point produce unwanted transients in the other output channel.<br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/Process.png\"/><br/><br/>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/NoDecouplerController.png\"/><br/><br/>
+  Comparing the results with the DecoupledControl example illustrates the benefit of introducing a
+  backward decoupler to suppress cross-coupling and improve closed-loop performance.
+  </p>
+  </HTML>"),
     experiment(StopTime=50),
     __Dymola_experimentSetupOutput(events=false));
 end NoDecoupledControl;

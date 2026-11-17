@@ -1,5 +1,6 @@
 within IndustrialControlSystems.Logical.Timers.Examples;
 model testT_OffDelay_Redge
+  "Test of the T_off-delay timer triggered on a rising edge"
   extends Modelica.Icons.Example;
 
   IndustrialControlSystems.Logical.Timers.Timer_OffDelay_Redge timer
@@ -30,7 +31,18 @@ equation
   annotation (Diagram(graphics),
     experiment(StopTime=50),
     experimentSetupOutput,
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example demonstrates the <em>Timer_OffDelay_Redge</em> block, which starts its delay on a
+  rising edge (0-to-1 transition) of the Set signal. The programmed value is set to 10 s.
+  Set signal transitions occur at t = 0.5, 0.6, 17, and 17.1 s; Reset signal transitions at
+  t = 5, 5.1, 30, and 30.1 s. The simulation runs for 50 s. The example illustrates that the
+  timer output Q activates after the programmed delay following each rising edge of the Set
+  signal and is cleared immediately by the Reset signal.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

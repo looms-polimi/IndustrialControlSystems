@@ -13,7 +13,25 @@ algorithm
   else
     Q := false;
   end if;
-    annotation (Documentation(revisions="<html>
+    annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function computes the Boolean output of an off-delay timer variant used by edge-triggered
+  timer blocks. Given the Reset signal <em>R</em>, the programmed duration <em>durata</em>, the
+  current simulation time <em>t</em>, the timer start time <em>inizio</em>, and the Run flag
+  <em>run</em>, the output <em>Q</em> is set to true when all of the following hold:
+  </p>
+  <ul>
+  <li>Reset is not asserted (<em>R</em>=false).</li>
+  <li>The elapsed time since <em>inizio</em> has reached or exceeded <em>durata</em>
+  (<em>t</em> &ge; <em>inizio</em> + <em>durata</em>).</li>
+  <li>The Run flag is active (<em>run</em>=true), indicating an edge was previously detected.</li>
+  </ul>
+  <p>
+  Otherwise <em>Q</em> is false.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

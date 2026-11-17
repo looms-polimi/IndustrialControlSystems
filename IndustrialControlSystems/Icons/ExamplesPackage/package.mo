@@ -3,7 +3,16 @@ partial package ExamplesPackage "Examples package icon"
   extends Modelica.Icons.ExamplesPackage;
 
 
-  annotation (Icon(graphics), Documentation(revisions="<html>
+  annotation (Icon(graphics), Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial package defines the icon used to identify example packages throughout the
+  IndustrialControlSystems library. Any package that contains simulation examples should
+  extend this class to inherit the standard examples-package graphical appearance, which
+  is consistent with the Modelica Standard Library ExamplesPackage icon convention.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

@@ -31,13 +31,24 @@ equation
   <HTML>
   <h4>Description</h4>
   <p>
-  Continuous time transfer function of first order process.
+  Continuous-time first-order lag block with gain mu and time constant tau.
+  The block filters its input signal through a first-order low-pass transfer
+  function:
   <pre>
-   Y(s)         mu
+   Y(s)          mu
    ----  = ------------
-   U(s)      (1+s*tau)
+   U(s)     (1 + s*tau)
   </pre>
+  In the time domain: <code>y + tau*der(y) = mu*u</code>.
+  An initial output value <code>y_start</code> can be specified.
   </p>
+  <h4>Parameters</h4>
+  <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
+    <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+    <tr><td>tau</td><td>2</td><td>Pole time constant [s]</td></tr>
+    <tr><td>mu</td><td>1</td><td>Static gain</td></tr>
+    <tr><td>y_start</td><td>0</td><td>Initial value of the output y</td></tr>
+  </table>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>

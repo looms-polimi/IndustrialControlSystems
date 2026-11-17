@@ -115,12 +115,20 @@ equation
 <dt><b>Copyright:</b> </dt>
 <dd>Copyright &copy; 2010-2012, Marco Bonvini and Alberto Leva.<br/></dd>
 <dd><i>The IndustrialControlSystems package is <b>free</b> software; it can be redistributed and/or modified under the terms of the <b>Modelica license</b>.</i><br/></dd>
-</dl></html>", info="<HTML>
+</dl></html>", info="
+  <HTML>
   <h4>Description</h4>
   <p>
-  Two inputs two outputs process<br><br>
+  A two-input two-output (2x2) process model implemented as four independent transfer functions
+  arranged in a full interaction matrix. Each output is the superposition of two channel responses:
+  Y1 = P11*U1 + P12*U2 and Y2 = P21*U1 + P22*U2, where P11, P12, P21, and P22 are each
+  specified by their own numerator and denominator polynomial coefficients. This structure makes
+  the cross-coupling between channels explicit and allows the model to be used as the plant in
+  decoupling control studies, such as those in
+  <a href=\"modelica://IndustrialControlSystems.Applications.ControlProblems.DecoupledControl.DecoupledControl\">DecoupledControl</a>
+  and
+  <a href=\"modelica://IndustrialControlSystems.Applications.ControlProblems.DecoupledControl.NoDecoupledControl\">NoDecoupledControl</a>.<br><br>
   <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/2x2Process.png\"><br><br>
-  The four transfer functions are defined via their numerators and denumerators.
-  
-</html>"));
+  </p>
+  </HTML>"));
 end Process;

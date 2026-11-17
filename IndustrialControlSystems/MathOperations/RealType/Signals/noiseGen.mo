@@ -14,8 +14,8 @@ model noiseGen "Noise generator"
   constant Real c= 10 "coefficient"
     annotation(Dialog(group = "Algorithm"));
 protected
-  discrete Real X;
-  discrete Real U;
+  discrete Real X "PRNG state variable";
+  discrete Real U "Unscaled random sample";
 equation
   // No Fixed Point here
   Ufp = zeros(nInput);

@@ -13,9 +13,9 @@ model ComparisonTFunction
   parameter Real Ts = 0.1 "Sampling time"
     annotation(Dialog(group = "Discretisation"));
   // Errors
-  Real error_BE = tf.y - tf_BE.y;
-  Real error_FE = tf.y - tf_FE.y;
-  Real error_TU = tf.y - tf_TU.y;
+  Real error_BE = tf.y - tf_BE.y "Backward Euler discretisation error";
+  Real error_FE = tf.y - tf_FE.y "Forward Euler discretisation error";
+  Real error_TU = tf.y - tf_TU.y "Tustin discretisation error";
   Continuous.TransferFunction tf(num=a, den=b)
     annotation (Placement(transformation(extent={{-20,60},{0,80}})));
   Modelica.Blocks.Sources.Step step(

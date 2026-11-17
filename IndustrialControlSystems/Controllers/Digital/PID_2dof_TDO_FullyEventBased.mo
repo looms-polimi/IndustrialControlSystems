@@ -16,24 +16,24 @@ model PID_2dof_TDO_FullyEventBased
     annotation(Dialog(group = "Parameters"));
   parameter Real TDsteps = 100 "Time Division Output resolution"
     annotation(Dialog(group = "Parameters"));
-  Real counter;
-  Real cs;
+  Real counter "Sub-sampling counter for TDO";
+  Real cs "Internal control signal";
 protected
-  Real sp;
-  Real dsp;
-  Real pv;
-  Real dpv;
-  Real dp;
-  Real di;
-  Real d;
-  Real dd;
-  Real dcs;
+  Real sp "Sampled set point";
+  Real dsp "Set point increment";
+  Real pv "Sampled process variable";
+  Real dpv "Process variable increment";
+  Real dp "Proportional action increment";
+  Real di "Integral action increment";
+  Real d "Filtered derivative term";
+  Real dd "Derivative action increment";
+  Real dcs "Control signal increment";
 
-  Real spo;
-  Real pvo;
-  Real dold;
-  Real cso;
-  Real nextEventTime;
+  Real spo "Previous set point sample";
+  Real pvo "Previous process variable sample";
+  Real dold "Derivative term at previous step";
+  Real cso "Previous control signal";
+  Real nextEventTime "Time of next TDO switching event";
 
 algorithm
   when sample(0,Ts) then

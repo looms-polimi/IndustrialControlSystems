@@ -2,7 +2,28 @@ within IndustrialControlSystems.MathOperations.IntegerType.Functions;
 partial function GeneralFunction
   input Integer u[:];
   output Integer y;
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial function defines the common interface for all integer-valued mathematical
+  functions used in the IndustrialControlSystems library. Concrete functions that perform
+  specific integer computations (such as <code>SumSquare</code>) extend this class and
+  provide an algorithm body.
+  </p>
+  <p>
+  <b>Interface:</b>
+  </p>
+  <ul>
+    <li><b>u[:]</b> — a variable-length integer input vector.</li>
+    <li><b>y</b> — a single integer output value.</li>
+  </ul>
+  <p>
+  Functions extending <code>GeneralFunction</code> can be plugged into the integer-type
+  <code>Expression</code> block via redeclaration, allowing arbitrary integer expressions
+  to be evaluated on a vector of integer signals.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

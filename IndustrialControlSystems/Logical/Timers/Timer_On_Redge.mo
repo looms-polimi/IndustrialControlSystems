@@ -5,8 +5,8 @@ model Timer_On_Redge "ON timer model, active on rising edge"
   Real startTime "start time of the timer counting";
   Boolean S_hold
     "This variable is kept on by a rising edge of set signal until a rising edge of reset signal.";
-  discrete Boolean Sd;
-  discrete Boolean Shd;
+  discrete Boolean Sd "Sampled set signal S";
+  discrete Boolean Shd "Sampled hold state of S";
 initial equation
   startTime = 0;
   run = false;

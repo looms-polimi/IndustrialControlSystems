@@ -56,7 +56,45 @@ equation
     experiment(StopTime=50),
     experimentSetupOutput,
     Diagram(graphics),
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example model demonstrates the set-point signal generators and noise source available
+  in <code>MathOperations.RealType.Signals</code>. The simulation runs for 50 seconds and
+  exercises the following blocks in parallel:
+  </p>
+  <ul>
+    <li>
+      <b>smoothStep</b> — a free-running smooth step from the initial value to
+      <code>yfin=3</code>, with slope parameter <code>m=0.2</code> and parabolic blending
+      coefficient <code>alfa=0.3</code>.
+    </li>
+    <li>
+      <b>smoothTooth_alpha_01</b> — a smooth tooth-wave signal with default parameters
+      (<code>alfa=0.1</code>).
+    </li>
+    <li>
+      <b>smoothTooth_alpha_04</b> — a smooth tooth-wave signal with increased blending
+      (<code>alfa=0.4</code>), illustrating the effect of a larger alpha value.
+    </li>
+    <li>
+      <b>smoothStepSignal</b> — a triggered smooth step that rises when the Boolean input
+      <code>ENup</code> goes true (at t=15 s via a BooleanStep source), with a delay of
+      1.5 s before the transition begins.
+    </li>
+    <li>
+      <b>smoothToothSignal</b> — a triggered tooth signal that rises when <code>ENup</code>
+      is asserted (BooleanTable: t=5 s and t=6 s) and falls when <code>ENdown</code> is
+      asserted (BooleanTable: t=26 s and t=27 s). Start and end levels are supplied by
+      Constant sources (<code>Ystart=0</code>, <code>Yend=1</code>).
+    </li>
+    <li>
+      <b>noiseGen</b> — a noise signal generator producing a pseudo-random disturbance
+      signal with default parameters.
+    </li>
+  </ul>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

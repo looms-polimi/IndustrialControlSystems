@@ -10,7 +10,21 @@ info="
   <HTML>
   <h4>Description</h4>
   <p>
-  This package contains basic and customisable logical elements, timers, counters and so forth.<br>
+  This package groups all sampled-data Boolean and logic components of the Industrial Control
+  Systems library. It is organised into the following sub-packages:
+  </p>
+  <ul>
+  <li><b>Comparisons</b> &mdash; relational operator blocks (==, !=, &gt;, &lt;, &gt;=, &lt;=)
+  for both integer and real-valued signals.</li>
+  <li><b>LogicalOperations</b> &mdash; configurable Boolean logic blocks (AND, OR, NOT, XOR)
+  and an SR flip-flop.</li>
+  <li><b>Timers</b> &mdash; on-delay and off-delay timer blocks, including edge-triggered
+  variants and residual-time outputs.</li>
+  <li><b>Counter</b> &mdash; modular up/down counter blocks with Set, Reset, Count-Up, and
+  Count-Down inputs.</li>
+  </ul>
+  <p>
+  All blocks operate in discrete time with a configurable sampling period <em>Ts</em>.
   </p>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>

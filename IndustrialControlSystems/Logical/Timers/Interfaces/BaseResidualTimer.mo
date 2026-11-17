@@ -8,7 +8,19 @@ partial model BaseResidualTimer
         rotation=270,
         origin={60,-90})));
   annotation (Icon(graphics), Diagram(graphics),
-      Documentation(revisions="<html>
+      Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial model extends <em>BaseTimer</em> with an additional real-valued output
+  <em>tr</em> that provides the residual time remaining until the timer expires. It inherits
+  the Set input <em>S</em>, Reset input <em>R</em>, Programmed Value input <em>PV</em>,
+  Boolean status output <em>Q</em>, and sampling time parameter <em>Ts</em> from
+  <em>BaseTimer</em>. Concrete residual timer blocks implement the computation of <em>tr</em>
+  as <em>PV</em> minus the elapsed time since the timer was started, clamped to zero when the
+  timer has expired or is inactive.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

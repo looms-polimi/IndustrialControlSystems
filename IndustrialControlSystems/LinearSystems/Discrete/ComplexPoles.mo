@@ -12,8 +12,8 @@ model ComplexPoles "Process with complex poles"
   parameter Real dy_start = 0 "Slope initial value"
     annotation(Dialog(group = "Initial conditions"));
 protected
-  Real u_pre1;
-  Real y_pre1;
+  Real u_pre1 "Input sample one step ago u[n-1]";
+  Real y_pre1 "Output sample one step ago y[n-1]";
 initial equation
   pre(y) = y_start;
   pre(y_pre1) = dy_start;

@@ -10,3 +10,11 @@ TestD_tracking
 TestPI_tracking
 TestPD_tracking
 TestPID_tracking
+TestI_biasNoDrift
+TestPD_proportional
+TestGainScheduling
+TestTracking_bias
+TestTracking_bumpless
+TestPI_initFromFBstart
+TestInit_CSstart
+TestPID_initCSstart

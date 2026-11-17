@@ -12,7 +12,23 @@ algorithm
   Run     := if ((S_old==false and S==true and R==false) or (Run_old==true and R==false)) then true else false;
   st_time := if (S_old==false and S==true and R==false) then t else 0.0;
   st_time := max(s_time,st_time);
-    annotation (Documentation(revisions="<html>
+    annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function detects a rising edge (0-to-1 transition) of the Set signal <em>S</em> and
+  maintains a Run flag for use by edge-triggered timer blocks. Given the previous and current
+  values of <em>S</em>, the Reset signal <em>R</em>, the previously recorded start time
+  <em>s_time</em>, the current simulation time <em>t</em>, and the previous Run flag
+  <em>Run_old</em>, it returns:
+  </p>
+  <ul>
+  <li><em>Run</em> &mdash; true if a rising edge was just detected or if <em>Run_old</em> was
+  true and Reset has not been asserted; false otherwise.</li>
+  <li><em>st_time</em> &mdash; the start time recorded at the moment the rising edge is detected
+  and preserved thereafter via a max operation with <em>s_time</em>.</li>
+  </ul>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

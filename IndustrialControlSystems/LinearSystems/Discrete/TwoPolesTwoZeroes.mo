@@ -13,8 +13,8 @@ model TwoPolesTwoZeroes
   parameter Real y_start = 0 "Output initial value"
     annotation(Dialog(group = "Initial conditions"));
 protected
-  Real u_pre;
-  Real y_pre;
+  Real u_pre "Input sample one step ago u[n-1]";
+  Real y_pre "Output sample one step ago y[n-1]";
 initial equation
   pre(y) = y_start;
 equation

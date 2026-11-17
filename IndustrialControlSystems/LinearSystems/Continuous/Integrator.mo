@@ -29,13 +29,23 @@ equation
   <HTML>
   <h4>Description</h4>
   <p>
-  Continuous time transfer function of an integrating process.
+  Continuous-time integrator block with gain mu.  The block integrates its
+  input signal over time and scales the result by the gain mu.  The transfer
+  function is:
   <pre>
    Y(s)      mu
    ----  = ------
-   U(s)      s
+   U(s)       s
   </pre>
+  In the time domain: <code>der(y) = mu * u</code>.
+  An initial output value <code>y_start</code> can be specified.
   </p>
+  <h4>Parameters</h4>
+  <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
+    <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+    <tr><td>mu</td><td>1</td><td>Integrator gain</td></tr>
+    <tr><td>y_start</td><td>0</td><td>Initial value of the output y</td></tr>
+  </table>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>

@@ -80,7 +80,45 @@ equation
       points={{-79,-10},{-74,-10},{-74,-74},{-38,-74}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(graphics), Documentation(revisions="<html>
+  annotation (Diagram(graphics), Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This example demonstrates the basic real-type arithmetic operation blocks provided by the
+  IndustrialControlSystems library, all operated with fixed-point quantisation enabled
+  (<code>FixedPoint=true</code>).
+  </p>
+  <p>
+  The following blocks are instantiated and connected in a chain:
+  </p>
+  <ul>
+    <li>
+      <b>add</b> — adds two constant inputs: <code>n1=1.23</code> and <code>n2=1.3</code>.
+      Configured with 8-bit fixed-point representation and <code>scaleFactor=20</code>.
+    </li>
+    <li>
+      <b>sub</b> — subtracts <code>n3=-0.34</code> from the output of <b>add</b>.
+      Uses 8-bit fixed-point with <code>scaleFactor=20</code>.
+    </li>
+    <li>
+      <b>mult</b> — multiplies the output of <b>sub</b> by constant <code>n4=2</code>.
+      Uses 12-bit fixed-point with <code>scaleFactor=20</code>.
+    </li>
+    <li>
+      <b>div</b> — divides the output of <b>mult</b> by constant <code>n6=-0.3</code>.
+      Uses 10-bit fixed-point with <code>scaleFactor=80</code>.
+    </li>
+    <li>
+      <b>pow</b> — raises <code>n2=1.3</code> to the power of <code>n4=2</code>.
+      Uses 11-bit fixed-point with <code>scaleFactor=20</code>.
+    </li>
+  </ul>
+  <p>
+  All sampling times are set to <code>Ts=0</code> (continuous evaluation). The example
+  verifies that fixed-point quantisation and saturation behave correctly for each arithmetic
+  operation.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

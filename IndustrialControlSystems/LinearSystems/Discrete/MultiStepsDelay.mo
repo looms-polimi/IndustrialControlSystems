@@ -29,13 +29,29 @@ algorithm
   <HTML>
   <h4>Description</h4>
   <p>
-  Discrete version of the multistep time delay.
+  Discrete-time multi-step delay block.  The block introduces a delay of
+  exactly N sampling periods by passing the input signal through a shift
+  register of length N.  In the z-domain:
   <pre>
-   Y(s) = e^(-s*N*Ts)*U(s)
+   Y(z) = z^(-N) * U(z)
   </pre>
-  <br>
-  The delay must be positive <FONT FACE=Courier>T &gt;= 0</FONT>.
+  which corresponds to a continuous-domain delay of:
+  <pre>
+   Y(s) = e^(-s*N*Ts) * U(s)
+  </pre>
+  The implementation maintains an internal buffer array of size N.  At each
+  sampling instant the buffer is shifted and the oldest value is presented
+  at the output.  N must be strictly greater than 1; for a single-step delay
+  use the <code>Delay</code> block instead.  All buffer elements are
+  initialised to <code>y_start</code>.
   </p>
+  <h4>Parameters</h4>
+  <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
+    <tr><th>Name</th><th>Default</th><th>Description</th></tr>
+    <tr><td>Ts</td><td>(from DiscreteBaseBlock)</td><td>Sampling time [s]</td></tr>
+    <tr><td>N</td><td>1</td><td>Number of delay steps (must be &gt; 1)</td></tr>
+    <tr><td>y_start</td><td>0</td><td>Initial value for all buffer elements and output</td></tr>
+  </table>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>

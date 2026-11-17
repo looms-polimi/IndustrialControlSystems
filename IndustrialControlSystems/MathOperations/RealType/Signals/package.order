@@ -1,5 +1,7 @@
 noiseGen
 SmoothStep
-SmoothThooth
+SmoothTooth
 SmoothStepSignal
+SmoothToothSignal
+SmoothThooth
 SmoothThoothSignal

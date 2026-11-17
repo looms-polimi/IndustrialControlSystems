@@ -4,7 +4,31 @@ partial function GeneralReScalingFunction
   input Real Y "computed output";
   input Real scaleFactor "scale factor";
   output Real y "re-scaled output";
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial function defines the interface for fixed-point rescaling functions used by the
+  real-type <code>Expression</code> block when <code>FixedPoint=true</code>. After the main
+  mathematical function computes a raw real result, this rescaling function is called to
+  convert that result back to the intended physical value.
+  </p>
+  <p>
+  <b>Interface:</b>
+  </p>
+  <ul>
+    <li><b>u[:]</b> — the original real input vector passed to the main function (available
+        for context if the rescaling depends on the inputs).</li>
+    <li><b>Y</b> — the raw output computed by the main mathematical function before
+        rescaling.</li>
+    <li><b>scaleFactor</b> — the scale factor used in the fixed-point representation.</li>
+    <li><b>y</b> — the rescaled real output value.</li>
+  </ul>
+  <p>
+  Concrete rescaling functions such as <code>reScale</code> extend this partial function and
+  implement the rescaling algorithm (typically <code>y := Y / scaleFactor</code>).
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

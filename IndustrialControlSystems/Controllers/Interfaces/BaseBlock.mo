@@ -24,8 +24,17 @@ partial model BaseBlock "partial interface for a continuous time control block"
   <HTML>
   <h4>Description</h4>
   <p>
-  Partial interface for a continuos/discrete time block.<br>
-  The block has one input and one output (SISO). 
+  Partial interface for a continuous/discrete-time single-input single-output (SISO)
+  control block. It declares the standard real scalar connectors:
+  <ul>
+  <li><b>u</b> &mdash; real input signal.</li>
+  <li><b>y</b> &mdash; real output signal.</li>
+  </ul>
+  The parameter <b>Ts</b> (sampling time) controls the operating mode: when Ts is zero
+  the block works in continuous time; when Ts is greater than zero the block is treated
+  as a discrete-time element sampled at period Ts. Concrete control blocks such as P,
+  I, FO and LeadLAG extend this partial model and add the control law, saturation
+  limits and optional tracking logic.
   </p>
   </HTML>",
         revisions="<html>

@@ -3,7 +3,7 @@ model Timer_OffDelay_Redge "OFF delay timer model, active on rising edge"
   extends IndustrialControlSystems.Logical.Timers.Interfaces.BaseResidualTimer;
   discrete Boolean run "Flag: true while the timer is counting";
   Real startTime "start time of the timer counting";
-  discrete Boolean Sd;
+  discrete Boolean Sd "Sampled set signal S";
 initial equation
   startTime = 0;
   run = false;

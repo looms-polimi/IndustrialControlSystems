@@ -2,7 +2,28 @@ within IndustrialControlSystems.MathOperations.RealType.Functions;
 partial function GeneralFunction "single output function"
   input Real u[:];
   output Real y;
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial function defines the common interface for all real-valued mathematical
+  functions used with the real-type <code>Expression</code> block in the
+  IndustrialControlSystems library. Concrete functions that implement specific computations
+  (such as <code>Mean</code>) extend this class and provide an algorithm body.
+  </p>
+  <p>
+  <b>Interface:</b>
+  </p>
+  <ul>
+    <li><b>u[:]</b> — a variable-length real input vector.</li>
+    <li><b>y</b> — a single real output value.</li>
+  </ul>
+  <p>
+  Functions extending <code>GeneralFunction</code> can be plugged into the real-type
+  <code>Expression</code> block via redeclaration, allowing arbitrary real-valued expressions
+  to be evaluated on a vector of real signals.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

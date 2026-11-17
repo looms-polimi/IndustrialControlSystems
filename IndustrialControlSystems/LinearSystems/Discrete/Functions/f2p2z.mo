@@ -29,7 +29,45 @@ algorithm
           + alpha*mu*Ts*(-T1-alpha*Ts+Ts)*u_pre1
           + mu*(-T1-alpha*Ts+Ts)*(-T2-alpha*Ts+Ts)*u_pre2);
 
-  annotation (Documentation(revisions="<html>
+  annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  Discrete-time function implementing a transfer function with one integrator,
+  one real pole (time constant T3) and two real zeros (time constants T1 and T2),
+  with gain mu:
+  <pre>
+   Y(s)     (1+s*T1)*(1+s*T2)
+   ----  = mu -----------------
+   U(s)       s*(1+s*T3)
+  </pre>
+  The continuous-time transfer function is discretised using the generalised
+  integration rule with parameter <code>alpha</code> (0 = Forward Euler,
+  1 = Backward Euler, 0.5 = Tustin).  The function requires two past input
+  samples (u_pre1, u_pre2) and two past output samples (y_pre1, y_pre2),
+  giving the third-order recurrence equation computed in the algorithm section.
+  </p>
+  <h4>Inputs</h4>
+  <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
+    <tr><th>Name</th><th>Description</th></tr>
+    <tr><td>alpha</td><td>Discretisation parameter (0=FE, 1=BE, 0.5=Tustin)</td></tr>
+    <tr><td>T1</td><td>First zero time constant [s]</td></tr>
+    <tr><td>T2</td><td>Second zero time constant [s]</td></tr>
+    <tr><td>T3</td><td>Pole time constant [s]</td></tr>
+    <tr><td>u</td><td>Current input sample u[n]</td></tr>
+    <tr><td>u_pre1</td><td>Previous input sample u[n-1]</td></tr>
+    <tr><td>u_pre2</td><td>Input sample two steps ago u[n-2]</td></tr>
+    <tr><td>y_pre1</td><td>Previous output sample y[n-1]</td></tr>
+    <tr><td>y_pre2</td><td>Output sample two steps ago y[n-2]</td></tr>
+    <tr><td>Ts</td><td>Sampling time [s]</td></tr>
+    <tr><td>mu</td><td>Static gain</td></tr>
+  </table>
+  <h4>Output</h4>
+  <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
+    <tr><th>Name</th><th>Description</th></tr>
+    <tr><td>y</td><td>Current output sample y[n]</td></tr>
+  </table>
+  </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

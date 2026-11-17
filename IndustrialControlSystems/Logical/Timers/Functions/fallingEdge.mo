@@ -13,7 +13,22 @@ algorithm
   Run     := if ((S_old==true and S==false and R==false) or (Run_old==true and R==false)) then true else false;
   st_time := if (S_old==true and S==false and R==false) then t else 0.0;
   st_time := max(s_time,st_time);
-    annotation (Documentation(revisions="<html>
+    annotation (Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This function detects a falling edge (1-to-0 transition) of the Set signal <em>S</em> and
+  uses it to start a timer. It takes the previous and current values of <em>S</em>, the Reset
+  signal <em>R</em>, the previously recorded start time <em>s_time</em>, the current simulation
+  time <em>t</em>, and the previous Run flag <em>Run_old</em>. It returns:
+  </p>
+  <ul>
+  <li><em>Run</em> &mdash; true if a falling edge was just detected or if <em>Run_old</em> was
+  true and Reset has not been asserted; false otherwise.</li>
+  <li><em>st_time</em> &mdash; the start time of the current timing interval, recorded at the
+  moment the falling edge is detected and preserved thereafter via a max operation.</li>
+  </ul>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>

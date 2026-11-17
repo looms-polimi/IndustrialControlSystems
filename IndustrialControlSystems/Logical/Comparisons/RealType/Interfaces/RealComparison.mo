@@ -19,7 +19,18 @@ partial model RealComparison "Partial interface for Real comparisons"
           lineColor={0,0,0},
           fillColor={170,213,255},
           fillPattern=FillPattern.Solid)}),
-    Documentation(revisions="<html>
+    Documentation(info="
+  <HTML>
+  <h4>Description</h4>
+  <p>
+  This partial model defines the common interface for all real-valued comparison blocks. It
+  declares two real inputs <em>u1</em> and <em>u2</em>, a Boolean output <em>y</em>, a sampling
+  time parameter <em>Ts</em>, and a numerical tolerance parameter <em>eps</em> (defaulting to
+  100 times the machine epsilon). Concrete comparison models (==, !=, &gt;, &lt;, &gt;=, &lt;=)
+  extend this interface and implement their comparison logic using <em>eps</em> to handle the
+  limited precision of floating-point arithmetic, particularly for equality and inequality tests.
+  </p>
+  </HTML>", revisions="<html>
 <dl><dt>First release of the Industrial Control Systems: April-May 2012</dt>
 <dl><dt>List of revisions:</dt>
 <p><ul>
