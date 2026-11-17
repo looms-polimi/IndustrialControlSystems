@@ -274,7 +274,7 @@ equation
   the water in the atmosphere. The valve actuator is represented by a first order filter.<br>
   The control system is composed by the measurement part and the controller. The pressure sensor measures the absolute pressure<br>
   on the bottom of the tank.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/LevelValveCascade.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/LevelValveCascade.png\"><br>
   The measured pressure is subtracted from the atmospheric pressure and then divided by the<br>
   gravity acceleration and the water density in order to obtain the water level.
   <pre>
@@ -293,9 +293,9 @@ equation
   decrease as a step (SP = 0.5 m). The controller has to act on the valve in order to decrease the water level to the desired value.<br>
   A disturb represented by a water mass flow rate entering the tank, becomes different from zero at time t = 3600 s.<br>
   <br>Set Point reference, water level<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CascadeLevelPV.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CascadeLevelPV.png\"><br>
   <br>Set Point reference (the Control signal of the Level PI) and valve command<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CascadeValvePV.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CascadeValvePV.png\"><br>
   The simulation can be perfomed at an initial stage assuming that the controller is a continuous time one (<FONT FACE=Courier>Ts = 0</FONT>)
   , that the math<br> operations are in double precision (<FONT FACE=Courier>FixedPoint = false</FONT>). 
   In such a phase it is possible to concentrate on the controller design.

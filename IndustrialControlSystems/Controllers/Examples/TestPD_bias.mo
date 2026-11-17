@@ -152,7 +152,7 @@ equation
   <li>with a PD controller,</li> 
   <li>and a PD controller with bias signal</li> 
   </ul><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PD_bias.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PD_bias.png\"><br><br>
   The output signal of the process without control diverges (due to the presence of an integrator) and is not reported.<br>
   In the closed loop system, the proportional + derivative controller cannot reach the SP reference, but it remains in a neighborhood of it.
   In this case theparameter Kp can reduce the amplitude of such a neighborhood. The disturb (red signal) can be rejected using the bias signal 

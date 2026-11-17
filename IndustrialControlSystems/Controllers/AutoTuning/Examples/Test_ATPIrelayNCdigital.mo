@@ -151,13 +151,13 @@ equation
   <li>Auto Tuning phase [50,120]: PIs excite the processes in order to identify some characteristic parameters,</li> 
   <li>Normal mode [120,end]: PIs working with tuned parameters values</li> 
   </ul><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/AutoTuning/Examples/ATPI_PV.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/AutoTuning/Examples/ATPI_PV.png\"><br>
   Control signals
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/AutoTuning/Examples/ATPI_CS.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/AutoTuning/Examples/ATPI_CS.png\"><br>
   
   <h4>References</h4>
   For more information please refers to the following
-  <a href=\"modelica://IndustrialControlSystems/help/refs/EffHybPITuning.pdf\">paper</a>:<br><br>
+  <a href=\"modelica://IndustrialControlSystems/Resources/References/EffHybPITuning.pdf\">paper</a>:<br><br>
   <b>Efficient hybrid simulation of autotuning PI controllers</b><br>
   Alberto Leva, Marco Bonvini<br>
   8th Modelica Conference, Dresden, Germany<br>

@@ -150,7 +150,7 @@ equation
   <li>with a D controller,</li> 
   <li>and a D controller with bias signal</li> 
   </ul><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/Der_bias.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/Der_bias.png\"><br><br>
   The output signal of the process without control diverges (due to the presence of an integrator) and is not reported.<br>
   In the closed loop system, the derivative controller cannot reach the SP reference, but it remains in a neighborhood of it.
   The disturb (pink signal) can be rejected using the bias signal of the controller (green line), otherwise the action

@@ -1,6 +1,6 @@
 within IndustrialControlSystems.MathOperations;
 package RealType "Real mathematical operations"
-  extends Modelica.Icons.Package;
+  extends Modelica.Icons.TypeReal;
 
 
   annotation (Documentation(

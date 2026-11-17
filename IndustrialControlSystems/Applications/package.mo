@@ -1,6 +1,6 @@
 within IndustrialControlSystems;
 package Applications "Applicative examples"
-  extends Modelica.Icons.Package;
+  extends Modelica.Icons.ExamplesPackage;
 
 
 

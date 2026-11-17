@@ -1,6 +1,6 @@
 within IndustrialControlSystems;
 package Icons "Icons"
-  extends Modelica.Icons.Package;
+  extends Modelica.Icons.IconsPackage;
 
 
 annotation (Documentation(revisions="<html>

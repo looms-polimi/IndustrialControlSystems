@@ -1,6 +1,6 @@
 within IndustrialControlSystems.LinearSystems.Discrete.Functions;
 function f1Pole "Function first order process : k/(1+s*tau)"
-  input Real alfa "Parametro di discretizzazione";
+  input Real alfa "Discretisation parameter";
   input Real u "Current input";
   input Real u_pre "Previous input";
   input Real y_pre "Previous output";

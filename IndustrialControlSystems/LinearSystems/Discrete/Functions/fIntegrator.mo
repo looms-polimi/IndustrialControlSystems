@@ -1,6 +1,6 @@
 within IndustrialControlSystems.LinearSystems.Discrete.Functions;
 function fIntegrator "Function integrator"
-  input Real alfa "Parametro di discretizzazione";
+  input Real alfa "Discretisation parameter";
   input Real u "Current input";
   input Real u_pre "Previous input";
   input Real y_pre "Previous output";

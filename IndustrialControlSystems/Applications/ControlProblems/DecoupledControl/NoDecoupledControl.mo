@@ -10,7 +10,7 @@ model NoDecoupledControl "Control scheme without decoupler"
     P12_num={0.5},
     P21_num={0.5},
     P21_den={3,1})
-    annotation (Placement(transformation(extent={{40,0},{80,40}})));
+    annotation (Placement(transformation(extent={{40.0,0.0},{80.0,40.0}},rotation = 0.0,origin = {0.0,0.0})));
   Controllers.PI controller1(
     useBIAS=false,
     Ti=5,
@@ -89,9 +89,9 @@ equation
 <p><b>Description</b> </p>
 <p>
 The 2x2 process reported below has to be controlled<br/><br/>
-<img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/DecoupledController/Process.png\"/><br/><br/>
+<img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/Process.png\"/><br/><br/>
 The process is controlled using two PIs ( R1(s) and R2(s) ), each one controlling the corresponding output signal.<br/>
-<img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/DecoupledController/NoDecouplerController.png\"/><br/><br/>
+<img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/NoDecouplerController.png\"/><br/><br/>
 The goal of the control system is to maintain the output of the processe as close as possible to the set point references,<br>
 avoiding the cross effects between the first input and the second output and vice versa.<br><br>
 

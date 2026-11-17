@@ -43,15 +43,15 @@ equation
   <h4>Description</h4>
   <p>
   In this example has been tested the Tracking mode of the Integrating block.<br>
-  The images show the output <FONT FACE=Courier>y</FONT> of the Integrating block, with a 
+  The Images show the output <FONT FACE=Courier>y</FONT> of the Integrating block, with a 
   square wave as input <FONT FACE=Courier>u</FONT>.<br>
   During the tracking phase the integrator is forced to follow the Track Reference signal.
   
   <h4>input and output</h4><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Blocks/Examples/IntTrack.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Blocks/Examples/IntTrack.png\"><br>
   
   <h4>Tracking switch signal and Track reference</h4>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Blocks/Examples/IntTrack2.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Blocks/Examples/IntTrack2.png\">
   
   </HTML>",
       revisions="<html>

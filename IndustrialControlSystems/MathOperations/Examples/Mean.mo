@@ -2,12 +2,9 @@ within IndustrialControlSystems.MathOperations.Examples;
 function Mean "This function computes the mean of a vector"
   extends RealType.Functions.GeneralFunction;
 protected
-  Integer n;
+  Integer n =size(u,1);
 algorithm
-  n :=size(u,1);
-
   y := sum(u[i] for i in 1:n)/n;
-
   annotation (Documentation(revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>
 <dl><dt>List of revisions:</dt>

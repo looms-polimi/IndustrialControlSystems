@@ -119,7 +119,7 @@ equation
   <h4>Description</h4>
   <p>
   Two inputs two outputs process<br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/DecoupledController/2x2Process.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/DecoupledController/2x2Process.png\"><br><br>
   The four transfer functions are defined via their numerators and denumerators.
   
 </html>"));

@@ -162,17 +162,17 @@ equation
   </ul><br>
   The output signal of the process controlled without tracking is the red line, while the green line is the 
   output of the process controlled with the tracking mode.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PID_track_PV.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PID_track_PV.png\"><br><br>
   The CS of the controller becomes equal to the track reference signal TR when the Track Switch signal becomes true.
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PID_track_CS.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PID_track_CS.png\"><br><br>
   <br>
   <h4>Bumpless transition</h4>
   If the Track Reference signal moves the Process Variable at the Set Point reference value, once the Tracking mode 
-  is disabled there should be a bumpless transition. The images below show a bumpless transition.<br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PID_track_PV_Bump.png\"><br>
+  is disabled there should be a bumpless transition. The Images below show a bumpless transition.<br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PID_track_PV_Bump.png\"><br>
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PID_track_CS_Bump.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PID_track_CS_Bump.png\"><br>
   The integrative effect, represented by the integrator in the feedback path of the PID controller 
   (see the PID block diagram <a href=\"modelica://ControlLibrary.Controllers.PID\">here</a>), is forced to follow 
   the tracking reference (Iaction signal in the last figure). In the same figure there is a small variation of the CS
@@ -186,10 +186,10 @@ equation
   <h4>examples</h4><br>
   <FONT FACE=Courier>Ts = 0.01 s</FONT> and <FONT FACE=Courier>method = BE</FONT>
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PID_track_CS_001.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PID_track_CS_001.png\"><br><br>
   <br>
   <FONT FACE=Courier>Ts = 0.05 s</FONT> and <FONT FACE=Courier>method = BE</FONT>
   <br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Examples/PID_track_CS_005.png\"><br><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Examples/PID_track_CS_005.png\"><br><br>
   </HTML>"));
 end TestPID_tracking;

@@ -1,4 +1,4 @@
-within IndustrialControlSystems.Applications.TrasferFunctions;
+within IndustrialControlSystems.Applications.TransferFunctions;
 model TypicalTF
   "This model contains a set of typical process transfer functions"
   parameter Real mu_FO = 1 "Gain"
@@ -361,7 +361,7 @@ equation
   </td>
   </tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/TrasferFunction/Integrator.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/Integrator.png\"><br>
   
   <br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -375,7 +375,7 @@ equation
   </td>
   </tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/TrasferFunction/Int+Delay.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/Int+Delay.png\"><br>
   
   <br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -389,7 +389,7 @@ equation
   </td>
   </tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/TrasferFunction/FirstOrder.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/FirstOrder.png\"><br>
   
   <br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -403,7 +403,7 @@ equation
   </td>
   </tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/TrasferFunction/FirstOrder+Delay.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/FirstOrder+Delay.png\"><br>
   </p>
   
   <br/>
@@ -418,7 +418,7 @@ equation
   </td>
   </tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/TrasferFunction/FastSlow.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/FastSlow.png\"><br>
   
   <br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -432,7 +432,7 @@ equation
   </td>
   </tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/TrasferFunction/OverShooting.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TrasferFunction/OverShooting.png\"><br>
   
   <br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -446,7 +446,7 @@ equation
   </td>
   </tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/TrasferFunction/UnderShooting.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/UnderShooting.png\"><br>
   
   <br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -460,7 +460,7 @@ equation
   </td>
   </tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/TrasferFunction/ComplexPoles.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/TransferFunction/ComplexPoles.png\"><br>
   
   </HTML>",
           revisions="<html>

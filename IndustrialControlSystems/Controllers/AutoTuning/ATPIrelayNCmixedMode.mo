@@ -43,7 +43,8 @@ equation
 
   // The PI controller is implemented with its continuous time version
   satIn    = linFBout + K*(SP-PV);
-  linFBout = CSpi  - TI*der(linFBout);
+  // bumpless transfer: in tracking mode the reset state follows TR - bias - P action (time constant eps)
+  linFBout = (if ts then CSpi - bias - K*(SP-PV) else CSpi) - (if ts then eps else TI)*der(linFBout);
   CSpi     = if ts then tr else noEvent( if AntiWindup then max(CSmin,min(CSmax,satIn)) else satIn);
 
   // Manage the Control Signal selection:
@@ -197,7 +198,7 @@ equation
   </pre>
   <br/><br/>
   <b>Scheme</b><br/><br/>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/PropInt.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/PropInt.png\">
   <br/><br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH >Name</TH><TH>Description</TH><TH>Conditional?</TH></TR>
@@ -278,7 +279,7 @@ equation
   <br>
   <h4>References</h4>
   For more information please refers to the following
-  <a href=\"modelica://IndustrialControlSystems/help/refs/EffHybPITuning.pdf\">paper</a>:<br><br>
+  <a href=\"modelica://IndustrialControlSystems/Resources/References/EffHybPITuning.pdf\">paper</a>:<br><br>
   <b>Efficient hybrid simulation of autotuning PI controllers</b><br>
   Alberto Leva, Marco Bonvini<br>
   8th Modelica Conference, Dresden, Germany<br>

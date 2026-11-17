@@ -52,10 +52,10 @@ Depending on the value of the sampling time <FONT FACE=Courier>Ts</FONT> adopted
 the conditions can be <FONT FACE=Courier>true</FONT> or not.<br>
 In this case <FONT FACE=Courier>Ts = 0.001</FONT> and <FONT FACE=Courier>eps = 0.01</FONT>
 <br><br>
-<img src=\"modelica://IndustrialControlSystems/help/images/Logical/Comparisons/Examples/OutputSignals.png\"><br><br>
+<img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Comparisons/Examples/OutputSignals.png\"><br><br>
 In this case <FONT FACE=Courier>Ts = 0.001</FONT> and <FONT FACE=Courier>eps = 0.001</FONT>
 <br><br>
-<img src=\"modelica://IndustrialControlSystems/help/images/Logical/Comparisons/Examples/Signals.png\"><br><br>
+<img src=\"modelica://IndustrialControlSystems/Resources/Images/Logical/Comparisons/Examples/Signals.png\"><br><br>
 It is evident that with a smaller tolerance, the boolean signal that represents the equality of the two signals becames shorter.
 </p>
 </html>", revisions="<html>

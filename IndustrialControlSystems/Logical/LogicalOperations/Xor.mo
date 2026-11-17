@@ -4,7 +4,7 @@ model Xor "Model of a n-bit XOR"
     IndustrialControlSystems.Logical.LogicalOperations.Interfaces.LogicalBlock(
      nInput=2, final nOutput=1);
 equation
-  assert(nInput>=2,"nIinput must be higher than 2");
+  assert(nInput>=2,"nIinput must be >= than 2");
 
   if Ts > 0 then
     when sample(0,Ts) then

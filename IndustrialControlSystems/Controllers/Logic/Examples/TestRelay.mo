@@ -52,14 +52,14 @@ equation
   <h4>Description</h4>
   <p>
   In this example have been tested the Relay with hysteresis and without.<br>
-  The images show the output <FONT FACE=Courier>y</FONT> of the tro blocks, with a 
+  The Images show the output <FONT FACE=Courier>y</FONT> of the tro blocks, with a 
   sine wave as input <FONT FACE=Courier>u</FONT>.
   
   <h4>RELAY: input and output</h4><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Logic/Examples/Relay.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Logic/Examples/Relay.png\"><br>
   
   <h4>RELAY WITH HYST (0.5, -0.5): input and output</h4><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/Logic/Examples/RelayHyst.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/Logic/Examples/RelayHyst.png\">
   
   </HTML>",
       revisions="<html>

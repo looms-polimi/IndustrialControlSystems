@@ -70,7 +70,8 @@ algorithm
         if CS<CSmin then
            CS:=CSmin;
         end if;
-        CSi := if ts then tr else CS - CSp - bias;
+        // bumpless transfer: also in tracking mode, CSi is reset so that CSp + CSi + bias = CS (= TR)
+        CSi := CS - CSp - bias;
     end if;
     // AutoTuning PHASE
     if iMode==1 then          // AT
@@ -180,7 +181,7 @@ end when;
   </pre>
   <br/><br/>
   <b>Scheme</b><br/><br/>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Controllers/PropInt.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Controllers/PropInt.png\">
   <br/><br/>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
   <TR bgcolor=#e0e0e0><TH >Name</TH><TH>Description</TH><TH>Conditional?</TH></TR>
@@ -244,7 +245,7 @@ end when;
   <br>
   <h4>References</h4>
   For more information please refers to the following
-  <a href=\"modelica://IndustrialControlSystems/help/refs/EffHybPITuning.pdf\">paper</a>:<br><br>
+  <a href=\"modelica://IndustrialControlSystems/Resources/References/EffHybPITuning.pdf\">paper</a>:<br><br>
   <b>Efficient hybrid simulation of autotuning PI controllers</b><br>
   Alberto Leva, Marco Bonvini<br>
   8th Modelica Conference, Dresden, Germany<br>

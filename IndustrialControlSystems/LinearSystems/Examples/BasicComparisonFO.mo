@@ -77,7 +77,7 @@ equation
   </ul><br/>
   
   <b> Comparison </b><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/LinearSystems/Examples/Comparison_FO.png\">
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/LinearSystems/Examples/Comparison_FO.png\">
   </p>
   </HTML>", revisions="<html>
 <dl><dt>Industrial Control Systems (v 1.0.0) : April-May 2012</dt>

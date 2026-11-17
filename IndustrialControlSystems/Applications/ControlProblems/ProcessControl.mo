@@ -2,12 +2,12 @@ within IndustrialControlSystems.Applications.ControlProblems;
 model ProcessControl "PID control of typical processes"
   extends Modelica.Icons.Example;
 
-  IndustrialControlSystems.Applications.TrasferFunctions.TypicalTF NoControl(delay_FOD=
+  IndustrialControlSystems.Applications.TransferFunctions.TypicalTF NoControl(delay_FOD=
        1, delay_iD=1)
     annotation (Placement(transformation(extent={{40,120},{100,220}})));
   Modelica.Blocks.Sources.Step step
     annotation (Placement(transformation(extent={{-100,190},{-80,210}})));
-  IndustrialControlSystems.Applications.TrasferFunctions.TypicalTF Controlled(delay_FOD=
+  IndustrialControlSystems.Applications.TransferFunctions.TypicalTF Controlled(delay_FOD=
        1, delay_iD=1)
     annotation (Placement(transformation(extent={{38,8},{98,108}})));
   Controllers.PID
@@ -250,7 +250,7 @@ equation
   <tr><td>b</td><td>1</td></tr>
   <tr><td>c</td><td>1</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/IntegratorControlled.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/IntegratorControlled.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -274,7 +274,7 @@ equation
   <tr><td>b</td><td>1</td></tr>
   <tr><td>c</td><td>1</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/IntegratorDelayControlled.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/IntegratorDelayControlled.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -298,7 +298,7 @@ equation
   <tr><td>b</td><td>1</td></tr>
   <tr><td>c</td><td>1</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/FirstOrderControlled.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/FirstOrderControlled.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -322,7 +322,7 @@ equation
   <tr><td>b</td><td>1</td></tr>
   <tr><td>c</td><td>1</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/FirstOrderDelayControlled.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/FirstOrderDelayControlled.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -346,7 +346,7 @@ equation
   <tr><td>b</td><td>1</tr>
   <tr><td>c</td><td>1</tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/FastSlowControlled.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/FastSlowControlled.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -370,7 +370,7 @@ equation
   <tr><td>b</td><td>1</td></tr>
   <tr><td>c</td><td>1</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/OverShootingControlled.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/OverShootingControlled.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -394,7 +394,7 @@ equation
   <tr><td>b</td><td>1</td></tr>
   <tr><td>c</td><td>1</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/UnderShootingControlled.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/UnderShootingControlled.png\"><br>
   
   <br/><br/>Process Trasfer function </br>
   <TABLE BORDER=1 CELLSPACING=0 CELLPADDING=2 >
@@ -418,7 +418,7 @@ equation
   <tr><td>b</td><td>1</td></tr>
   <tr><td>c</td><td>1</td></tr>
   </table><br><br>
-  <img src=\"modelica://IndustrialControlSystems/help/images/Applications/ControlProblems/CompexPolesControlled.png\"><br>
+  <img src=\"modelica://IndustrialControlSystems/Resources/Images/Applications/ControlProblems/CompexPolesControlled.png\"><br>
   
   </p>
   
