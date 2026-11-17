@@ -12,17 +12,21 @@ model ComplexPoles "Process with complex poles"
   parameter Real dy_start = 0 "Slope initial value"
     annotation(Dialog(group = "Initial conditions"));
 protected
-  Real u_pre1 "Input sample one step ago u[n-1]";
+  discrete Real u_s "Input at the last sampling instant (u[n-1] at the next one)";
+  discrete Real u_pre1 "Input sample one step ago u[n-1] (u[n-2] at the next instant)";
   Real y_pre1 "Output sample one step ago y[n-1]";
 initial equation
   pre(y) = y_start;
   pre(y_pre1) = dy_start;
+  pre(u_s) = u;
+  pre(u_pre1) = u;
 equation
   assert(xi>= 0 and xi <= 1,"Dumping coefficient must be between 0 and 1.");
 
   when sample(0,Ts) then
-    y = Functions.fCmplx(alfa,u,pre(u),pre(u_pre1),pre(y),pre(y_pre1),Ts,mu,xi,omegan);
-    u_pre1 = pre(u);
+    y = Functions.fCmplx(alfa,u,pre(u_s),pre(u_pre1),pre(y),pre(y_pre1),Ts,mu,xi,omegan);
+    u_s = u;
+    u_pre1 = pre(u_s);
     y_pre1 = pre(y);
   end when;
   annotation (Icon(graphics={

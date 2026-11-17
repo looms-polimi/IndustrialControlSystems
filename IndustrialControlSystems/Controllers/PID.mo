@@ -27,9 +27,13 @@ model PID
   Real satDiff "difference between saturation input and output signals";
   Real cs "Control Signal before the biasing";
   Real Itrack "integral state target in tracking mode (bumpless transfer)";
+  Real SP_s "Set point at the last sampling instant (sampled branch; = SP in continuous time)";
+  Real PV_s "Process variable at the last sampling instant (sampled branch; = PV in continuous time)";
 initial equation
 
   if Ts > 0 then
+    pre(SP_s) = SP;
+    pre(PV_s) = PV;
     // Discrete time initialisation
     pre(Iaction) = 0;
     pre(Fder)    = 0;
@@ -47,16 +51,17 @@ equation
   if Ts > 0 then
     // Discrete time controller
     when sample(0,Ts) then
+      SP_s = SP;
+      PV_s = PV;
       // proportional action
       Paction = Kp*(b*SP - PV);
       // integral action
-      //Iaction = ControlLibrary.LinearSystems.Discrete.Functions.fIntegrator(alfa,Kp/Ti*(SP-PV)+ 1/Tt*satDiff,Kp/Ti*(pre(SP)-pre(PV))+1/Tt*pre(satDiff),pre(Iaction),Ts,1);
       if not ts then
         Iaction =
           IndustrialControlSystems.LinearSystems.Discrete.Functions.fIntegrator(
           alfa,
           Kp/Ti*(SP - PV) + 1/Tt*satDiff,
-          Kp/Ti*(pre(SP) - pre(PV)) + 1/Tt*pre(satDiff),
+          Kp/Ti*(pre(SP_s) - pre(PV_s)) + 1/Tt*pre(satDiff),
           pre(Iaction),
           Ts,
           1);
@@ -77,7 +82,7 @@ equation
         IndustrialControlSystems.LinearSystems.Discrete.Functions.f1Pole(
         alfa,
         c*SP - PV,
-        c*pre(SP) - pre(PV),
+        c*pre(SP_s) - pre(PV_s),
         pre(Fder),
         Ts,
         Kp*N,
@@ -103,6 +108,8 @@ equation
     end when;
   else
     // Continuous time controller
+    SP_s = SP;
+    PV_s = PV;
 
     // proportional action
     Paction = Kp*(b*SP - PV);

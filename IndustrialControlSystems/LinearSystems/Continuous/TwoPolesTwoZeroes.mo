@@ -25,7 +25,7 @@ equation
 
   z = T1*u + h;
 
-  h + der(h) = z;
+  der(h) = u;
 
   dy + T3*der(dy) = mu*B*z;
 

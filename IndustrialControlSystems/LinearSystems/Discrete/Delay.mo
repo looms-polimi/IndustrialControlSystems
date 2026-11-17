@@ -3,11 +3,15 @@ model Delay "Unitary time delay"
   extends LinearSystems.Interfaces.DiscreteBaseBlock;
   parameter Real y_start = 0 "Output initial value"
     annotation(Dialog(group = "Initial conditions"));
+protected
+  discrete Real u_s "Input at the last sampling instant";
 initial equation
   y = y_start;
+  pre(u_s) = y_start;
 equation
   when sample(0,Ts) then
-    y = pre(u);
+    y = pre(u_s);
+    u_s = u;
   end when;
 
   annotation (Icon(graphics={Text(
@@ -30,9 +34,10 @@ equation
   <pre>
    Y(s) = e^(-s*Ts) * U(s)
   </pre>
-  The implementation uses the Modelica <code>pre(u)</code> operator inside a
-  <code>when sample(0, Ts)</code> clause.  An initial output value
-  <code>y_start</code> can be specified.
+  At each instant of <code>sample(0, Ts)</code> the block stores the input in a
+  discrete variable and outputs the value stored at the previous instant, so the
+  delay is one sampling period whether the input is continuous-time or already
+  sampled.  The output is <code>y_start</code> during the first sampling period.
   </p>
   <h4>Parameters</h4>
   <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">

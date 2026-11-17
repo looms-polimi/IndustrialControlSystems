@@ -8,7 +8,7 @@ function fDerivator "Function derivator"
   input Real k "Gain";
   output Real y "Output";
 algorithm
-  y := (u - u_pre + (alpha-1)*Ts*y_pre)/(alpha*Ts);
+  y := (k*(u - u_pre) + (alpha-1)*Ts*y_pre)/(alpha*Ts);
   annotation (Documentation(info="
   <HTML>
   <h4>Description</h4>
@@ -26,8 +26,6 @@ algorithm
   <pre>
    y[n] = ( u[n] - u[n-1] + (alpha-1)*Ts*y[n-1] ) / (alpha*Ts)
   </pre>
-  Note: the gain k is declared as an input but is not used in the algorithm;
-  the gain must be applied externally if required.
   </p>
   <h4>Inputs</h4>
   <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">
@@ -37,7 +35,7 @@ algorithm
     <tr><td>u_pre</td><td>Previous input sample u[n-1]</td></tr>
     <tr><td>y_pre</td><td>Previous output sample y[n-1]</td></tr>
     <tr><td>Ts</td><td>Sampling time [s]</td></tr>
-    <tr><td>k</td><td>Gain (declared but not used in algorithm)</td></tr>
+    <tr><td>k</td><td>Gain</td></tr>
   </table>
   <h4>Output</h4>
   <table border=\"1\" cellspacing=\"0\" cellpadding=\"2\">

@@ -10,7 +10,7 @@ algorithm
   if u >= 0 then
     y := integer(floor(max(MIN, min(MAX, u*scaleFactor)) + 0.5));
   else
-    y := integer(floor(max(MIN, min(MAX, u*scaleFactor)) - 0.5));
+    y := integer(ceil(max(MIN, min(MAX, u*scaleFactor)) - 0.5));
   end if;
   annotation (Documentation(info="
   <HTML>
@@ -39,7 +39,7 @@ algorithm
   <p>
   <b>Algorithm:</b> the real value is multiplied by <code>scaleFactor</code>, clamped to the
   interval [MIN, MAX], and then rounded to the nearest integer using <code>floor(...+0.5)</code>
-  for non-negative values and <code>floor(...-0.5)</code> for negative values (round
+  for non-negative values and <code>ceil(...-0.5)</code> for negative values (round
   half-away-from-zero).
   </p>
   </HTML>", revisions="<html>

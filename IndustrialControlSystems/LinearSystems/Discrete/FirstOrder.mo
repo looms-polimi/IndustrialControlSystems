@@ -7,11 +7,15 @@ model FirstOrder "First order process: mu/(1+tau*s)"
     annotation(Dialog(group = "Block parameters"));
   parameter Real y_start = 0 "Output initial value"
     annotation(Dialog(group = "Initial conditions"));
+protected
+  discrete Real u_s "Input at the last sampling instant (u[n-1] at the next one)";
 initial equation
+  pre(u_s) = u;
   pre(y) = y_start;
 equation
   when sample(0,Ts) then
-    y = Functions.f1Pole(alfa,u,pre(u),pre(y),Ts,mu,tau);
+    y = Functions.f1Pole(alfa,u,pre(u_s),pre(y),Ts,mu,tau);
+    u_s = u;
   end when;
   annotation (Icon(graphics={
         Text(

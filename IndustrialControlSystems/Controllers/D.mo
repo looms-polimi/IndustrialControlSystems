@@ -7,9 +7,13 @@ model D "Real derivative controller"
     annotation(Evaluate = true, Dialog(group = "Parameters"));
   Real Fin "Filtered input";
   Real satin "input of the saturation block";
+  Real SP_s "Set point at the last sampling instant (sampled branch; = SP in continuous time)";
+  Real PV_s "Process variable at the last sampling instant (sampled branch; = PV in continuous time)";
 initial equation
 
   if Ts > 0 then
+    pre(SP_s) = SP;
+    pre(PV_s) = PV;
     // Discrete time initialisation
     pre(Fin) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
   else
@@ -22,12 +26,14 @@ equation
   if Ts > 0 then
     // Discrete time controller
     when sample(0,Ts) then
+      SP_s = SP;
+      PV_s = PV;
       CS    = if AntiWindup then max(CSmin,min(CSmax,satin)) else satin;
       satin = if ts then tr else N*(SP - PV) + pre(bias) - N*Fin;
       Fin = IndustrialControlSystems.LinearSystems.Discrete.Functions.f1Pole(
         alfa,
         SP - PV,
-        pre(SP) - pre(PV),
+        pre(SP_s) - pre(PV_s),
         pre(Fin),
         Ts,
         1,
@@ -35,6 +41,8 @@ equation
     end when;
   else
     // Continuous time controller
+    SP_s = SP;
+    PV_s = PV;
     CS    = if AntiWindup then max(CSmin,min(CSmax,satin)) else satin;
     satin = if ts then tr else N*(SP - PV) + bias - N*Fin;
     Fin   = (SP - PV) - Td/N*der(Fin);

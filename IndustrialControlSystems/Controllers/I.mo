@@ -12,8 +12,12 @@ model I "Integral controller"
         origin={0,-92})));
 protected
   Modelica.Blocks.Interfaces.RealInput T_in "Internal protected integral time real input";
+  Real SP_s "Set point at the last sampling instant (sampled branch; = SP in continuous time)";
+  Real PV_s "Process variable at the last sampling instant (sampled branch; = PV in continuous time)";
 initial equation
   if Ts > 0 then
+    pre(SP_s) = SP;
+    pre(PV_s) = PV;
     // Discrete time initialisation
     pre(Iout) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start - bias;
   else
@@ -29,6 +33,8 @@ equation
   if Ts > 0 then
     // Discrete time controller
     when sample(0,Ts) then
+      SP_s = SP;
+      PV_s = PV;
       CS    = if AntiWindup then max(CSmin,min(CSmax,(if ts then tr else satin))) else satin;
       satin = Iout + pre(bias);
       // in tracking mode the state follows TR - bias, so that CS = TR and the release is bumpless
@@ -36,13 +42,15 @@ equation
         IndustrialControlSystems.LinearSystems.Discrete.Functions.fIntegrator(
         alfa,
         SP - PV,
-        pre(SP) - pre(PV),
+        pre(SP_s) - pre(PV_s),
         pre(CS) - pre(bias),
         Ts,
         1/T_act);
     end when;
   else
     // Continuous time controller
+    SP_s = SP;
+    PV_s = PV;
     CS    = if AntiWindup then max(CSmin,min(CSmax,(if ts then tr else satin))) else satin;
     satin = Iout + bias;
     if not ts then

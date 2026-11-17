@@ -14,6 +14,36 @@ held in Munich 3-5 September 2012. The library won the 2nd prize at the Modelica
 <p><b>Unreleased changes after 2.0.1</b>. Bug fixes that change simulation results for the
 configurations listed; regenerate reference results of models that use them.</p>
 <ul>
+<li><code>LinearSystems.Continuous.TwoPolesTwoZeroes</code>: the integrator state integrated
+<code>T1*u</code> instead of <code>u</code>, so the block realised mu(1+sT1)(1+sT2)/(s(1+sT3)) only for
+<code>T1 = 1</code>. <b>Results of all models using it with <code>T1 &lt;&gt; 1</code> change.</b></li>
+<li>Sampled blocks with a continuous-time input: <code>LinearSystems.Discrete.Delay</code>,
+<code>FirstOrder</code>, <code>Integrator</code>, <code>LeadLag</code>, <code>ComplexPoles</code>,
+<code>TwoPolesTwoZeroes</code>, and the sampled versions (<code>Ts &gt; 0</code>) of
+<code>Controllers.I</code>, <code>D</code>, <code>PD</code> and <code>PID</code> used <code>pre(u)</code>
+(<code>pre(SP)</code>, <code>pre(PV)</code>) inside <code>when sample()</code> as the input of the previous
+sampling instant. For a continuous-time input <code>pre(u)</code> is the current value, so
+<code>Delay</code> did not delay and the difference equations used u[n] in place of u[n-1].
+The blocks now store the input in a discrete variable at each sampling instant and use its previous value.
+Only an input that changes at events other than the block's own sampling instants was handled correctly
+before. Behind a <code>Modelica.Blocks.Discrete.ZeroOrderHold</code> with the same sampling instants the
+blocks were affected too: that block outputs <code>pre(ySample)</code>, so at the common instant the
+block reads the previous held value; <code>Delay</code> appeared to work there only because of this, and now
+gives one more sample of delay in that arrangement. The first-sample history now starts from the initial input instead of 0
+(<code>ComplexPoles</code>, <code>TwoPolesTwoZeroes</code>) and <code>Delay</code> outputs
+<code>y_start</code> during the first sampling period. With Backward Euler (the default
+<code>method</code>) the first-order blocks, <code>Integrator</code> and the controllers do not use u[n-1]
+and are not affected; with Forward Euler or Tustin, and for <code>Delay</code>, <code>ComplexPoles</code>
+and <code>TwoPolesTwoZeroes</code>, results change.</li>
+<li><code>LinearSystems.Discrete.Functions.fDerivator</code> ignored its gain input <code>k</code>.
+The library calls it with <code>k = 1</code> only, so no library result changes.</li>
+<li><code>MathOperations.RealType.Functions.toFixedPoint</code> rounded negative values one count too low
+(<code>floor(x - 0.5)</code>: -123.4 gave -124, and a value saturated at <code>MIN</code> gave
+<code>MIN - 1</code>). It now rounds to nearest, halves away from zero, for both signs.
+<b>Results of the fixed-point math blocks with negative signals change.</b></li>
+<li><code>LinearSystems.Discrete.MultiStepsDelay</code>: delayed by N-1 samples instead of the documented
+N, and its default <code>N = 1</code> violated its own assertion <code>N &gt; 1</code>. It now delays by N
+samples, and N = 1 is allowed (same as <code>Delay</code>).</li>
 <li><code>Controllers.PD</code>: the controller now implements proportional + derivative action,
 <code>CS = Kp*[(SP-PV) + sTd/(1+sTd/N)*(SP-PV)] + Bias</code>, as its name and description state.
 Before, it implemented only the scaled filtered derivative <code>Kp*sTd/(1+sTd/N)*(SP-PV)</code>, with
