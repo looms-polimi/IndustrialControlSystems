@@ -16,6 +16,13 @@
       "id": "7f65c0a103934a5192fc8fd165ea5658"
     },
     {
+      "relpath": "Tests",
+      "contentType": "MODELICA",
+      "name": "Tests",
+      "defaultDisabled": false,
+      "id": "618570bed5c84c7e9f74b1fa7091a8a6"
+    },
+    {
       "relpath": "Resources/Views",
       "contentType": "VIEWS",
       "defaultDisabled": false,
