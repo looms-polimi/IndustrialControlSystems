@@ -12,7 +12,8 @@ block CheckRealWhile
   input Real actual "Signal under test (bind by modifier)";
   input Real expected "Expected value (bind by modifier)";
   input Boolean active = true "Check instants count only while true (bind by modifier)";
-  Modelica.Blocks.Interfaces.BooleanOutput passed "true while every check so far passed"
+  Modelica.Blocks.Interfaces.BooleanOutput passed
+    "true when it has been checked at least once and every check passed"
     annotation (Placement(transformation(extent={{100,-10},{120,10}})));
   discrete Real maxErr(start=0, fixed=true) "Largest |error| at an active check instant";
   discrete Real maxRatio(start=0, fixed=true)
@@ -25,7 +26,7 @@ equation
       maxRatio = if active then max(pre(maxRatio), abs(actual - expected)/(absTol + relTol*abs(expected))) else pre(maxRatio);
       nChecked = if active then pre(nChecked) + 1 else pre(nChecked);
     end when;
-    passed = maxRatio <= 1;
+    passed = maxRatio <= 1 and nChecked > 0;
   else
     maxErr = 0;
     maxRatio = 0;
@@ -42,7 +43,10 @@ equation
 <p>Like <a href=\"modelica://Tests.Utilities.CheckReal\">CheckReal</a>, with the signals bound by
 modifiers instead of connections, a run-time window <code>active</code>, and a structural
 <code>enable</code>. A test model enables the checks that apply to its configuration; a disabled
-check passes. An enabled check that was never active gives an assertion warning at the end, so a
-window that never opens does not pass silently.</p>
+check passes. An enabled check that was never active fails (<code>passed</code> requires at least one active
+check instant) and gives an assertion warning at the end, so a window that never opens cannot pass
+silently.</p>
+<p>The verdict is <code>passed</code>. The assertion warning at the end of the run uses
+<code>terminal()</code>, which OCT (Modelon Impact) does not support: there only <code>passed</code> reports a failure.</p>
 </html>"));
 end CheckRealWhile;

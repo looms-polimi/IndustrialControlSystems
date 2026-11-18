@@ -1,0 +1,11 @@
+And
+Or
+Xor
+Not
+FlipFlopSR
+Timer_On
+Timer_On_Redge
+Timer_OffDelay
+Timer_OffDelay_Redge
+Timer_OffDelay_Fedge
+Counter

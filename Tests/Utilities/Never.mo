@@ -22,5 +22,7 @@ equation
     Documentation(info="<html>
 <p>Shows that a behaviour never occurs in the run (for example, that the output stays within its
 limits when anti-windup is on). The verdict is the final value of <code>passed</code>.</p>
+<p>The verdict is <code>passed</code>. The assertion warning at the end of the run uses
+<code>terminal()</code>, which OCT (Modelon Impact) does not support: there only <code>passed</code> reports a failure.</p>
 </html>"));
 end Never;
