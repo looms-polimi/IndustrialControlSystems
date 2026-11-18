@@ -47,6 +47,20 @@ model TestI_bias "Test of the Integral controller with bias"
         extent={{-10,-10},{10,10}},
         rotation=0,
         origin={0,80})));
+  Tests.Utilities.CheckRealWhile chkBias(actual=ProcessBias.y, expected=1, active=time > 40, absTol=0.01, tStart=0.5, dt=1)
+    "with the disturbance fed to the bias, PV stays at the set point (within 0.01) from t = 40 s, also after the disturbance at 50 s"
+    annotation (Placement(transformation(extent={{70,80},{90,100}})));
+  Tests.Utilities.CheckRealWhile chkCtrl(actual=ProcessCtrl.y, expected=1, active=time > 80, absTol=0.01, tStart=0.5, dt=1)
+    "without bias the integral action brings PV back to the set point by t = 80 s"
+    annotation (Placement(transformation(extent={{100,80},{120,100}})));
+  Tests.Utilities.CheckRealWhile chkNoCtrl(actual=processNoCtrl.y, expected=0, active=time > 95, absTol=0.01, tStart=0.5, dt=1)
+    "without control the disturbance cancels the input: PV settles at 0"
+    annotation (Placement(transformation(extent={{70,50},{90,70}})));
+  Tests.Utilities.Witness disturbed(u=time > 50 and ProcessCtrl.y < 0.9)
+    "without bias the disturbance at t = 50 s moves PV by more than 0.1"
+    annotation (Placement(transformation(extent={{100,50},{120,70}})));
+  Boolean passed = chkBias.passed and chkCtrl.passed and chkNoCtrl.passed and disturbed.passed
+    "true if every check passed";
 equation
   connect(SPstep.y, R.SP)
                          annotation (Line(
@@ -108,7 +122,7 @@ equation
       points={{-79,-10},{6.66134e-16,-10},{6.66134e-16,72}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(graphics),
+  annotation (Diagram(coordinateSystem(extent={{-100,-100},{130,110}})),
     experiment(StopTime=100),
     experimentSetupOutput,
     Documentation(revisions="<html>
@@ -153,5 +167,8 @@ equation
   If the model parameter <FONT FACE=Courier>Ts</FONT> is <FONT FACE=Courier>>=0</FONT> the continuous time controllers are 
   replaced by their discrete time versions.<br>
   The effect of various discretisation method can be studied.
-  </HTML>"));
+  <h4>Verdict</h4>
+<p><code>passed</code> is true when every check passed.</p>
+<ul><li><code>chkBias</code>: with the disturbance fed to the bias, PV stays at the set point (within 0.01) from t = 40 s, also after the disturbance at 50 s</li><li><code>chkCtrl</code>: without bias the integral action brings PV back to the set point by t = 80 s</li><li><code>chkNoCtrl</code>: without control the disturbance cancels the input: PV settles at 0</li><li><code>disturbed</code>: without bias the disturbance at t = 50 s moves PV by more than 0.1</li></ul>
+</HTML>"));
 end TestI_bias;

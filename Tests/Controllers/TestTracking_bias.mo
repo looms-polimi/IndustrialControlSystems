@@ -23,6 +23,26 @@ model TestTracking_bias "Regression test: in tracking mode CS = TR, the bias is 
     annotation (Placement(transformation(extent={{-50,-340},{-10,-300}})));
   IndustrialControlSystems.Controllers.PID PIDd(useTS=true, useBIAS=true, Ts=0.1)
     annotation (Placement(transformation(extent={{-50,-420},{-10,-380}})));
+  Tests.Utilities.CheckRealWhile chkPIc(actual=PIc.CS, expected=0.3, active=true, absTol=1e-6, tStart=0.01, dt=0.02)
+    "PIc: CS = TR = 0.3 while tracking and after the release"
+    annotation (Placement(transformation(extent={{20,180},{40,200}})));
+  Tests.Utilities.CheckRealWhile chkPId(actual=PId.CS, expected=0.3, active=true, absTol=1e-6, tStart=0.01, dt=0.02)
+    "PId: CS = 0.3"
+    annotation (Placement(transformation(extent={{50,180},{70,200}})));
+  Tests.Utilities.CheckRealWhile chkIc(actual=Ic.CS, expected=0.3*(1 - exp(-time/0.1)), active=true, absTol=1e-3, tStart=0.01, dt=0.02)
+    "Ic: CS follows TR from CS_start = 0 with eps = 0.1, then stays at 0.3"
+    annotation (Placement(transformation(extent={{20,150},{40,170}})));
+  Tests.Utilities.CheckRealWhile chkId(actual=Id.CS, expected=0.3, active=true, absTol=1e-6, tStart=0.01, dt=0.02)
+    "Id: CS = 0.3"
+    annotation (Placement(transformation(extent={{50,150},{70,170}})));
+  Tests.Utilities.CheckRealWhile chkPIDc(actual=PIDc.CS, expected=0.3, active=true, absTol=1e-6, tStart=0.01, dt=0.02)
+    "PIDc: CS = 0.3"
+    annotation (Placement(transformation(extent={{20,120},{40,140}})));
+  Tests.Utilities.CheckRealWhile chkPIDd(actual=PIDd.CS, expected=0.3, active=true, absTol=1e-6, tStart=0.01, dt=0.02)
+    "PIDd: CS = 0.3"
+    annotation (Placement(transformation(extent={{50,120},{70,140}})));
+  Boolean passed = chkPIc.passed and chkPId.passed and chkIc.passed and chkId.passed and chkPIDc.passed and chkPIDd.passed
+    "true if every check passed";
 equation
   connect(SP.y, PIc.SP)
     annotation (Line(points={{-139,180},{-90,180},{-90,12},{-46,12}}, color={0,0,127}));
@@ -85,7 +105,7 @@ equation
   connect(BIAS.y, PIDd.BIAS)
     annotation (Line(points={{-139,90},{-120,90},{-120,-372},{-38,-372},{-38,-384}}, color={0,0,127}));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-170,-440},{10,200}})),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-170,-440},{80,210}})),
     experiment(StopTime=6, Tolerance=1e-6),
     Documentation(info="<html>
 <p>Regression test for tracking mode with a bias: while TS = true the output must equal TR; the bias is not added. Open loop: SP = PV = 0, TR = 0.3, BIAS = 0.2, tracking until t = 3 s. PI, I and PID, continuous and sampled (Ts = 0.1), default gains.</p>
@@ -96,6 +116,9 @@ equation
 <tr><td>PIc, PId, Id, PIDc, PIDd</td><td>0.3 from t = 0</td><td>0.3 (bumpless)</td></tr>
 <tr><td>Ic</td><td>starts at CS_start = 0, follows TR with time constant eps = 0.1, 0.3 after about 1 s</td><td>0.3 (bumpless)</td></tr>
 </table>
+<h4>Verdict</h4>
+<p><code>passed</code> is true when every check passed.</p>
+<ul><li><code>chkPIc</code>: PIc: CS = TR = 0.3 while tracking and after the release</li><li><code>chkPId</code>: PId: CS = 0.3</li><li><code>chkIc</code>: Ic: CS follows TR from CS_start = 0 with eps = 0.1, then stays at 0.3</li><li><code>chkId</code>: Id: CS = 0.3</li><li><code>chkPIDc</code>: PIDc: CS = 0.3</li><li><code>chkPIDd</code>: PIDd: CS = 0.3</li></ul>
 </html>", revisions="<html>
 <ul>
 <li>November 2026: added as a regression test for the 2.0.1 controller fixes (Hubertus Tummescheit).</li>

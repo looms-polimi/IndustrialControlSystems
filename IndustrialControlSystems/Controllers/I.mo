@@ -14,12 +14,14 @@ protected
   Modelica.Blocks.Interfaces.RealInput T_in "Internal protected integral time real input";
   Real SP_s "Set point at the last sampling instant (sampled branch; = SP in continuous time)";
   Real PV_s "Process variable at the last sampling instant (sampled branch; = PV in continuous time)";
+  Real bias_s "Bias at the last sampling instant (sampled branch; = bias in continuous time)";
 initial equation
   // The output starts at CS_start (saturated if AntiWindup): Iout + bias = CS_start.
   if Ts > 0 then
     pre(SP_s) = SP;
     pre(PV_s) = PV;
-    // Discrete time initialisation: the integrator recursion starts from pre(CS) - pre(bias),
+    pre(bias_s) = bias;
+    // Discrete time initialisation: the integrator recursion starts from pre(CS) - pre(bias_s),
     // so it is pre(CS) that is initialised. As in the other sampled controllers the state is
     // set one sample before t=0: CS(0) = CS_start plus one integration step.
     pre(CS) = if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start;
@@ -38,15 +40,16 @@ equation
     when sample(0,Ts) then
       SP_s = SP;
       PV_s = PV;
+      bias_s = bias;
       CS    = if AntiWindup then max(CSmin,min(CSmax,(if ts then tr else satin))) else satin;
-      satin = Iout + pre(bias);
+      satin = Iout + bias_s;
       // in tracking mode the state follows TR - bias, so that CS = TR and the release is bumpless
-      Iout = if ts then tr - pre(bias) else
+      Iout = if ts then tr - bias_s else
         IndustrialControlSystems.LinearSystems.Discrete.Functions.fIntegrator(
         alfa,
         SP - PV,
         pre(SP_s) - pre(PV_s),
-        pre(CS) - pre(bias),
+        pre(CS) - pre(bias_s),
         Ts,
         1/T_act);
     end when;
@@ -54,6 +57,7 @@ equation
     // Continuous time controller
     SP_s = SP;
     PV_s = PV;
+    bias_s = bias;
     CS    = if AntiWindup then max(CSmin,min(CSmax,(if ts then tr else satin))) else satin;
     satin = Iout + bias;
     if not ts then

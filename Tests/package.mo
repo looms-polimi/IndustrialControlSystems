@@ -12,6 +12,9 @@ The packages mirror the library's structure. They hold the former
 <code>Examples</code> level) and self-checking tests for the classes those examples
 did not exercise. Together with the library's <code>Applications</code> they cover every
 non-partial model, block and function of the library.</p>
+<p><a href=\"modelica://Tests.Controllers.MCDC\">Tests.Controllers.MCDC</a> holds the MC/DC (modified
+condition/decision coverage) tests of every controller class: a <code>Base</code> model per class with every option off,
+and one self-checking variant per option change.</p>
 <p>Each self-checking test drives the class under test with known inputs and compares its output
 with an independently stated expected value, using the blocks in
 <a href=\"modelica://Tests.Utilities\">Tests.Utilities</a>. Each test model has a

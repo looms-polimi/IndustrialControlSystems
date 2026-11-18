@@ -64,10 +64,10 @@ algorithm
         CSp := K*e;
         CSi := pre(CSi) + K*Ts/TI*e;
         CS  := if ts then tr else CSp + CSi + bias;
-        if CS>CSmax then
+        if AntiWindup and CS>CSmax then
            CS:=CSmax;
         end if;
-        if CS<CSmin then
+        if AntiWindup and CS<CSmin then
            CS:=CSmin;
         end if;
         // bumpless transfer: also in tracking mode, CSi is reset so that CSp + CSi + bias = CS (= TR)

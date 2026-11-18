@@ -14,6 +14,7 @@ model PID_2dof "Digital 2-dof PID controller"
   parameter Real c = 0 "SP weight in D action"
     annotation(Dialog(group = "Parameters"));
 protected
+  discrete Real bs(start=0, fixed=true) "Bias sampled at the last sampling instant";
   discrete Real sp "Sampled set point";
   discrete Real dsp "Set point increment";
   discrete Real pv "Sampled process variable";
@@ -29,6 +30,7 @@ algorithm
 
     // read the inputs
     sp  := SP;
+    bs  := bias;
     pv  := PV;
     dsp := sp - pre(sp);
     dpv := pv - pre(pv);
@@ -39,7 +41,7 @@ algorithm
       di  := Kp*Ts/Ti*(sp-pv);
       d   := (Td*pre(d)+Kp*N*Td*(c*dsp-dpv))/(if Td>0 then Td+N*Ts else 1);
       dd  := d - pre(d);
-      dcs := dp + di + dd + bias - pre(bias);
+      dcs := dp + di + dd + bs - pre(bs);
       cs  := pre(cs) + dcs;
     elseif man then
       // manual mode

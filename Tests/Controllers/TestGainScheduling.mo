@@ -21,6 +21,26 @@ model TestGainScheduling "Regression test: gain-scheduled P, PI and I, continuou
     annotation (Placement(transformation(extent={{-50,-340},{-10,-300}})));
   IndustrialControlSystems.Controllers.I Id(useGS=true, T=1, Ts=0.1)
     annotation (Placement(transformation(extent={{-50,-420},{-10,-380}})));
+  Tests.Utilities.CheckRealWhile chkPc(actual=Pc.CS, expected=2, active=true, absTol=1e-6, tStart=0.01, dt=0.02)
+    "Pc: CS = scheduled Kp * e = 2"
+    annotation (Placement(transformation(extent={{20,150},{40,170}})));
+  Tests.Utilities.CheckRealWhile chkPd(actual=Pd.CS, expected=2, active=true, absTol=1e-6, tStart=0.01, dt=0.02)
+    "Pd: CS = 2"
+    annotation (Placement(transformation(extent={{50,150},{70,170}})));
+  Tests.Utilities.CheckRealWhile chkPIc(actual=PIc.CS, expected=0.5*time, active=true, absTol=1e-4, tStart=0.01, dt=0.02)
+    "PIc: CS = 2*(1 + t/4) - 2 = 0.5 t (starts at CS_start = 0)"
+    annotation (Placement(transformation(extent={{20,120},{40,140}})));
+  Tests.Utilities.CheckRealWhile chkPId(actual=PId.CS, expected=if time < 1 then 0 else 0.97561, active=time < 0.05 or time > 2.0, absTol=1e-4, tStart=0.01, dt=0.02)
+    "PId: CS = 0 before the first sample, 0.97561 after the sample at t = 2 s (Backward Euler)"
+    annotation (Placement(transformation(extent={{50,120},{70,140}})));
+  Tests.Utilities.CheckRealWhile chkIc(actual=Ic.CS, expected=0.25*time, active=true, absTol=1e-4, tStart=0.01, dt=0.02)
+    "Ic: CS = t/4"
+    annotation (Placement(transformation(extent={{20,90},{40,110}})));
+  Tests.Utilities.CheckRealWhile chkId(actual=Id.CS, expected=0.025*(1 + floor(time/0.1)), active=true, absTol=1e-4, tStart=0.05, dt=0.1)
+    "Id: CS = 0.025 per sample, from 0.025 at t = 0"
+    annotation (Placement(transformation(extent={{50,90},{70,110}})));
+  Boolean passed = chkPc.passed and chkPd.passed and chkPIc.passed and chkPId.passed and chkIc.passed and chkId.passed
+    "true if every check passed";
 equation
   connect(SP.y, Pc.SP)
     annotation (Line(points={{-139,150},{-100,150},{-100,12},{-46,12}}, color={0,0,127}));
@@ -63,8 +83,8 @@ equation
   connect(Ti_sched.y, Id.T_GS)
     annotation (Line(points={{-139,60},{-130,60},{-130,-428},{-30,-428},{-30,-418.4}}, color={0,0,127}));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-170,-440},{10,170}})),
-    experiment(StopTime=2, Tolerance=1e-6),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-170,-440},{80,180}})),
+    experiment(StopTime=2.05, Tolerance=1e-6),
     Documentation(info="<html>
 <p>Regression test for gain scheduling (<code>useGS = true</code>) in <a href=\"modelica://IndustrialControlSystems.Controllers.P\">P</a>, <a href=\"modelica://IndustrialControlSystems.Controllers.PI\">PI</a> and <a href=\"modelica://IndustrialControlSystems.Controllers.I\">I</a>, continuous and sampled (Ts = 0.1). The parameters are Kp = 5, Ti = T = 1; the scheduled values are Kp = 2, Ti = T = 4. Open loop, SP = 1, PV = 0, CS_start = 0.</p>
 <p>Before the fix, the sampled branches ignored the scheduled values, and the continuous PI did not start at CS_start (it started at -3).</p>
@@ -77,6 +97,9 @@ equation
 <tr><td>Ic</td><td>0</td><td>0.5</td></tr>
 <tr><td>Id</td><td>0.025</td><td>0.525 (backward Euler)</td></tr>
 </table>
+<h4>Verdict</h4>
+<p><code>passed</code> is true when every check passed. The run ends at 2.05 s, just after the sample at the end time of the table, so the sampled value can be checked.</p>
+<ul><li><code>chkPc</code>: Pc: CS = scheduled Kp * e = 2</li><li><code>chkPd</code>: Pd: CS = 2</li><li><code>chkPIc</code>: PIc: CS = 2*(1 + t/4) - 2 = 0.5 t (starts at CS_start = 0)</li><li><code>chkPId</code>: PId: CS = 0 before the first sample, 0.97561 after the sample at t = 2 s (Backward Euler)</li><li><code>chkIc</code>: Ic: CS = t/4</li><li><code>chkId</code>: Id: CS = 0.025 per sample, from 0.025 at t = 0</li></ul>
 </html>", revisions="<html>
 <ul>
 <li>November 2026: added as a regression test for the 2.0.1 controller fixes (Hubertus Tummescheit).</li>

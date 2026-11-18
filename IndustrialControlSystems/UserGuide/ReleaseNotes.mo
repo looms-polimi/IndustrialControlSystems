@@ -118,17 +118,54 @@ The library calls it with <code>k = 1</code> only, so no library result changes.
 (<code>floor(x - 0.5)</code>: -123.4 gave -124, and a value saturated at <code>MIN</code> gave
 <code>MIN - 1</code>). It now rounds to nearest, halves away from zero, for both signs.
 <b>Results of the fixed-point math blocks with negative signals change.</b></li>
+<li><code>Controllers.I</code>, sampled (<code>Ts &gt; 0</code>): the integrator state was rebuilt as
+<code>pre(CS) - pre(bias)</code>; for a continuous-time bias <code>pre(bias)</code> is the current bias, so a change of
+the bias cancelled itself and never reached CS. The bias is now sampled into a discrete variable.
+<b>Results of sampled <code>I</code> controllers with a varying bias change.</b></li>
+<li><code>Controllers.AutoTuning.ATPIrelayNCdigital</code>: in PI mode the output was always limited to
+[<code>CSmin</code>, <code>CSmax</code>], whatever <code>AntiWindup</code>. It now honours the flag, like every other
+controller: limited (with the anti-windup of the reset state) only if <code>AntiWindup = true</code>.
+<b>Results of models using it with <code>AntiWindup = false</code> whose output leaves the limits change.</b></li>
+<li><code>Controllers.AutoTuning.ATPIrelayNCmixedMode</code>: in tracking mode the output was TR even with
+<code>AntiWindup = true</code>; it is now TR limited to [<code>CSmin</code>, <code>CSmax</code>], as documented for all
+controllers.</li>
+<li><code>Controllers.Blocks.ComplexPoles</code>: in tracking mode the equations did not define the derivative of
+the second state, so a simulation stopped with a singular Jacobian when <code>TS</code> became true. The states now
+follow <code>TR</code> through a critically damped second-order lag with time constant <code>eps</code>.</li>
+<li><code>Controllers.Digital.PID_2dof</code>, <code>PID_2dof_TDO</code>,
+<code>PID_2dof_TDO_FullyEventBased</code>: the bias entered as the increment <code>bias - pre(bias)</code>,
+which is 0 at a sampling instant for a continuous-time bias signal, so the bias was never applied. The
+bias is now sampled into a discrete variable and its increment since the last sample is added.
+<b>Results of models using the bias input of these controllers change.</b></li>
 <li><code>LinearSystems.Discrete.MultiStepsDelay</code>: delayed by N-1 samples instead of the documented
 N, and its default <code>N = 1</code> violated its own assertion <code>N &gt; 1</code>. It now delays by N
 samples, and N = 1 is allowed (same as <code>Delay</code>).</li>
 </ul>
 
-<h5>Examples moved to the <code>Tests</code> library (fork branch <code>coverage-improvement</code>)</h5>
-<p>Every <code>IndustrialControlSystems.*.Examples</code> package (not <code>Applications</code>) moved to the separate
-top-level library <code>Tests</code>, without the <code>Examples</code> level: for example
-<code>Controllers.Examples.TestPI_bias</code> is now <code>Tests.Controllers.TestPI_bias</code>. <code>Tests</code> also holds
-self-checking tests (a Boolean <code>passed</code>) for the classes the examples did not exercise and for every
-library function. Models that referred to an example must use its new name.</p>
+<h5>Tests: a separate library with examples, self-checking tests and MC/DC tests (fork branch <code>coverage-improvement</code>)</h5>
+<p>The tests and examples are no longer part of <code>IndustrialControlSystems</code>. They are in the separate top-level library
+<code>Tests</code> (same repository, folder <code>Tests</code>, <code>uses(IndustrialControlSystems(version=\"2.0.1\"))</code>), which
+has to be loaded in addition to the library to run them. The library keeps the <code>Applications</code> examples.</p>
+<ul>
+<li><b>Examples moved.</b> Every <code>IndustrialControlSystems.*.Examples</code> package moved to <code>Tests</code>, without the
+<code>Examples</code> level: for example <code>Controllers.Examples.TestPI_bias</code> is now <code>Tests.Controllers.TestPI_bias</code>,
+and the regression tests of 2.0.1 listed below are in <code>Tests.Controllers</code>. Models that referred to an example must use its
+new name.</li>
+<li><b>Self-checking tests.</b> Each has a Boolean <code>passed</code>, true when every check passed; a failed check also issues an
+assertion warning at the end of the run. They cover the classes the examples did not exercise
+(<code>Tests.LinearSystems</code>, <code>Tests.Logical</code>, <code>Tests.MathOperations</code>) and every library function
+(<code>Tests.FunctionChecks</code>). The regression tests <code>TestI_biasNoDrift</code>, <code>TestGainScheduling</code>,
+<code>TestTracking_bias</code>, <code>TestInit_CSstart</code>, <code>TestI_bias</code> and <code>TestI_tracking</code> now check
+their documented expected values as well (<code>TestGainScheduling</code> and <code>TestInit_CSstart</code> run 0.05 s longer, so that the
+sampled value at the end of the table can be checked). The check blocks are in <code>Tests.Utilities</code>.</li>
+<li><b>MC/DC tests.</b> <code>Tests.Controllers.MCDC</code> holds 187 tests for modified condition/decision coverage of every controller
+class (<code>P</code>, <code>PI</code>, <code>I</code>, <code>D</code>, <code>PD</code>, <code>PID</code>, the digital PIDs, the
+autotuners, <code>Blocks</code> and the relays): per class a <code>Base</code> model with every option off and one variant per option
+change (<code>extends Base(useTS=true)</code>, continuous and sampled), each self-checking against an independent reference or a
+flag-dependent invariant. They found the defects listed above in the sampled <code>I</code> with a bias, the digital PIDs' bias,
+<code>ATPIrelayNCdigital</code>, <code>ATPIrelayNCmixedMode</code> and <code>Blocks.ComplexPoles</code>. The package is generated by
+<code>Tests/Scripts/generate_mcdc.py</code>.</li>
+</ul>
 
 <h5>New features (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/3\">PR #3</a>)</h5>
 <ul>

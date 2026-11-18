@@ -13,6 +13,17 @@ model TestI_biasNoDrift "Regression test: integral controller with bias must not
     annotation (Placement(transformation(extent={{-50,-100},{-10,-60}})));
   IndustrialControlSystems.Controllers.I Id(useBIAS=true, T=1, CS_start=0, Ts=0.1)
     annotation (Placement(transformation(extent={{-50,-180},{-10,-140}})));
+  Tests.Utilities.CheckRealWhile chkIc(actual=Ic.CS, expected=0, active=true, absTol=1e-6, tStart=0.05, dt=0.1)
+    "Ic: CS = 0 throughout"
+    annotation (Placement(transformation(extent={{20,120},{40,140}})));
+  Tests.Utilities.CheckRealWhile chkIcAW(actual=Ic_AW.CS, expected=0, active=true, absTol=1e-6, tStart=0.05, dt=0.1)
+    "Ic_AW: CS = 0 throughout"
+    annotation (Placement(transformation(extent={{50,120},{70,140}})));
+  Tests.Utilities.CheckRealWhile chkId(actual=Id.CS, expected=0, active=true, absTol=1e-6, tStart=0.05, dt=0.1)
+    "Id: CS = 0 throughout"
+    annotation (Placement(transformation(extent={{20,90},{40,110}})));
+  Boolean passed = chkIc.passed and chkIcAW.passed and chkId.passed
+    "true if every check passed";
 equation
   connect(SP.y, Ic.SP)
     annotation (Line(points={{-139,120},{-110,120},{-110,12},{-46,12}}, color={0,0,127}));
@@ -33,7 +44,7 @@ equation
   connect(BIAS.y, Id.BIAS)
     annotation (Line(points={{-139,60},{-130,60},{-130,-132},{-38,-132},{-38,-144}}, color={0,0,127}));
   annotation (
-    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-170,-200},{10,140}})),
+    Diagram(coordinateSystem(preserveAspectRatio=false, extent={{-170,-200},{80,150}})),
     experiment(StopTime=10, Tolerance=1e-6),
     Documentation(info="<html>
 <p>Regression test for the anti-windup term of the continuous <a href=\"modelica://IndustrialControlSystems.Controllers.I\">I</a> controller with a bias input. Open loop: SP = PV = 0, BIAS = 1, so the error is zero and the output must stay constant.</p>
@@ -45,6 +56,9 @@ equation
 <tr><td>Ic_AW</td><td>continuous, AntiWindup, CSmin = -2, CSmax = 2</td><td>0, constant (until the CS_start fix, #15, it was 1: with AntiWindup the state started at CS_start, so CS = CS_start + bias)</td></tr>
 <tr><td>Id</td><td>sampled, Ts = 0.1</td><td>0, constant (the sampled branch was already correct)</td></tr>
 </table>
+<h4>Verdict</h4>
+<p><code>passed</code> is true when every check passed.</p>
+<ul><li><code>chkIc</code>: Ic: CS = 0 throughout</li><li><code>chkIcAW</code>: Ic_AW: CS = 0 throughout</li><li><code>chkId</code>: Id: CS = 0 throughout</li></ul>
 </html>", revisions="<html>
 <ul>
 <li>November 2026: added as a regression test for the 2.0.1 controller fixes (Hubertus Tummescheit).</li>

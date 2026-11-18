@@ -39,6 +39,20 @@ model TestI_tracking "Test of the Integral controller -- Tracking mode"
             annotation (Placement(transformation(extent={{0,38},{24,62}})));
   IndustrialControlSystems.LinearSystems.Continuous.TransferFunction processTrack(num={12,1}, den={20,12,
         1}) annotation (Placement(transformation(extent={{0,-42},{24,-18}})));
+  Tests.Utilities.CheckRealWhile chkTrack(actual=R_track.CS, expected=TrackRef.y, active=time > 40.1 and time < 85, absTol=1e-3, tStart=0.05, dt=0.1)
+    "while TS is true (40 s to 85 s), CS = TR"
+    annotation (Placement(transformation(extent={{50,80},{70,100}})));
+  Tests.Utilities.CheckRealWhile chkRelease(actual=R_track.CS, expected=0.6 + 0.2*(time - 85), active=time > 85 and time < 85.2, absTol=0.01, tStart=0.01, dt=0.02)
+    "the release at 85 s is bumpless: CS continues from TR = 0.6 with the integral action e/T = 0.2/s"
+    annotation (Placement(transformation(extent={{80,80},{100,100}})));
+  Tests.Utilities.CheckRealWhile chkPV(actual=process.y, expected=1, active=time > 150, absTol=0.01, tStart=0.5, dt=1)
+    "the loop without tracking reaches the set point"
+    annotation (Placement(transformation(extent={{50,50},{70,70}})));
+  Tests.Utilities.CheckRealWhile chkPVtrack(actual=processTrack.y, expected=1, active=time > 150, absTol=0.01, tStart=0.5, dt=1)
+    "the loop with tracking reaches the set point after the release"
+    annotation (Placement(transformation(extent={{80,50},{100,70}})));
+  Boolean passed = chkTrack.passed and chkRelease.passed and chkPV.passed and chkPVtrack.passed
+    "true if every check passed";
 equation
 
   connect(step.y,R. SP)  annotation (Line(
@@ -76,7 +90,7 @@ equation
       points={{22.8,-30},{34,-30},{34,-58},{-60,-58},{-60,-31},{-48,-31}},
       color={0,0,127},
       smooth=Smooth.None));
-  annotation (Diagram(graphics),
+  annotation (Diagram(coordinateSystem(extent={{-100,-100},{110,110}})),
     experiment(StopTime=200),
     experimentSetupOutput,
     Documentation(revisions="<html>
@@ -121,5 +135,8 @@ equation
   If the model parameter <FONT FACE=Courier>Ts</FONT> is <FONT FACE=Courier>>=0</FONT> the continuous time controllers are 
   replaced by their discrete time versions.<br>
   The effect of various discretisation method can be studied.
-  </HTML>"));
+  <h4>Verdict</h4>
+<p><code>passed</code> is true when every check passed.</p>
+<ul><li><code>chkTrack</code>: while TS is true (40 s to 85 s), CS = TR</li><li><code>chkRelease</code>: the release at 85 s is bumpless: CS continues from TR = 0.6 with the integral action e/T = 0.2/s</li><li><code>chkPV</code>: the loop without tracking reaches the set point</li><li><code>chkPVtrack</code>: the loop with tracking reaches the set point after the release</li></ul>
+</HTML>"));
 end TestI_tracking;
