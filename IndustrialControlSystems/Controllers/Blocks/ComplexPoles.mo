@@ -27,11 +27,13 @@ equation
   else
     if AntiWindup then
       y = min(Ymax,max(Ymin,tr));
-      Y + eps*der(Y) = tr;
+      // the states follow TR through a critically damped second-order lag (time constant eps),
+      // so that both states keep a derivative equation and the release is bumpless
+      tr = Y + 2*eps*dY + eps^2*der(dY);
       dY = der(Y);
     else
       y = tr;
-      Y + eps*der(Y) = tr;
+      tr = Y + 2*eps*dY + eps^2*der(dY);
       dY = der(Y);
     end if;
   end if;
@@ -72,7 +74,7 @@ equation
   If the boolean flag <FONT FACE=Courier>useTS</FONT>, the inputs <FONT FACE=Courier>TS</FONT> and <FONT FACE=Courier>TR</FONT> are enabled.<br>
   When enabled, is the <FONT FACE=Courier>TS</FONT> signal is true the output <FONT FACE=Courier>y</FONT> is forced to follow the track reference signal <FONT FACE=Courier>TR</FONT>.
   <br><br>
-  While the tracking mode is enabled (<FONT FACE=Courier>TS = true</FONT>), the state variable follows the Track Reference signal (<FONT FACE=Courier>TR</FONT>).<br>
+  While the tracking mode is enabled (<FONT FACE=Courier>TS = true</FONT>), the states follow the Track Reference signal (<FONT FACE=Courier>TR</FONT>) through a critically damped second-order lag with time constant <FONT FACE=Courier>eps</FONT>, so the return to normal operation is bumpless.<br>
   In such a way bumpless transitions are guaranteed. 
   </p>
   </p>

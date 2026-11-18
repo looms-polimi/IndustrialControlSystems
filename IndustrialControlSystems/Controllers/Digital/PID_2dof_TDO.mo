@@ -19,6 +19,7 @@ model PID_2dof_TDO
   Real counter "Sub-sampling counter for TDO";
   Real cs "Internal control signal";
 protected
+  discrete Real bs(start=0, fixed=true) "Bias sampled at the last sampling instant";
   Real sp "Sampled set point";
   Real dsp "Set point increment";
   Real pv "Sampled process variable";
@@ -45,6 +46,7 @@ algorithm
       // read the inputs
       counter :=0;
       sp  := SP;
+      bs  := bias;
       pv  := PV;
       dsp := sp - spo;
       dpv := pv - pvo;
@@ -55,7 +57,7 @@ algorithm
         di  := Kp*Ts/Ti*(sp-pv);
         d   := (Td*pre(d)+Kp*N*Td*(c*dsp-dpv))/(if Td>0 then Td+N*Ts else 1);
         dd  := d - dold;
-        dcs := dp + di + dd + bias - pre(bias);
+        dcs := dp + di + dd + bs - pre(bs);
         cs  := pre(cs) + dcs;
       elseif man then
         // manual mode

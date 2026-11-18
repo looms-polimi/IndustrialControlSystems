@@ -9,6 +9,8 @@ model PD "Proportional + Derivative controller"
     annotation(Evaluate = true, Dialog(group = "Parameters"));
   Real Fin "Low-pass filtered error, scaled by Kp*N (state of the derivative filter)";
   Real satin "input of the saturation block";
+  Real SP_s "Set point at the last sampling instant (sampled branch; = SP in continuous time)";
+  Real PV_s "Process variable at the last sampling instant (sampled branch; = PV in continuous time)";
 initial equation
 
   // Initialise the derivative filter so that the output starts at CS_start
@@ -16,6 +18,8 @@ initial equation
   // In the sampled branch this sets the state one sample before t=0, so at t=0
   // the derivative part has already decayed by one filter step.
   if Ts > 0 then
+    pre(SP_s) = SP;
+    pre(PV_s) = PV;
     // Discrete time initialisation
     pre(Fin) = Kp*(1 + N)*(SP - PV) + bias
                - (if AntiWindup then max(CSmin,min(CSmax,CS_start)) else CS_start);
@@ -30,13 +34,15 @@ equation
   if Ts > 0 then
     // Discrete time controller
     when sample(0,Ts) then
+      SP_s = SP;
+      PV_s = PV;
       CS    = if AntiWindup then max(CSmin,min(CSmax,satin)) else satin;
       // proportional action + real derivative action Kp*N*(e - lowpass(e))
       satin = if ts then tr else Kp*(SP - PV) + Kp*N*(SP - PV) - Fin + pre(bias);
       Fin = IndustrialControlSystems.LinearSystems.Discrete.Functions.f1Pole(
         alfa,
         SP - PV,
-        pre(SP) - pre(PV),
+        pre(SP_s) - pre(PV_s),
         pre(Fin),
         Ts,
         Kp*N,
@@ -44,6 +50,8 @@ equation
     end when;
   else
     // Continuous time controller
+    SP_s = SP;
+    PV_s = PV;
     CS    = if AntiWindup then max(CSmin,min(CSmax,satin)) else satin;
     // proportional action + real derivative action Kp*N*(e - lowpass(e))
     satin = if ts then tr else Kp*(SP - PV) + Kp*N*(SP - PV) - Fin + bias;

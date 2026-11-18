@@ -30,14 +30,17 @@ protected
   Real A "terms used if the system is not strictly proper";
   discrete Real w "proper part of the output";
 initial equation
+  // The first sample is at t = 0, after the initialisation: the flags set the discrete states
+  // (the values before that sample) so that the first sample starts from the requested point.
   if initOutput then
-    y = y_start;
-  end if;
-  if initSteadyOutput then
-    pre(y) = 0;
-  end if;
-  if initSteadyState then
-    pre(w) = 0;
+    // output y_start: state w = y_start - A*u, derivative state 0
+    pre(w) = y_start - A*u;
+    pre(Y[1]) = 0;
+  elseif initSteadyState or initSteadyOutput then
+    // steady state (for a constant input also the steady output): derivative state 0 and the
+    // state equation at rest
+    pre(Y[1]) = 0;
+    b[2]*pre(w) + sum(b[i]*pre(Y[i]) for i in 3:D) = c[1]*u + sum(c[i]*pre(U[i]) for i in 2:D-1);
   end if;
 equation
   assert(D >= N,"The system is not proper");
@@ -67,7 +70,7 @@ equation
       U[i] = Functions.fIntegrator(alfa,U[i-1],pre(U[i-1]),pre(U[i]),Ts,1);
     end for;
 
-    w = - b[1]*Y[1] - sum(b[i]*Y[i] for i in 3:D) + sum(c[i]*U[i] for i in 1:D-1);
+    w = (sum(c[i]*U[i] for i in 1:D-1) - b[1]*Y[1] - sum(b[i]*Y[i] for i in 3:D))/b[2];
 
     y = A*u + w;
 

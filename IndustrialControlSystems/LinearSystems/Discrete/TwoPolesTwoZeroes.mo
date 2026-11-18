@@ -13,10 +13,13 @@ model TwoPolesTwoZeroes
   parameter Real y_start = 0 "Output initial value"
     annotation(Dialog(group = "Initial conditions"));
 protected
-  Real u_pre "Input sample one step ago u[n-1]";
+  discrete Real u_s "Input at the last sampling instant (u[n-1] at the next one)";
+  discrete Real u_pre "Input sample one step ago u[n-1] (u[n-2] at the next instant)";
   Real y_pre "Output sample one step ago y[n-1]";
 initial equation
   pre(y) = y_start;
+  pre(u_s) = u;
+  pre(u_pre) = u;
 equation
   assert(abs(T2-T3)>1e-8 and abs(T1-T3)>1e-8,"T1 and T2 must be != T3");
 
@@ -27,13 +30,14 @@ equation
       T2,
       T3,
       u,
-      pre(u),
+      pre(u_s),
       pre(u_pre),
       pre(y),
       pre(y_pre),
       Ts,
       mu);
-    u_pre = pre(u);
+    u_s = u;
+    u_pre = pre(u_s);
     y_pre = pre(y);
   end when;
 

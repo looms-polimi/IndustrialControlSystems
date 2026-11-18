@@ -13,7 +13,7 @@ held in Munich 3-5 September 2012. The library won the 2nd prize at the Modelica
 
 <h4>Version 2.0.1 (unreleased)</h4>
 <p>Version 2.0.1 collects the changes proposed to the upstream repository in
-<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/2\">PR #2</a> to <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/6\">PR #6</a>. The issue links point to the issue tracker of the
+<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/2\">PR #2</a> to <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/6\">PR #6</a>, and the test library with the fixes it found in <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/8\">PR #8</a>. The issue links point to the issue tracker of the
 <a href=\"https://github.com/hubertus65/IndustrialControlSystems\">fork</a> where each fix was reviewed.</p>
 
 <h5>Compatibility and maintenance (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/2\">PR #2</a>)</h5>
@@ -88,6 +88,113 @@ changes</b>; the closed-loop steady state does not.
 (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/6\">PR #6</a>, <a href=\"https://github.com/hubertus65/IndustrialControlSystems/issues/17\">issue 17</a>)</li>
 </ul>
 
+<h5>Bug fixes found by the self-checking tests (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/8\">PR #8</a>)</h5>
+<p>Each fix changes results only for the configurations listed; regenerate the reference results of models that use them.</p>
+<ul>
+<li><code>LinearSystems.Continuous.TwoPolesTwoZeroes</code>: the integrator state integrated
+<code>T1*u</code> instead of <code>u</code>, so the block realised mu(1+sT1)(1+sT2)/(s(1+sT3)) only for
+<code>T1 = 1</code>. <b>Results of all models using it with <code>T1 &lt;&gt; 1</code> change.</b></li>
+<li>Sampled blocks with a continuous-time input: <code>LinearSystems.Discrete.Delay</code>,
+<code>FirstOrder</code>, <code>Integrator</code>, <code>LeadLag</code>, <code>ComplexPoles</code>,
+<code>TwoPolesTwoZeroes</code>, and the sampled versions (<code>Ts &gt; 0</code>) of
+<code>Controllers.I</code>, <code>D</code>, <code>PD</code> and <code>PID</code> used <code>pre(u)</code>
+(<code>pre(SP)</code>, <code>pre(PV)</code>) inside <code>when sample()</code> as the input of the previous
+sampling instant. For a continuous-time input <code>pre(u)</code> is the current value, so
+<code>Delay</code> did not delay and the difference equations used u[n] in place of u[n-1].
+The blocks now store the input in a discrete variable at each sampling instant and use its previous value.
+Only an input that changes at events other than the block's own sampling instants was handled correctly
+before. Behind a <code>Modelica.Blocks.Discrete.ZeroOrderHold</code> with the same sampling instants the
+blocks were affected too: that block outputs <code>pre(ySample)</code>, so at the common instant the
+block reads the previous held value; <code>Delay</code> appeared to work there only because of this, and now
+gives one more sample of delay in that arrangement. The first-sample history now starts from the initial input instead of 0
+(<code>ComplexPoles</code>, <code>TwoPolesTwoZeroes</code>) and <code>Delay</code> outputs
+<code>y_start</code> during the first sampling period. With Backward Euler (the default
+<code>method</code>) the first-order blocks, <code>Integrator</code> and the controllers do not use u[n-1]
+and are not affected; with Forward Euler or Tustin, and for <code>Delay</code>, <code>ComplexPoles</code>
+and <code>TwoPolesTwoZeroes</code>, results change.</li>
+<li><code>LinearSystems.Discrete.Functions.fDerivator</code> ignored its gain input <code>k</code>.
+The library calls it with <code>k = 1</code> only, so no library result changes.</li>
+<li><code>MathOperations.RealType.Functions.toFixedPoint</code> rounded negative values one count too low
+(<code>floor(x - 0.5)</code>: -123.4 gave -124, and a value saturated at <code>MIN</code> gave
+<code>MIN - 1</code>). It now rounds to nearest, halves away from zero, for both signs.
+<b>Results of the fixed-point math blocks with negative signals change.</b></li>
+<li><code>Controllers.I</code>, sampled (<code>Ts &gt; 0</code>): the integrator state was rebuilt as
+<code>pre(CS) - pre(bias)</code>; for a continuous-time bias <code>pre(bias)</code> is the current bias, so a change of
+the bias cancelled itself and never reached CS. The bias is now sampled into a discrete variable.
+<b>Results of sampled <code>I</code> controllers with a varying bias change.</b></li>
+<li><code>Controllers.AutoTuning.ATPIrelayNCdigital</code>: in PI mode the output was always limited to
+[<code>CSmin</code>, <code>CSmax</code>], whatever <code>AntiWindup</code>. It now honours the flag, like every other
+controller: limited (with the anti-windup of the reset state) only if <code>AntiWindup = true</code>.
+<b>Results of models using it with <code>AntiWindup = false</code> whose output leaves the limits change.</b></li>
+<li><code>Controllers.AutoTuning.ATPIrelayNCmixedMode</code>: in tracking mode the output was TR even with
+<code>AntiWindup = true</code>; it is now TR limited to [<code>CSmin</code>, <code>CSmax</code>], as documented for all
+controllers.</li>
+<li><code>Controllers.Blocks.ComplexPoles</code>: in tracking mode the equations did not define the derivative of
+the second state, so a simulation stopped with a singular Jacobian when <code>TS</code> became true. The states now
+follow <code>TR</code> through a critically damped second-order lag with time constant <code>eps</code>.</li>
+<li><code>MathOperations.RealType.Div</code> with <code>FixedPoint = true</code>: the quotient was wrong. For
+|u2| &lt; 1 (with a scale factor &gt; 1) the integer division dropped the fractional part of the quotient (1/0.3 gave 3);
+otherwise u2 was rounded to an integer before dividing (u1/1.5 became u1/2), and with scale factor 1 and |u2| &lt; 1 it
+divided by zero. The quotient is now rounded to the output scale and limited to [MIN, MAX], like the other operators.
+<b>Results of fixed-point divisions change.</b></li>
+<li><code>LinearSystems.Discrete.TransferFunction</code>: the update equation left out the denominator coefficient of
+the state (it assumed it is 1, as in the default <code>den</code>), so other denominators gave a wrong response; and the
+initialisation flags had no effect, because they set the output or zero states instead of the discrete states before the
+first sample (the output always started near 0). <code>initOutput</code> now starts the output at <code>y_start</code>,
+<code>initSteadyState</code> and <code>initSteadyOutput</code> at the steady state for the initial input.
+<b>Results of models using it with a denominator whose second coefficient is not 1, or with an initialisation flag,
+change.</b></li>
+<li><code>Controllers.Digital.PID_2dof</code>, <code>PID_2dof_TDO</code>,
+<code>PID_2dof_TDO_FullyEventBased</code>: the bias entered as the increment <code>bias - pre(bias)</code>,
+which is 0 at a sampling instant for a continuous-time bias signal, so the bias was never applied. The
+bias is now sampled into a discrete variable and its increment since the last sample is added.
+<b>Results of models using the bias input of these controllers change.</b></li>
+<li><code>LinearSystems.Discrete.MultiStepsDelay</code>: delayed by N-1 samples instead of the documented
+N, and its default <code>N = 1</code> violated its own assertion <code>N &gt; 1</code>. It now delays by N
+samples, and N = 1 is allowed (same as <code>Delay</code>).</li>
+</ul>
+
+<h5>Tests: a separate library with examples, self-checking tests and MC/DC tests (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/8\">PR #8</a>)</h5>
+<p>The tests and examples are no longer part of <code>IndustrialControlSystems</code>. They are in the separate top-level library
+<code>Tests</code> (same repository, folder <code>Tests</code>, <code>uses(IndustrialControlSystems(version=\"2.0.1\"))</code>), which
+has to be loaded in addition to the library to run them. The library keeps the <code>Applications</code> examples.</p>
+<ul>
+<li><b>Examples moved.</b> Every <code>IndustrialControlSystems.*.Examples</code> package moved to <code>Tests</code>, without the
+<code>Examples</code> level: for example <code>Controllers.Examples.TestPI_bias</code> is now <code>Tests.Controllers.TestPI_bias</code>,
+and the regression tests of 2.0.1 listed below are in <code>Tests.Controllers</code>. Models that referred to an example must use its
+new name.</li>
+<li><b>Self-checking tests.</b> Each has a Boolean <code>passed</code>, true when every check passed; a failed check also issues an
+assertion warning at the end of the run. They cover the classes the examples did not exercise
+(<code>Tests.LinearSystems</code>, <code>Tests.Logical</code>, <code>Tests.MathOperations</code>) and every library function
+(<code>Tests.FunctionChecks</code>). The regression tests <code>TestI_biasNoDrift</code>, <code>TestGainScheduling</code>,
+<code>TestTracking_bias</code>, <code>TestInit_CSstart</code>, <code>TestI_bias</code> and <code>TestI_tracking</code> now check
+their documented expected values as well (<code>TestGainScheduling</code> and <code>TestInit_CSstart</code> run 0.05 s longer, so that the
+sampled value at the end of the table can be checked). The check blocks are in <code>Tests.Utilities</code>.</li>
+<li><b>MC/DC tests.</b> <code>Tests.Controllers.MCDC</code> holds 187 tests for modified condition/decision coverage of every controller
+class (<code>P</code>, <code>PI</code>, <code>I</code>, <code>D</code>, <code>PD</code>, <code>PID</code>, the digital PIDs, the
+autotuners, <code>Blocks</code> and the relays): per class a <code>Base</code> model with every option off and one variant per option
+change (<code>extends Base(useTS=true)</code>, continuous and sampled), each self-checking against an independent reference or a
+flag-dependent invariant. They found the defects listed above in the sampled <code>I</code> with a bias, the digital PIDs' bias,
+<code>ATPIrelayNCdigital</code>, <code>ATPIrelayNCmixedMode</code> and <code>Blocks.ComplexPoles</code>. The package is generated by
+<code>Tests/Scripts/generate_mcdc.py</code>.</li>
+<li><b>MC/DC tests of the other packages.</b> 60 more tests with the same structure, generated by
+<code>Tests/Scripts/generate_mcdc_library.py</code>:
+<ul>
+<li><code>Tests.Logical.MCDC</code> (21): <code>And</code>, <code>Or</code>, <code>Xor</code> (continuous, sampled, two
+inputs), <code>Not</code>, <code>FlipFlopSR</code> (<code>q_start</code>), the five timers and the counter (scenarios with an
+independently stated expectation).</li>
+<li><code>Tests.MathOperations.MCDC</code> (27): <code>RealType.Add</code>, <code>Sub</code>, <code>Mult</code>,
+<code>Div</code>, <code>Pow</code> (floating and fixed point, continuous and sampled, saturation) and
+<code>Expression</code> (also <code>useInputs</code>), <code>IntegerType.Expression</code>.</li>
+<li><code>Tests.LinearSystems.MCDC</code> (12): continuous and discrete <code>TransferFunction</code> (the three
+initialisation flags, biproper, a denominator whose state coefficient is not 1, Forward Euler and Tustin).</li>
+</ul>
+They found the defects in <code>RealType.Div</code> and <code>Discrete.TransferFunction</code> listed above. Classes
+already covered in both branches by self-checking tests (comparisons, <code>Nand</code>/<code>Nor</code>/<code>Xnor</code>,
+the integer operators) are left out. A check of <code>Tests.Utilities.CheckRealWhile</code> now fails if its window never
+opened.</li>
+</ul>
+
 <h5>New features (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/3\">PR #3</a>)</h5>
 <ul>
 <li><code>Controllers.PI</code>: new parameters <code>initFromFBstart</code> (default <code>false</code>) and <code>FBstart</code>
@@ -109,7 +216,7 @@ output is initialised from <code>CS_start</code> (<a href=\"https://github.com/l
 </ul>
 
 <h5>Regression tests (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/4\">PR #4</a>, <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/5\">PR #5</a>, <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/6\">PR #6</a>)</h5>
-<p>New models in <code>Controllers.Examples</code>. Each runs continuous and sampled controllers side by side with constant inputs,
+<p>New models, now in <code>Tests.Controllers</code>. Each runs continuous and sampled controllers side by side with constant inputs,
 and its documentation lists the expected values:</p>
 <ul>
 <li><code>TestI_biasNoDrift</code>: an <code>I</code> controller with bias and zero error does not drift.</li>

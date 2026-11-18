@@ -9,13 +9,17 @@ model LeadLag "Lead lag process: mu(1+T1*s)/(1+T2*s)"
     annotation(Dialog(group = "Block parameters"));
   parameter Real y_start = 0 "Output initial value"
     annotation(Dialog(group = "Initial conditions"));
+protected
+  discrete Real u_s "Input at the last sampling instant (u[n-1] at the next one)";
 initial equation
+  pre(u_s) = u;
   pre(y) = y_start;
 equation
   assert(abs(T1-T2)>1e-8,"T1 must be != T2");
 
   when sample(0,Ts) then
-    y = Functions.f1p1z(alfa,T1,T2,u,pre(u),pre(y),Ts,mu);
+    y = Functions.f1p1z(alfa,T1,T2,u,pre(u_s),pre(y),Ts,mu);
+    u_s = u;
   end when;
   annotation (Icon(graphics={
         Text(

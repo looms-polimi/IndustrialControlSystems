@@ -27,7 +27,7 @@ info="
   </ul>
   Both controllers expose an ATreq boolean input that triggers the tuning procedure, and
   return to normal PI operation automatically once valid parameters have been computed.
-  Simulation examples are provided in the <b>Examples</b> sub-package.
+  Simulation examples are provided in <a href=\"modelica://Tests.Controllers.AutoTuning\">Tests.Controllers.AutoTuning</a>.
   </p>
   </HTML>",
           revisions="<html>

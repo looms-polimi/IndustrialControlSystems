@@ -13,29 +13,22 @@ equation
     // FixedPoint variables
     // conversion from Real to Integer
     U1fp = integer(Functions.toFixedPoint(u1,scaleFactor,MAX,MIN));
-    if abs(u2)<1 and scaleFactor > 1 then
-      U2fp = integer(Functions.toFixedPoint(u2,scaleFactor,MAX,MIN));
-    else
-      U2fp = integer(Functions.toFixedPoint(u2,1,MAX,MIN));
-    end if;
+    U2fp = integer(Functions.toFixedPoint(u2,scaleFactor,MAX,MIN));
 
     assert(U2fp<>0,"Division by zero");
 
-    // Math operation
+    // Math operation: the quotient of two numbers with the same scale factor is unscaled;
+    // it is rounded to the output scale and limited to [MIN, MAX]
     if Ts > 0 then
       when sample(0,Ts) then
-        Yfp = max(MIN,min(MAX,div(U1fp,U2fp)));
+        Yfp = integer(Functions.toFixedPoint(U1fp/U2fp,scaleFactor,MAX,MIN));
       end when;
     else
-      Yfp = max(MIN,min(MAX,div(U1fp,U2fp)));
+      Yfp = integer(Functions.toFixedPoint(U1fp/U2fp,scaleFactor,MAX,MIN));
     end if;
 
     // Output conversion
-    if abs(u2)<1 and scaleFactor > 1 then
-      y = Yfp;
-    else
-      y = Yfp/scaleFactor;
-    end if;
+    y = Yfp/scaleFactor;
 
   else
 

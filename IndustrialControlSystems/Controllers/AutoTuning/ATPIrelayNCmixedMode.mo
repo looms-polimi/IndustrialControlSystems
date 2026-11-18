@@ -45,7 +45,7 @@ equation
   satIn    = linFBout + K*(SP-PV);
   // bumpless transfer: in tracking mode the reset state follows TR - bias - P action (time constant eps)
   linFBout = (if ts then CSpi - bias - K*(SP-PV) else CSpi) - (if ts then eps else TI)*der(linFBout);
-  CSpi     = if ts then tr else noEvent( if AntiWindup then max(CSmin,min(CSmax,satIn)) else satIn);
+  CSpi     = if ts then (if AntiWindup then max(CSmin,min(CSmax,tr)) else tr) else noEvent( if AntiWindup then max(CSmin,min(CSmax,satIn)) else satIn);
 
   // Manage the Control Signal selection:
   // if the flag

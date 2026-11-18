@@ -6,7 +6,7 @@ model MultiStepsDelay "Multistep time delay"
 protected
   discrete Real buffer[N](each start = y_start);
 algorithm
-  assert(N>1,"The number of N steps delay must be positive");
+  assert(N>=1,"The number of N steps delay must be positive");
 
   when sample(0,Ts) then
 
@@ -16,7 +16,7 @@ algorithm
 
     buffer[1] := u;
 
-    y := buffer[N];
+    y := pre(buffer[N]);
 
   end when;
   annotation (Icon(graphics={Text(
@@ -41,8 +41,8 @@ algorithm
   </pre>
   The implementation maintains an internal buffer array of size N.  At each
   sampling instant the buffer is shifted and the oldest value is presented
-  at the output.  N must be strictly greater than 1; for a single-step delay
-  use the <code>Delay</code> block instead.  All buffer elements are
+  at the output, so the output at instant k is the input sampled at instant k-N.
+  N must be at least 1; N = 1 behaves as the <code>Delay</code> block.  All buffer elements are
   initialised to <code>y_start</code>.
   </p>
   <h4>Parameters</h4>
