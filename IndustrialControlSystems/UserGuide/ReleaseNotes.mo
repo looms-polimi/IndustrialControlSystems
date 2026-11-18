@@ -216,7 +216,7 @@ output is initialised from <code>CS_start</code> (<a href=\"https://github.com/l
 </ul>
 
 <h5>Regression tests (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/4\">PR #4</a>, <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/5\">PR #5</a>, <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/6\">PR #6</a>)</h5>
-<p>New models in <code>Controllers.Examples</code>. Each runs continuous and sampled controllers side by side with constant inputs,
+<p>New models, now in <code>Tests.Controllers</code>. Each runs continuous and sampled controllers side by side with constant inputs,
 and its documentation lists the expected values:</p>
 <ul>
 <li><code>TestI_biasNoDrift</code>: an <code>I</code> controller with bias and zero error does not drift.</li>
