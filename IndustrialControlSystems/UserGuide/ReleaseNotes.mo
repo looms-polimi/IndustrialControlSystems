@@ -13,7 +13,7 @@ held in Munich 3-5 September 2012. The library won the 2nd prize at the Modelica
 
 <h4>Version 2.0.1 (unreleased)</h4>
 <p>Version 2.0.1 collects the changes proposed to the upstream repository in
-<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/2\">PR #2</a> to <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/6\">PR #6</a>. The issue links point to the issue tracker of the
+<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/2\">PR #2</a> to <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/6\">PR #6</a>, and the test library with the fixes it found in <a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/8\">PR #8</a>. The issue links point to the issue tracker of the
 <a href=\"https://github.com/hubertus65/IndustrialControlSystems\">fork</a> where each fix was reviewed.</p>
 
 <h5>Compatibility and maintenance (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/2\">PR #2</a>)</h5>
@@ -88,7 +88,7 @@ changes</b>; the closed-loop steady state does not.
 (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/6\">PR #6</a>, <a href=\"https://github.com/hubertus65/IndustrialControlSystems/issues/17\">issue 17</a>)</li>
 </ul>
 
-<h5>Bug fixes found by the self-checking tests (fork branch <code>coverage-improvement</code>, not yet proposed upstream)</h5>
+<h5>Bug fixes found by the self-checking tests (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/8\">PR #8</a>)</h5>
 <p>Each fix changes results only for the configurations listed; regenerate the reference results of models that use them.</p>
 <ul>
 <li><code>LinearSystems.Continuous.TwoPolesTwoZeroes</code>: the integrator state integrated
@@ -154,7 +154,7 @@ N, and its default <code>N = 1</code> violated its own assertion <code>N &gt; 1<
 samples, and N = 1 is allowed (same as <code>Delay</code>).</li>
 </ul>
 
-<h5>Tests: a separate library with examples, self-checking tests and MC/DC tests (fork branch <code>coverage-improvement</code>)</h5>
+<h5>Tests: a separate library with examples, self-checking tests and MC/DC tests (<a href=\"https://github.com/looms-polimi/IndustrialControlSystems/pull/8\">PR #8</a>)</h5>
 <p>The tests and examples are no longer part of <code>IndustrialControlSystems</code>. They are in the separate top-level library
 <code>Tests</code> (same repository, folder <code>Tests</code>, <code>uses(IndustrialControlSystems(version=\"2.0.1\"))</code>), which
 has to be loaded in addition to the library to run them. The library keeps the <code>Applications</code> examples.</p>

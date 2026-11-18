@@ -30,7 +30,7 @@ The full release notes are in `IndustrialControlSystems.UserGuide.ReleaseNotes`.
 
 ### Version 2.0.1 (unreleased)
 
-The changes proposed upstream in PRs [#2](https://github.com/looms-polimi/IndustrialControlSystems/pull/2) to [#6](https://github.com/looms-polimi/IndustrialControlSystems/pull/6). Issue numbers refer to the [fork's issue tracker](https://github.com/hubertus65/IndustrialControlSystems/issues), where each fix was reviewed.
+The changes proposed upstream in PRs [#2](https://github.com/looms-polimi/IndustrialControlSystems/pull/2) to [#6](https://github.com/looms-polimi/IndustrialControlSystems/pull/6), and the test library with the fixes it found in [#8](https://github.com/looms-polimi/IndustrialControlSystems/pull/8). Issue numbers refer to the [fork's issue tracker](https://github.com/hubertus65/IndustrialControlSystems/issues), where each fix was reviewed.
 
 #### Compatibility and maintenance ([#2](https://github.com/looms-polimi/IndustrialControlSystems/pull/2))
 
@@ -58,7 +58,7 @@ Each fix changes results only for the configurations listed. Regenerate the refe
 - `I`, `PI` and `D` start at `CS_start` in every configuration (with anti-windup, sampled `I`, `D`). ([#5](https://github.com/looms-polimi/IndustrialControlSystems/pull/5), [issue 15](https://github.com/hubertus65/IndustrialControlSystems/issues/15))
 - `PID` starts at `CS_start`, without a derivative kick. **The start-up of all models using `PID` with a nonzero initial error, bias or `CS_start` changes**; the closed-loop steady state does not. ([#6](https://github.com/looms-polimi/IndustrialControlSystems/pull/6), [issue 17](https://github.com/hubertus65/IndustrialControlSystems/issues/17))
 
-#### Bug fixes found by the self-checking tests (fork branch `coverage-improvement`, not yet proposed upstream)
+#### Bug fixes found by the self-checking tests ([#8](https://github.com/looms-polimi/IndustrialControlSystems/pull/8))
 
 - `LinearSystems.Continuous.TwoPolesTwoZeroes` integrated `T1*u` instead of `u` (right only for `T1 = 1`).
 - Sampled blocks used `pre(u)` inside `when sample()` as the previous sample, which for a continuous-time input is the current value: `Discrete.Delay` did not delay, and `Discrete.FirstOrder`, `Integrator`, `LeadLag`, `ComplexPoles`, `TwoPolesTwoZeroes` and the sampled `Controllers.I`, `D`, `PD`, `PID` used u[n] for u[n-1] (Forward Euler, Tustin; Backward Euler was unaffected where the u[n-1] coefficient is zero). The sampled `I` and the digital PIDs (`Digital.PID_2dof*`) never applied a continuous-time bias for the same reason.
@@ -66,7 +66,7 @@ Each fix changes results only for the configurations listed. Regenerate the refe
 - `RealType.Div` with fixed point gave wrong quotients; `Discrete.TransferFunction` ignored its initialisation flags and the denominator coefficient of its state.
 - `AutoTuning.ATPIrelayNCdigital` ignored `AntiWindup` (always limited the output); `ATPIrelayNCmixedMode` did not limit TR while tracking with `AntiWindup`; `Blocks.ComplexPoles` could not simulate in tracking mode (singular Jacobian).
 
-#### Tests moved to a separate library, self-checking and MC/DC tests (fork branch `coverage-improvement`)
+#### Tests moved to a separate library, self-checking and MC/DC tests ([#8](https://github.com/looms-polimi/IndustrialControlSystems/pull/8))
 
 All `*.Examples` packages moved to the top-level library `Tests` (see [Tests](#tests)); `Controllers.Examples.X` is now `Tests.Controllers.X`. New: self-checking tests, `Tests.FunctionChecks`, verdicts in the 2.0.1 regression tests below, and the 187 MC/DC tests in `Tests.Controllers.MCDC`. The full description is in the release notes.
 
